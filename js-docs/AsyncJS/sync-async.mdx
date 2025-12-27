@@ -1,0 +1,58 @@
+---
+id: sync-async
+title: Synchronous vs Asynchronous
+sidebar_label: Sync vs Async
+sidebar_position: 1
+---
+
+# Synchronous vs Asynchronous
+
+**Synchronous**: Code executes line by line; each line waits for the previous to complete.
+
+**Asynchronous**: Code can start an operation and move on; results are handled later.
+
+```javascript
+// Synchronous (blocking)
+console.log("1");
+console.log("2");
+console.log("3");
+// Output: 1, 2, 3
+
+// Asynchronous (non-blocking)
+console.log("1");
+setTimeout(() => console.log("2"), 0);
+console.log("3");
+// Output: 1, 3, 2
+```
+
+## Why Async Matters
+
+- JavaScript is single-threaded
+- Without async, slow operations would freeze the page
+- Enables non-blocking I/O operations
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Try it! Click Run and watch the order of execution:
+
+<JSPlayground 
+  initialCode={`// Synchronous code runs in order
+console.log("1. First (sync)");
+
+// Async code with setTimeout runs AFTER sync code
+setTimeout(() => {
+  console.log("2. Second (async - delayed 1 second)");
+}, 1000);
+
+setTimeout(() => {
+  console.log("3. Third (async - delayed 500ms)");
+}, 500);
+
+console.log("4. Fourth (sync)");
+
+// Expected output order: 1, 4, 3, 2
+console.log("\\nWatch the console - async messages appear later!");`}
+/>
+

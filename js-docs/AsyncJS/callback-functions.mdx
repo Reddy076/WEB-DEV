@@ -1,0 +1,59 @@
+---
+id: callback-functions
+title: Callback Functions (Async)
+sidebar_label: Callback Functions
+sidebar_position: 4
+---
+
+# Async Callback Functions
+
+In async context, callbacks execute when an operation completes.
+
+```javascript
+function fetchData(callback) {
+  console.log("Fetching data...");
+  setTimeout(() => {
+    const data = { id: 1, name: "Product" };
+    callback(data);
+  }, 2000);
+}
+
+console.log("Before fetch");
+fetchData((data) => {
+  console.log("Data received:", data);
+});
+console.log("After fetch (doesn't wait)");
+
+// Output:
+// Before fetch
+// Fetching data...
+// After fetch (doesn't wait)
+// (2 seconds later) Data received: {...}
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Watch how async callbacks work with setTimeout:
+
+<JSPlayground 
+  initialCode={`// Async callback with setTimeout
+function fetchData(callback) {
+  console.log("Fetching data...");
+  setTimeout(() => {
+    const data = { id: 1, name: "Product", price: 99 };
+    callback(data);
+  }, 1500);
+}
+
+console.log("Before fetch");
+
+fetchData((data) => {
+  console.log("Data received:", data);
+});
+
+console.log("After fetch (this runs immediately!)");
+console.log("\\nWait 1.5 seconds for the callback...");`}
+/>
+

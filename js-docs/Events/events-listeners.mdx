@@ -1,0 +1,107 @@
+---
+id: events-listeners
+title: Events and Event Listeners
+sidebar_label: Events & Listeners
+sidebar_position: 1
+---
+
+# Events and Event Listeners
+
+**Events** are signals that something has happened - user interactions, browser actions, or other occurrences.
+
+## Adding Event Listeners
+
+```javascript
+const button = document.querySelector("button");
+
+// Basic listener
+button.addEventListener("click", function(event) {
+  console.log("Clicked!");
+});
+
+// Arrow function
+button.addEventListener("click", (e) => {
+  console.log("Target:", e.target);
+});
+
+// Named function (allows removal)
+function handleClick(e) {
+  console.log("Handler executed");
+}
+button.addEventListener("click", handleClick);
+button.removeEventListener("click", handleClick);
+```
+
+## Event Object
+
+| Property/Method | Description |
+|-----------------|-------------|
+| `event.target` | Element that triggered event |
+| `event.currentTarget` | Element listener is attached to |
+| `event.type` | Event type ("click", etc.) |
+| `event.preventDefault()` | Prevent default behavior |
+| `event.stopPropagation()` | Stop bubbling |
+
+## Event Bubbling and Delegation
+
+```javascript
+// Events bubble up from child to parent
+parent.addEventListener("click", () => console.log("Parent"));
+child.addEventListener("click", () => console.log("Child"));
+// Clicking child: "Child", then "Parent"
+
+// Event delegation (efficient)
+document.querySelector("ul").addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    e.target.classList.toggle("selected");
+  }
+});
+```
+
+## Common Event Types
+
+| Category | Events |
+|----------|--------|
+| **Mouse** | click, dblclick, mouseenter, mouseleave |
+| **Keyboard** | keydown, keyup, keypress |
+| **Form** | submit, input, change, focus, blur |
+| **Window** | load, DOMContentLoaded, resize, scroll |
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`console.log("=== Event Types ===");
+
+console.log("\\nMouse Events:");
+console.log("click, dblclick, mouseenter, mouseleave");
+
+console.log("\\nKeyboard Events:");
+console.log("keydown, keyup");
+console.log("e.key - the key pressed");
+console.log("e.ctrlKey, e.shiftKey - modifiers");
+
+console.log("\\nForm Events:");
+console.log("submit, input, change, focus, blur");
+
+console.log("\\nWindow Events:");
+console.log("load, DOMContentLoaded, resize, scroll");
+
+console.log("\\nEvent Delegation Pattern:");
+console.log("parent.addEventListener('click', e => {");
+console.log("  if (e.target.matches('.child')) { ... }");
+console.log("});");`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is event bubbling?**</summary>
+  When an event occurs on an element, it first triggers on that element, then "bubbles" up to its parent, grandparent, etc. up to the document.
+</details>
+
+<details>
+  <summary>**2. What is event delegation?**</summary>
+  Attaching one event listener to a parent element to handle events from its children using event bubbling. Benefits: better performance, works with dynamically added elements.
+</details>

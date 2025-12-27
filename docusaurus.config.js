@@ -10,8 +10,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'CSS Master Docs',
-  tagline: 'The Ultimate Guide to Modern CSS',
+  title: 'Web Dev Docs',
+  tagline: 'The Ultimate Guide to CSS & JavaScript',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -35,6 +35,18 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'js-docs',
+        path: 'js-docs',
+        routeBasePath: 'js',
+        sidebarPath: './jsSidebars.js',
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -72,7 +84,14 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: 'CSS',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'jsSidebar',
+            docsPluginId: 'js-docs',
+            position: 'left',
+            label: 'JavaScript',
           },
           {
             href: 'https://github.com/facebook/docusaurus',

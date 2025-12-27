@@ -1,0 +1,60 @@
+---
+id: callback-hell
+title: Callback Hell
+sidebar_label: Callback Hell
+sidebar_position: 5
+---
+
+# Callback Hell (Pyramid of Doom)
+
+**Callback hell** occurs when multiple nested callbacks create deeply indented, hard-to-read code.
+
+```javascript
+// Callback Hell example
+getUser(userId, (user) => {
+  getOrders(user.id, (orders) => {
+    getOrderDetails(orders[0].id, (details) => {
+      getShippingInfo(details.shippingId, (shipping) => {
+        updateUI(user, orders, details, shipping);
+        // More nesting...
+      }, handleError);
+    }, handleError);
+  }, handleError);
+}, handleError);
+```
+
+## Problems
+
+- Hard to read and understand
+- Difficult to debug and maintain
+- Error handling is complex
+- Code grows horizontally
+
+## Solutions
+
+1. **Named functions** - Extract callbacks into named functions
+2. **Promises** - Chain .then() calls
+3. **async/await** - Write async code like sync
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`console.log("=== Callback Hell ===");
+console.log("Nested callbacks become hard to read:");
+console.log("");
+console.log("getData(id, (data) => {");
+console.log("  process(data, (result) => {");
+console.log("    save(result, (saved) => {");
+console.log("      notify(saved, (done) => {");
+console.log("        // 😵 Too deep!");
+console.log("      });");
+console.log("    });");
+console.log("  });");
+console.log("});");
+
+console.log("\\nSolutions:");
+console.log("1. Promises with .then()");
+console.log("2. async/await syntax");`}
+/>

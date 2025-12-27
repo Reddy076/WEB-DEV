@@ -1,0 +1,298 @@
+---
+id: frameworks-libraries
+title: Frameworks and Libraries
+sidebar_label: Frameworks & Libraries
+sidebar_position: 3
+---
+
+# JavaScript Frameworks and Libraries
+
+JavaScript's ecosystem is rich with frameworks and libraries that extend its capabilities for building complex applications.
+
+## Understanding the Difference
+
+| Aspect | Library | Framework |
+|--------|---------|-----------|
+| **Control** | You call the library | Framework calls your code |
+| **Flexibility** | Use what you need | Follow framework structure |
+| **Example** | jQuery, Lodash | React, Angular, Vue |
+
+## Popular UI Frameworks
+
+### React
+
+Created by Facebook, React is a library for building user interfaces using components.
+
+```jsx
+// React Component
+function Welcome({ name }) {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div>
+      <h1>Hello, {name}!</h1>
+      <button onClick={() => setCount(count + 1)}>
+        Clicked {count} times
+      </button>
+    </div>
+  );
+}
+```
+
+**Key Features:**
+- Virtual DOM for performance
+- Component-based architecture
+- Unidirectional data flow
+- Rich ecosystem (Redux, React Router)
+
+### Vue.js
+
+A progressive framework for building user interfaces.
+
+```vue
+<template>
+  <div>
+    <h1>{{ message }}</h1>
+    <button @click="count++">Count: {{ count }}</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello Vue!',
+      count: 0
+    }
+  }
+}
+</script>
+```
+
+**Key Features:**
+- Gentle learning curve
+- Two-way data binding
+- Single-file components
+- Vuex for state management
+
+### Angular
+
+A full-featured framework by Google for enterprise applications.
+
+```typescript
+// Angular Component
+@Component({
+  selector: 'app-hero',
+  template: `
+    <h1>{{ title }}</h1>
+    <button (click)="onClick()">Click me</button>
+  `
+})
+export class HeroComponent {
+  title = 'Hello Angular!';
+  
+  onClick() {
+    console.log('Button clicked!');
+  }
+}
+```
+
+**Key Features:**
+- Full-featured (routing, forms, HTTP)
+- TypeScript by default
+- Dependency injection
+- CLI for scaffolding
+
+### Svelte
+
+A compiler that generates minimal JavaScript code.
+
+```svelte
+<script>
+  let count = 0;
+</script>
+
+<h1>Hello Svelte!</h1>
+<button on:click={() => count++}>
+  Clicked {count} times
+</button>
+```
+
+**Key Features:**
+- No virtual DOM
+- Truly reactive
+- Smaller bundle sizes
+- Write less code
+
+## Backend: Node.js
+
+Node.js enables JavaScript to run on servers.
+
+```javascript
+// Express.js - Popular Node.js framework
+const express = require('express');
+const app = express();
+
+app.get('/api/users', (req, res) => {
+  res.json([
+    { id: 1, name: 'John' },
+    { id: 2, name: 'Jane' }
+  ]);
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+```
+
+### Popular Node.js Frameworks
+
+| Framework | Use Case |
+|-----------|----------|
+| **Express** | Minimal, flexible web framework |
+| **Nest.js** | Enterprise-grade, TypeScript-first |
+| **Fastify** | High performance, low overhead |
+| **Koa** | Modern, lightweight by Express creators |
+
+## Utility Libraries
+
+### Lodash
+
+Utility functions for common programming tasks:
+
+```javascript
+import _ from 'lodash';
+
+_.chunk([1, 2, 3, 4], 2);     // [[1, 2], [3, 4]]
+_.uniq([1, 1, 2, 2, 3]);      // [1, 2, 3]
+_.debounce(fn, 300);          // Debounced function
+_.cloneDeep(object);          // Deep clone
+```
+
+### Axios
+
+Promise-based HTTP client:
+
+```javascript
+import axios from 'axios';
+
+// GET request
+const response = await axios.get('/api/users');
+
+// POST request
+await axios.post('/api/users', {
+  name: 'John',
+  email: 'john@example.com'
+});
+```
+
+### Day.js
+
+Lightweight date manipulation:
+
+```javascript
+import dayjs from 'dayjs';
+
+dayjs().format('YYYY-MM-DD');           // "2024-01-15"
+dayjs().add(7, 'day').format('DD/MM');  // "22/01"
+dayjs('2024-01-15').fromNow();          // "2 days ago"
+```
+
+## Testing Libraries
+
+| Library | Type | Description |
+|---------|------|-------------|
+| **Jest** | Unit | Facebook's testing framework |
+| **Mocha** | Unit | Flexible testing framework |
+| **Cypress** | E2E | Browser-based end-to-end testing |
+| **Playwright** | E2E | Cross-browser testing by Microsoft |
+
+## Build Tools
+
+| Tool | Description |
+|------|-------------|
+| **Webpack** | Module bundler with extensive plugins |
+| **Vite** | Next-generation, fast build tool |
+| **Parcel** | Zero-configuration bundler |
+| **esbuild** | Extremely fast bundler written in Go |
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Explore vanilla JavaScript patterns used in frameworks:
+
+<JSPlayground 
+  initialCode={`// Component-like pattern in vanilla JS
+class Counter {
+  constructor(initialValue = 0) {
+    this.count = initialValue;
+  }
+  
+  increment() {
+    this.count++;
+    this.render();
+  }
+  
+  render() {
+    console.log("Count:", this.count);
+  }
+}
+
+// Create and use component
+const counter = new Counter(0);
+counter.increment(); // Count: 1
+counter.increment(); // Count: 2
+counter.increment(); // Count: 3
+
+// State management pattern
+const store = {
+  state: { user: null, items: [] },
+  
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    console.log("State updated:", this.state);
+  }
+};
+
+store.setState({ user: "John" });
+store.setState({ items: [1, 2, 3] });`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between a library and a framework?**</summary>
+  - **Library**: You control when and how to use it (e.g., jQuery, Lodash)
+  - **Framework**: It controls your code structure and calls your code (e.g., Angular)
+  
+  This is called "Inversion of Control."
+</details>
+
+<details>
+  <summary>**2. What is the Virtual DOM?**</summary>
+  The Virtual DOM is a lightweight JavaScript representation of the actual DOM. Frameworks like React use it to:
+  1. Create a virtual copy of the UI
+  2. Compare changes (diffing)
+  3. Update only changed parts of the real DOM (reconciliation)
+  
+  This improves performance by minimizing expensive DOM operations.
+</details>
+
+<details>
+  <summary>**3. Why use TypeScript with JavaScript frameworks?**</summary>
+  TypeScript adds static typing to JavaScript, providing:
+  - Compile-time error detection
+  - Better IDE support (autocomplete, refactoring)
+  - Self-documenting code
+  - Easier maintenance of large codebases
+</details>
+
+<details>
+  <summary>**4. What is Node.js and how is it different from browser JavaScript?**</summary>
+  Node.js is a JavaScript runtime built on V8 engine that runs on servers.
+  
+  Differences:
+  - **Node.js**: Has `fs`, `http`, `process` modules; no `window` or `document`
+  - **Browser**: Has DOM APIs, `window`, `document`; no file system access
+</details>

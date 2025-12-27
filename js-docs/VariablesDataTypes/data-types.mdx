@@ -1,0 +1,306 @@
+---
+id: data-types
+title: Data Types
+sidebar_label: Data Types
+sidebar_position: 2
+---
+
+# JavaScript Data Types
+
+**Data types** specify what kind of data can be stored and manipulated within a program. JavaScript is dynamically typed, meaning variable types are determined at runtime.
+
+## Primitive Types (7 Types)
+
+Primitive types are **immutable** data types that are stored directly in memory. They are accessed by value.
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **String** | Textual data enclosed in quotes | `"Hello"`, `'World'`, `` `Template` `` |
+| **Number** | Integer or floating-point numbers | `42`, `3.14`, `Infinity`, `NaN` |
+| **Boolean** | Logical values | `true`, `false` |
+| **Undefined** | Variable declared but not assigned | `let x; // undefined` |
+| **Null** | Intentional absence of value | `let empty = null;` |
+| **Symbol** | Unique, immutable identifier (ES6) | `Symbol("id")` |
+| **BigInt** | Integers larger than Number limit (ES2020) | `9007199254740991n` |
+
+### String
+
+Strings represent textual data and can be created using single quotes, double quotes, or template literals.
+
+```javascript
+let firstName = "John";
+let lastName = 'Doe';
+let greeting = `Hello, ${firstName}!`; // Template literal
+
+// String methods
+"hello".toUpperCase();     // "HELLO"
+"hello world".split(" ");  // ["hello", "world"]
+"hello".length;            // 5
+"hello"[0];                // "h"
+```
+
+### Number
+
+JavaScript has only one number type that handles both integers and floating-point values.
+
+```javascript
+let integer = 42;
+let decimal = 3.14;
+let negative = -10;
+let infinity = Infinity;
+let notANumber = NaN; // Result of invalid math operations
+
+// Number methods
+(3.14159).toFixed(2);      // "3.14"
+parseInt("42px");          // 42
+parseFloat("3.14");        // 3.14
+Number.isInteger(42);      // true
+Number.isNaN(NaN);         // true
+```
+
+### Boolean
+
+Booleans represent logical values: `true` or `false`.
+
+```javascript
+let isActive = true;
+let isLoggedIn = false;
+
+// Truthy and Falsy values
+// Falsy: false, 0, "", null, undefined, NaN
+// Truthy: Everything else
+
+Boolean("");        // false
+Boolean("hello");   // true
+Boolean(0);         // false
+Boolean([]);        // true (empty array is truthy!)
+```
+
+### Undefined vs Null
+
+```javascript
+// Undefined - declared but no value assigned
+let undefinedVar;
+console.log(undefinedVar); // undefined
+
+// Null - intentional empty value
+let emptyValue = null;
+
+// Key difference
+typeof undefined; // "undefined"
+typeof null;      // "object" (known JavaScript bug!)
+
+null == undefined;  // true (loose equality)
+null === undefined; // false (strict equality)
+```
+
+### Symbol (ES6)
+
+Symbols are unique, immutable identifiers often used as object property keys.
+
+```javascript
+let sym1 = Symbol("description");
+let sym2 = Symbol("description");
+console.log(sym1 === sym2); // false (always unique)
+
+// Use in objects
+const ID = Symbol("id");
+const user = {
+  name: "John",
+  [ID]: 12345
+};
+```
+
+### BigInt (ES2020)
+
+BigInt handles integers larger than `Number.MAX_SAFE_INTEGER` (9007199254740991).
+
+```javascript
+let bigNumber = 9007199254740991n;
+let anotherBig = BigInt("12345678901234567890");
+
+// Operations
+bigNumber + 1n; // 9007199254740992n
+
+// Cannot mix with regular numbers
+// bigNumber + 1; // TypeError!
+```
+
+## Reference Types
+
+Reference types are objects stored in memory and accessed by reference. Multiple variables can point to the same object.
+
+### Object
+
+```javascript
+let person = {
+  name: "John",
+  age: 30,
+  isEmployed: true,
+  greet() {
+    return `Hello, I'm ${this.name}`;
+  }
+};
+
+// Accessing properties
+person.name;        // "John"
+person["age"];      // 30
+person.greet();     // "Hello, I'm John"
+```
+
+### Array
+
+```javascript
+let colors = ["red", "green", "blue"];
+let mixed = [1, "two", true, null];
+
+// Array methods
+colors.push("yellow");    // Add to end
+colors.pop();             // Remove from end
+colors.length;            // 3
+colors[0];                // "red"
+colors.map(c => c.toUpperCase());
+```
+
+### Function
+
+```javascript
+function greet(name) {
+  return `Hello, ${name}`;
+}
+
+// Functions are objects too!
+console.log(typeof greet); // "function"
+greet.length;              // 1 (number of parameters)
+```
+
+### Reference Behavior
+
+```javascript
+// References point to the same object
+let obj1 = { value: 10 };
+let obj2 = obj1;        // Both point to same object
+obj2.value = 20;
+console.log(obj1.value); // 20 (changed!)
+
+// Primitives are copied by value
+let a = 10;
+let b = a;
+b = 20;
+console.log(a); // 10 (unchanged)
+```
+
+## Type Checking
+
+```javascript
+// typeof operator
+typeof "hello";     // "string"
+typeof 42;          // "number"
+typeof true;        // "boolean"
+typeof undefined;   // "undefined"
+typeof null;        // "object" (bug!)
+typeof Symbol();    // "symbol"
+typeof 10n;         // "bigint"
+typeof {};          // "object"
+typeof [];          // "object"
+typeof function(){}; // "function"
+
+// Better type checking
+Array.isArray([]);           // true
+Object.prototype.toString.call([]); // "[object Array]"
+value instanceof Array;      // true (for arrays)
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Explore JavaScript data types:
+
+<JSPlayground 
+  initialCode={`// Primitive types
+console.log("=== Primitive Types ===");
+console.log("String:", typeof "Hello");
+console.log("Number:", typeof 42);
+console.log("Boolean:", typeof true);
+console.log("Undefined:", typeof undefined);
+console.log("Null:", typeof null); // Bug: shows "object"
+console.log("Symbol:", typeof Symbol("id"));
+console.log("BigInt:", typeof 9007199254740991n);
+
+// Reference types
+console.log("\\n=== Reference Types ===");
+console.log("Object:", typeof {});
+console.log("Array:", typeof []); // Shows "object"
+console.log("Array check:", Array.isArray([]));
+console.log("Function:", typeof function(){});
+
+// Reference behavior
+console.log("\\n=== Reference Behavior ===");
+let obj1 = { value: 10 };
+let obj2 = obj1;
+obj2.value = 20;
+console.log("obj1.value:", obj1.value); // Changed!
+
+// Truthy/Falsy
+console.log("\\n=== Truthy/Falsy ===");
+console.log("Boolean(''):", Boolean(''));
+console.log("Boolean('text'):", Boolean('text'));
+console.log("Boolean(0):", Boolean(0));
+console.log("Boolean([]):", Boolean([]));`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What are the primitive data types in JavaScript?**</summary>
+  JavaScript has 7 primitive types:
+  1. **String** - Textual data
+  2. **Number** - Numeric values
+  3. **Boolean** - true/false
+  4. **Undefined** - Unassigned variable
+  5. **Null** - Intentional empty value
+  6. **Symbol** - Unique identifier
+  7. **BigInt** - Large integers
+</details>
+
+<details>
+  <summary>**2. What is the difference between null and undefined?**</summary>
+  - **undefined**: Variable declared but not assigned a value; default return of functions
+  - **null**: Intentional absence of value; explicitly assigned
+  
+  ```javascript
+  let x;          // undefined
+  let y = null;   // null (intentional)
+  ```
+</details>
+
+<details>
+  <summary>**3. Why does typeof null return "object"?**</summary>
+  This is a historical bug from the first JavaScript implementation. In the original JavaScript, values were represented with a type tag and a value. The type tag for objects was 0, and null was represented as the NULL pointer (0x00). This caused null to be incorrectly identified as an object.
+</details>
+
+<details>
+  <summary>**4. What are truthy and falsy values?**</summary>
+  **Falsy values** (evaluate to false in boolean context):
+  - `false`, `0`, `""`, `null`, `undefined`, `NaN`
+  
+  **Truthy values** (evaluate to true):
+  - Everything else, including `[]`, `{}`, `"0"`, `"false"`
+</details>
+
+<details>
+  <summary>**5. What is the difference between primitives and reference types?**</summary>
+  - **Primitives**: Stored by value, immutable, copied when assigned
+  - **Reference types**: Stored by reference, mutable, reference is copied (same object)
+  
+  ```javascript
+  // Primitive - copied by value
+  let a = 5; let b = a; b = 10;
+  console.log(a); // 5
+  
+  // Reference - same object
+  let x = {v: 5}; let y = x; y.v = 10;
+  console.log(x.v); // 10
+  ```
+</details>

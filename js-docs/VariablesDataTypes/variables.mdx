@@ -1,0 +1,195 @@
+---
+id: variables
+title: Variables (var, let, const)
+sidebar_label: Variables
+sidebar_position: 1
+---
+
+# Variables in JavaScript
+
+**Variables** are named containers that store data values. They act as references to memory locations where data is stored.
+
+## Declaring Variables
+
+JavaScript provides three keywords to declare variables: `var`, `let`, and `const`.
+
+## var
+
+`var` is the original way to declare variables in JavaScript (ES5). It has function scope and is hoisted to the top of its scope.
+
+### Characteristics
+
+- **Function Scoped**: Accessible throughout the function where declared
+- **Hoisted**: Declaration moves to top (initialized as `undefined`)
+- **Re-declarable**: Can be declared multiple times
+- **Global when outside functions**: Creates property on `window` object
+
+```javascript
+console.log(name); // undefined (hoisted)
+var name = "John";
+var name = "Jane"; // Allowed - re-declaration
+
+function example() {
+  var x = 10;
+  if (true) {
+    var x = 20; // Same variable!
+  }
+  console.log(x); // 20
+}
+```
+
+## let
+
+`let` (ES6) declares block-scoped variables that can be reassigned but not re-declared within the same scope.
+
+### Characteristics
+
+- **Block Scoped**: Only accessible within `{}` where declared
+- **Hoisted but not initialized**: Exists in "Temporal Dead Zone" (TDZ) until declaration
+- **Not Re-declarable**: Cannot declare same variable twice in same scope
+- **Reassignable**: Value can be changed after creation
+
+```javascript
+// console.log(age); // ReferenceError: TDZ
+let age = 25;
+age = 26; // Allowed
+// let age = 27; // SyntaxError: already declared
+
+if (true) {
+  let blockVar = "I'm block scoped";
+}
+// console.log(blockVar); // ReferenceError
+```
+
+## const
+
+`const` (ES6) declares block-scoped variables that cannot be reassigned. The binding is immutable, but object properties can still be modified.
+
+### Characteristics
+
+- **Block Scoped**: Same as `let`
+- **Must be initialized**: Cannot declare without assigning value
+- **Cannot be reassigned**: The reference cannot change
+- **Object properties mutable**: Properties of const objects can change
+
+```javascript
+const PI = 3.14159;
+// PI = 3.14; // TypeError: Assignment to constant
+
+const user = { name: "John" };
+user.name = "Jane"; // Allowed - modifying property
+// user = {}; // TypeError: Cannot reassign
+
+const arr = [1, 2, 3];
+arr.push(4); // Allowed - modifying array
+```
+
+## Comparison Table
+
+| Feature | var | let | const |
+|---------|-----|-----|-------|
+| **Scope** | Function | Block | Block |
+| **Hoisting** | Yes (undefined) | Yes (TDZ) | Yes (TDZ) |
+| **Re-declaration** | Yes | No | No |
+| **Reassignment** | Yes | Yes | No |
+| **Must Initialize** | No | No | Yes |
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Experiment with different variable declarations:
+
+<JSPlayground 
+  initialCode={`// var - function scoped, hoisted
+console.log("Before declaration:");
+console.log("x =", x); // undefined (hoisted)
+var x = 10;
+console.log("After: x =", x);
+
+// let - block scoped
+let count = 1;
+if (true) {
+  let count = 2; // Different variable!
+  console.log("Inside block: count =", count);
+}
+console.log("Outside block: count =", count);
+
+// const - immutable binding
+const PI = 3.14159;
+console.log("PI =", PI);
+
+// const with objects - properties can change!
+const person = { name: "John" };
+person.name = "Jane"; // This works!
+console.log("person.name =", person.name);
+
+// Try uncommenting this - it will error:
+// person = { name: "Bob" };`}
+/>
+
+## Best Practices
+
+:::tip Recommendations
+1. **Use `const` by default** - Most variables don't need reassignment
+2. **Use `let` when reassignment is needed** - Loop counters, accumulators
+3. **Avoid `var`** - Confusing scope behavior, legacy code only
+4. **Declare variables at the top** - Improves readability
+5. **Use meaningful names** - `userAge` not `x` or `temp`
+:::
+
+## Temporal Dead Zone (TDZ)
+
+The TDZ is the period between entering a scope and the variable declaration where accessing `let` or `const` variables throws an error.
+
+```javascript
+{
+  // TDZ starts for `name`
+  console.log(name); // ReferenceError!
+  let name = "John"; // TDZ ends
+  console.log(name); // "John"
+}
+```
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between var, let, and const?**</summary>
+  
+  - **var**: Function-scoped, hoisted with `undefined`, can be redeclared
+  - **let**: Block-scoped, hoisted but in TDZ, cannot be redeclared
+  - **const**: Block-scoped, must be initialized, cannot be reassigned
+</details>
+
+<details>
+  <summary>**2. What is hoisting?**</summary>
+  Hoisting is JavaScript's behavior of moving variable and function declarations to the top of their scope during compilation.
+  
+  - `var` is hoisted and initialized as `undefined`
+  - `let` and `const` are hoisted but not initialized (TDZ)
+  - Function declarations are fully hoisted
+</details>
+
+<details>
+  <summary>**3. What is the Temporal Dead Zone?**</summary>
+  The TDZ is the period between entering a scope and the variable's declaration where accessing `let` or `const` variables throws a `ReferenceError`. It enforces proper declaration before use.
+</details>
+
+<details>
+  <summary>**4. Can you change a const object's properties?**</summary>
+  **Yes!** `const` only prevents reassignment of the variable binding, not mutation of the value itself. Object properties and array elements can be modified.
+  
+  ```javascript
+  const arr = [1, 2];
+  arr.push(3); // Works!
+  arr = [4, 5]; // Error!
+  ```
+</details>
+
+<details>
+  <summary>**5. Why should you avoid var?**</summary>
+  - Function scope causes unexpected behavior in blocks
+  - Hoisting with `undefined` can hide bugs
+  - Allows accidental redeclaration
+  - `let` and `const` are safer and more predictable
+</details>

@@ -1,0 +1,64 @@
+---
+id: call-stack
+title: Call Stack
+sidebar_label: Call Stack
+sidebar_position: 2
+---
+
+# The Call Stack
+
+The **call stack** is a LIFO (Last In, First Out) data structure that keeps track of function execution.
+
+```javascript
+function first() {
+  console.log("First start");
+  second();
+  console.log("First end");
+}
+
+function second() {
+  console.log("Second start");
+  third();
+  console.log("Second end");
+}
+
+function third() {
+  console.log("Third");
+}
+
+first();
+
+// Stack progression:
+// 1. first() pushed  → [first]
+// 2. second() pushed → [first, second]
+// 3. third() pushed  → [first, second, third]
+// 4. third() returns → [first, second]
+// 5. second() returns → [first]
+// 6. first() returns → []
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`function first() {
+  console.log("First start");
+  second();
+  console.log("First end");
+}
+
+function second() {
+  console.log("Second start");
+  third();
+  console.log("Second end");
+}
+
+function third() {
+  console.log("Third (deepest in stack)");
+}
+
+console.log("=== Call Stack Demo ===");
+first();
+console.log("=== Stack empty ===");`}
+/>

@@ -1,0 +1,120 @@
+---
+id: debugging
+title: Debugging & Testing
+sidebar_label: Debugging & Testing
+sidebar_position: 1
+---
+
+# Debugging and Testing
+
+Techniques for finding and fixing errors in JavaScript code.
+
+## Console Methods
+
+| Method | Description |
+|--------|-------------|
+| `console.log()` | General output |
+| `console.error()` | Error messages |
+| `console.warn()` | Warnings |
+| `console.table()` | Display as table |
+| `console.time()` | Start timer |
+| `console.group()` | Group messages |
+
+```javascript
+console.log("General message");
+console.error("Error occurred!");
+console.table([{ a: 1 }, { a: 2 }]);
+
+console.time("operation");
+// ... code
+console.timeEnd("operation");
+```
+
+## Error Handling
+
+```javascript
+try {
+  const result = riskyOperation();
+} catch (error) {
+  console.error("Error:", error.message);
+} finally {
+  cleanup();
+}
+
+// Throwing errors
+function divide(a, b) {
+  if (b === 0) {
+    throw new Error("Cannot divide by zero");
+  }
+  return a / b;
+}
+
+// Custom errors
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+```
+
+## Debugging Techniques
+
+```javascript
+// Debugger statement
+function processData(data) {
+  debugger; // Pauses when dev tools open
+  return data.map(item => item * 2);
+}
+
+// Browser dev tools:
+// - Breakpoints in Sources tab
+// - $0 = currently selected element
+// - $_ = last evaluated expression
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Console methods
+console.log("Regular log");
+console.error("Error message");
+console.warn("Warning message");
+console.info("Info message");
+
+// console.table
+console.log("\\nTable:");
+console.table([
+  { name: "John", age: 30 },
+  { name: "Jane", age: 25 }
+]);
+
+// Error handling
+try {
+  throw new Error("Something went wrong!");
+} catch (e) {
+  console.log("\\nCaught error:", e.message);
+} finally {
+  console.log("Finally block runs always");
+}
+
+// Error types
+console.log("\\nError types:");
+console.log("Error, TypeError, SyntaxError");
+console.log("ReferenceError, RangeError");`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between throw and return?**</summary>
+  - `throw` signals an error and stops execution (can be caught)
+  - `return` exits a function normally and returns a value
+</details>
+
+<details>
+  <summary>**2. When does the finally block run?**</summary>
+  The `finally` block always runs, whether or not an exception was thrown or caught. It's used for cleanup operations.
+</details>

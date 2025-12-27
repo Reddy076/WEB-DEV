@@ -1,0 +1,119 @@
+---
+id: es6-features
+title: ES6+ Features
+sidebar_label: ES6+ Features
+sidebar_position: 1
+---
+
+# ES6+ Features
+
+Modern JavaScript features from ES6 (2015) and beyond.
+
+## Destructuring
+
+Extract values from arrays or objects:
+
+```javascript
+// Array
+const [a, b, ...rest] = [1, 2, 3, 4];
+
+// Object
+const { name, age = 18 } = { name: "John", age: 30 };
+
+// Function parameters
+function greet({ name, age }) {
+  console.log(`${name} is ${age}`);
+}
+```
+
+## Spread Operator (...)
+
+```javascript
+// Array
+const arr = [...arr1, ...arr2];
+const copy = [...arr1];
+
+// Object
+const merged = { ...obj1, ...obj2 };
+
+// Function args
+Math.max(...numbers);
+```
+
+## Rest Parameters
+
+```javascript
+function sum(...numbers) {
+  return numbers.reduce((a, b) => a + b, 0);
+}
+sum(1, 2, 3, 4); // 10
+```
+
+## Template Literals
+
+```javascript
+const name = "John";
+const greeting = `Hello, ${name}!`;
+const multiline = `
+  Line 1
+  Line 2
+`;
+```
+
+## Modules
+
+```javascript
+// Export
+export const PI = 3.14;
+export default class User {}
+
+// Import
+import User, { PI } from "./module.js";
+```
+
+## Other Features
+
+```javascript
+// Optional chaining
+obj?.prop?.nested;
+
+// Nullish coalescing
+value ?? "default";
+
+// Logical assignment
+x ||= 10;
+x ??= 10;
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Destructuring
+const [first, second, ...rest] = [1, 2, 3, 4, 5];
+console.log("Array destructuring:", first, second, rest);
+
+const { name, age = 25 } = { name: "John" };
+console.log("Object destructuring:", name, age);
+
+// Spread
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+console.log("Spread:", [...arr1, ...arr2]);
+
+// Rest parameters
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b, 0);
+}
+console.log("Rest params sum:", sum(1, 2, 3, 4, 5));
+
+// Template literals
+const greeting = \`Hello, \${name}!\`;
+console.log("Template:", greeting);
+
+// Optional chaining & nullish coalescing
+const obj = { a: { b: 1 } };
+console.log("Optional chain:", obj?.a?.b);
+console.log("Nullish:", null ?? "default");`}
+/>

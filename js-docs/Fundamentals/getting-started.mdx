@@ -1,0 +1,136 @@
+---
+id: getting-started
+title: Getting Started with JavaScript
+sidebar_label: Getting Started
+sidebar_position: 1
+---
+
+# Getting Started with JavaScript
+
+**JavaScript** is a high-level, interpreted, dynamically-typed programming language primarily used to create interactive and dynamic content on web pages. It is one of the core technologies of the World Wide Web, alongside HTML and CSS.
+
+## What is JavaScript?
+
+JavaScript was created by Brendan Eich in 1995 and has evolved into one of the most popular programming languages in the world. It enables:
+
+- **Interactive web pages** - Forms, animations, dynamic content
+- **Single-page applications (SPAs)** - React, Vue, Angular apps
+- **Server-side development** - Node.js, Express
+- **Mobile applications** - React Native, Ionic
+- **Desktop applications** - Electron
+
+## Key Characteristics
+
+| Characteristic | Description |
+|----------------|-------------|
+| **Interpreted** | Code is executed line by line without prior compilation |
+| **Dynamically Typed** | Variable types are determined at runtime, not compile time |
+| **Multi-paradigm** | Supports object-oriented, functional, and event-driven programming |
+| **Single-threaded** | Uses one main thread with an event loop for async operations |
+| **Cross-platform** | Runs in browsers and servers (Node.js) |
+
+## Where JavaScript Runs
+
+1. **Browser**: Client-side execution for interactive web pages
+2. **Server**: Node.js enables server-side JavaScript
+3. **Mobile**: React Native, Ionic for mobile app development
+4. **Desktop**: Electron for desktop applications
+
+## Adding JavaScript to HTML
+
+There are three ways to add JavaScript to your HTML document:
+
+### 1. External File (Recommended)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  
+  <!-- External JavaScript file -->
+  <script src="app.js"></script>
+</body>
+</html>
+```
+
+### 2. Internal Script
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  
+  <!-- Internal script -->
+  <script>
+    console.log("Hello from JavaScript!");
+    document.querySelector('h1').style.color = 'blue';
+  </script>
+</body>
+</html>
+```
+
+### 3. Inline JavaScript (Not Recommended)
+
+```html
+<button onclick="alert('Button clicked!')">Click Me</button>
+```
+
+:::warning Best Practice
+Always prefer external JavaScript files for better maintainability, caching, and separation of concerns.
+:::
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Try running your first JavaScript code:
+
+<JSPlayground 
+  initialCode={`// Your first JavaScript program!
+console.log("Hello, JavaScript!");
+console.log("Welcome to the JavaScript course");
+
+// Try some math
+let result = 10 + 20;
+console.log("10 + 20 =", result);
+
+// Current date
+console.log("Today is:", new Date().toDateString());`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is JavaScript?**</summary>
+  JavaScript is a high-level, interpreted programming language that enables interactive web pages. It runs in browsers and servers (via Node.js) and supports object-oriented, functional, and event-driven programming paradigms.
+</details>
+
+<details>
+  <summary>**2. What's the difference between Java and JavaScript?**</summary>
+  Despite similar names, they are completely different languages:
+  - **Java**: Compiled, strongly typed, class-based OOP, runs in JVM
+  - **JavaScript**: Interpreted, dynamically typed, prototype-based, runs in browsers/Node.js
+</details>
+
+<details>
+  <summary>**3. Is JavaScript synchronous or asynchronous?**</summary>
+  JavaScript is **single-threaded and synchronous** by default, but it supports **asynchronous** operations through callbacks, promises, and async/await using the event loop.
+</details>
+
+<details>
+  <summary>**4. What does 'use strict' do?**</summary>
+  `'use strict'` enables strict mode which catches common coding errors, prevents use of undeclared variables, and makes it easier to write secure JavaScript.
+</details>
+
+<details>
+  <summary>**5. Where should the script tag be placed?**</summary>
+  Ideally at the **end of the body tag** (before `</body>`) to ensure the DOM is loaded before the script runs. Alternatively, use `defer` or `async` attributes in the `<head>`.
+</details>

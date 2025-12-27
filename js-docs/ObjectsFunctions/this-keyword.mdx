@@ -1,0 +1,157 @@
+---
+id: this-keyword
+title: The this Keyword
+sidebar_label: this Keyword
+sidebar_position: 2
+---
+
+# The `this` Keyword
+
+**`this`** is a special keyword that refers to the context (object) in which the current code is executing. Its value depends on *how* a function is called.
+
+## Rules of `this`
+
+| Context | `this` refers to |
+|---------|--------------------|
+| Global scope | `window` (browser) or `global` (Node) |
+| Object method | The object owning the method |
+| Regular function | `window` (non-strict) or `undefined` (strict) |
+| Arrow function | Lexical `this` (inherited from enclosing scope) |
+| Constructor | The newly created instance |
+| Event handler | The element that received the event |
+| `call/apply/bind` | Explicitly specified object |
+
+## In Object Methods
+
+```javascript
+const obj = {
+  name: "MyObject",
+  getName() {
+    return this.name; // "MyObject"
+  }
+};
+
+console.log(obj.getName()); // "MyObject"
+```
+
+## In Regular Functions
+
+```javascript
+function showThis() {
+  console.log(this);
+}
+
+showThis(); // window (browser) or undefined (strict mode)
+```
+
+## Arrow Functions (No Own `this`)
+
+Arrow functions inherit `this` from their enclosing scope:
+
+```javascript
+const obj = {
+  name: "Object",
+  
+  // Arrow function - inherits from global (wrong!)
+  getNameArrow: () => this.name, // undefined
+  
+  // Method with arrow function inside (correct)
+  getNameCorrect() {
+    const arrow = () => this.name;
+    return arrow(); // "Object"
+  }
+};
+```
+
+## Explicit Binding: call, apply, bind
+
+### call()
+
+Invoke function immediately with specified `this`:
+
+```javascript
+function greet(greeting) {
+  return `${greeting}, ${this.name}`;
+}
+
+const person = { name: "John" };
+greet.call(person, "Hello"); // "Hello, John"
+```
+
+### apply()
+
+Like `call()`, but arguments as array:
+
+```javascript
+greet.apply(person, ["Hi"]); // "Hi, John"
+```
+
+### bind()
+
+Creates new function with bound `this`:
+
+```javascript
+const boundGreet = greet.bind(person);
+boundGreet("Hey"); // "Hey, John"
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// this in object method
+const user = {
+  name: "John",
+  greet() {
+    console.log("this.name:", this.name);
+  }
+};
+user.greet();
+
+// this with call, apply, bind
+function introduce(greeting, punctuation) {
+  console.log(\`\${greeting}, I'm \${this.name}\${punctuation}\`);
+}
+
+const person = { name: "Jane" };
+
+// call - arguments separately
+introduce.call(person, "Hello", "!");
+
+// apply - arguments as array
+introduce.apply(person, ["Hi", "?"]);
+
+// bind - returns new function
+const boundIntro = introduce.bind(person);
+boundIntro("Hey", ".");
+
+// Arrow function inherits this
+const obj = {
+  value: 42,
+  getValue() {
+    const arrow = () => this.value;
+    return arrow();
+  }
+};
+console.log("Arrow this:", obj.getValue());`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is `this` in JavaScript?**</summary>
+  `this` is a keyword that refers to the object that is executing the current function. Its value is determined by how the function is called, not where it's defined.
+</details>
+
+<details>
+  <summary>**2. How does `this` work in arrow functions?**</summary>
+  Arrow functions don't have their own `this`. They inherit `this` from their enclosing lexical scope (where they were defined).
+</details>
+
+<details>
+  <summary>**3. What's the difference between call, apply, and bind?**</summary>
+  - **call**: Invokes immediately, arguments separately
+  - **apply**: Invokes immediately, arguments as array
+  - **bind**: Returns new function with bound `this`
+</details>

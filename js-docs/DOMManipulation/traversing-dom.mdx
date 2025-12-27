@@ -1,0 +1,58 @@
+---
+id: traversing-dom
+title: Traversing the DOM
+sidebar_label: Traversing the DOM
+sidebar_position: 3
+---
+
+# Traversing the DOM
+
+Navigating between DOM nodes using parent, child, and sibling relationships.
+
+## Parent Navigation
+
+```javascript
+element.parentNode;              // Parent (any node type)
+element.parentElement;           // Parent (element only)
+element.closest(".container");   // Nearest ancestor matching selector
+```
+
+## Child Navigation
+
+```javascript
+element.childNodes;              // All children (includes text nodes)
+element.children;                // Element children only
+element.firstChild;              // First child (any node)
+element.firstElementChild;       // First element child
+element.lastChild;               // Last child (any node)
+element.lastElementChild;        // Last element child
+```
+
+## Sibling Navigation
+
+```javascript
+element.nextSibling;             // Next (any node)
+element.nextElementSibling;      // Next element
+element.previousSibling;         // Previous (any node)
+element.previousElementSibling;  // Previous element
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`console.log("=== DOM Traversal ===");
+
+console.log("\\nParent:");
+console.log("parentNode, parentElement");
+console.log("closest('.selector')");
+
+console.log("\\nChildren:");
+console.log("children, childNodes");
+console.log("firstElementChild, lastElementChild");
+
+console.log("\\nSiblings:");
+console.log("nextElementSibling");
+console.log("previousElementSibling");`}
+/>

@@ -1,0 +1,82 @@
+---
+id: dom-manipulation
+title: Creating & Removing Elements
+sidebar_label: DOM Manipulation
+sidebar_position: 4
+---
+
+# Creating and Removing DOM Elements
+
+Methods to dynamically create, insert, and remove DOM elements.
+
+## Creating Elements
+
+```javascript
+// Create element
+const div = document.createElement("div");
+div.textContent = "New Element";
+div.className = "box";
+
+// Create text node
+const text = document.createTextNode("Hello");
+```
+
+## Inserting Elements
+
+```javascript
+const parent = document.querySelector(".container");
+
+// Legacy methods
+parent.appendChild(div);                         // Add as last child
+parent.insertBefore(div, referenceElement);      // Before reference
+
+// Modern methods
+parent.append(div, "text", anotherElement);      // Multiple items
+parent.prepend(div);                             // Add as first child
+
+// insertAdjacentHTML
+element.insertAdjacentHTML("beforebegin", "<p>Before</p>");
+element.insertAdjacentHTML("afterend", "<p>After</p>");
+```
+
+## Removing Elements
+
+```javascript
+element.remove();                    // Remove itself (modern)
+parent.removeChild(element);         // Remove child (legacy)
+```
+
+## Replacing & Cloning
+
+```javascript
+// Replace
+parent.replaceChild(newElement, oldElement);
+oldElement.replaceWith(newElement);  // Modern
+
+// Clone
+const clone = element.cloneNode(false);  // Shallow
+const deepClone = element.cloneNode(true);  // Deep
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`console.log("=== DOM Manipulation ===");
+
+console.log("\\nCreating:");
+console.log("document.createElement('div')");
+console.log("document.createTextNode('text')");
+
+console.log("\\nInserting:");
+console.log("appendChild(), prepend(), append()");
+console.log("insertAdjacentHTML()");
+
+console.log("\\nRemoving:");
+console.log("element.remove()");
+console.log("parent.removeChild(element)");
+
+console.log("\\nCloning:");
+console.log("element.cloneNode(true/false)");`}
+/>

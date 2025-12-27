@@ -1,0 +1,323 @@
+---
+id: conditionals-loops
+title: If-Else, Switch, and Loops
+sidebar_label: if-else, switch, Loops
+sidebar_position: 2
+---
+
+# Conditionals and Loops
+
+Learn how to control program flow with conditional statements and loops.
+
+## if-else Statement
+
+Conditional statements execute different code blocks based on whether a condition is true or false.
+
+```javascript
+let temperature = 25;
+
+if (temperature >= 30) {
+  console.log("It's hot!");
+} else if (temperature >= 20) {
+  console.log("Nice weather");
+} else if (temperature >= 10) {
+  console.log("It's cool");
+} else {
+  console.log("It's cold!");
+}
+```
+
+### Truthy and Falsy Values
+
+Conditions are evaluated based on truthiness:
+
+```javascript
+// Falsy values: false, 0, "", null, undefined, NaN
+if ("") {
+  console.log("This won't run");
+}
+
+// Truthy: everything else
+if ("hello") {
+  console.log("This will run");
+}
+
+if ([]) {
+  console.log("Empty array is truthy!");
+}
+```
+
+## switch Statement
+
+The switch statement evaluates an expression and executes matching case blocks.
+
+```javascript
+let fruit = "apple";
+
+switch (fruit) {
+  case "apple":
+    console.log("Red or green fruit");
+    break;
+  case "banana":
+    console.log("Yellow fruit");
+    break;
+  case "orange":
+  case "tangerine":
+    console.log("Citrus fruit");
+    break;
+  default:
+    console.log("Unknown fruit");
+}
+```
+
+:::warning Importance of break
+Without `break`, execution "falls through" to the next case. This can be used intentionally (like grouping orange and tangerine above) but often causes bugs.
+:::
+
+## for Loop
+
+The classic loop with initialization, condition, and increment:
+
+```javascript
+// Basic for loop
+for (let i = 0; i < 5; i++) {
+  console.log(`Iteration ${i}`);
+}
+
+// Counting backwards
+for (let i = 10; i > 0; i--) {
+  console.log(i);
+}
+
+// Multiple variables
+for (let i = 0, j = 10; i < j; i++, j--) {
+  console.log(`i=${i}, j=${j}`);
+}
+```
+
+## while Loop
+
+Executes while a condition remains true:
+
+```javascript
+let countdown = 5;
+
+while (countdown > 0) {
+  console.log(countdown);
+  countdown--;
+}
+console.log("Liftoff!");
+```
+
+## do-while Loop
+
+Executes at least once, then checks condition:
+
+```javascript
+let num = 0;
+
+do {
+  console.log(`Number: ${num}`);
+  num++;
+} while (num < 5);
+
+// Runs at least once even if condition is false
+let x = 100;
+do {
+  console.log("This runs once!");
+} while (x < 10);
+```
+
+## for...of Loop (ES6)
+
+Iterates over iterable values (arrays, strings, Maps, Sets):
+
+```javascript
+// Arrays
+const colors = ["red", "green", "blue"];
+for (const color of colors) {
+  console.log(color);
+}
+
+// Strings
+for (const char of "Hello") {
+  console.log(char);
+}
+
+// With index using entries()
+for (const [index, color] of colors.entries()) {
+  console.log(`${index}: ${color}`);
+}
+
+// Destructuring
+const users = [
+  { name: "John", age: 30 },
+  { name: "Jane", age: 25 }
+];
+for (const { name, age } of users) {
+  console.log(`${name} is ${age}`);
+}
+```
+
+## for...in Loop
+
+Iterates over enumerable properties (keys) of an object:
+
+```javascript
+const person = { 
+  name: "John", 
+  age: 30, 
+  city: "NYC" 
+};
+
+for (const key in person) {
+  console.log(`${key}: ${person[key]}`);
+}
+// name: John, age: 30, city: NYC
+```
+
+:::tip Use for...of for Arrays
+`for...in` iterates over indices/keys, not values. For arrays, prefer `for...of` or array methods like `.forEach()`.
+:::
+
+## Loop Control Statements
+
+### break
+
+Exits the loop immediately:
+
+```javascript
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    console.log("Breaking at 5");
+    break;
+  }
+  console.log(i);
+}
+// Output: 0, 1, 2, 3, 4, "Breaking at 5"
+```
+
+### continue
+
+Skips to the next iteration:
+
+```javascript
+for (let i = 0; i < 5; i++) {
+  if (i === 2) {
+    continue;
+  }
+  console.log(i);
+}
+// Output: 0, 1, 3, 4 (skips 2)
+```
+
+### Labeled Statements
+
+Break or continue outer loops:
+
+```javascript
+outer: for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    if (i === 1 && j === 1) {
+      break outer; // Breaks the outer loop
+    }
+    console.log(`i=${i}, j=${j}`);
+  }
+}
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// if-else with multiple conditions
+let hour = 14;
+let greeting;
+
+if (hour < 12) {
+  greeting = "Good morning";
+} else if (hour < 18) {
+  greeting = "Good afternoon";
+} else {
+  greeting = "Good evening";
+}
+console.log(greeting);
+
+// switch statement
+let day = new Date().getDay();
+let dayName;
+switch (day) {
+  case 0: dayName = "Sunday"; break;
+  case 1: dayName = "Monday"; break;
+  case 2: dayName = "Tuesday"; break;
+  case 3: dayName = "Wednesday"; break;
+  case 4: dayName = "Thursday"; break;
+  case 5: dayName = "Friday"; break;
+  case 6: dayName = "Saturday"; break;
+}
+console.log("Today is", dayName);
+
+// Different loops achieving same result
+console.log("\\n=== Loop Comparison ===");
+
+// for loop
+console.log("for loop:");
+for (let i = 1; i <= 3; i++) {
+  console.log(i);
+}
+
+// while loop  
+console.log("\\nwhile loop:");
+let j = 1;
+while (j <= 3) {
+  console.log(j);
+  j++;
+}
+
+// for...of
+console.log("\\nfor...of loop:");
+for (const n of [1, 2, 3]) {
+  console.log(n);
+}`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between for...of and for...in?**</summary>
+  
+  - **for...of**: Iterates over **values** of iterables (arrays, strings, Maps)
+  - **for...in**: Iterates over **enumerable properties/keys** of objects
+  
+  ```javascript
+  const arr = [10, 20, 30];
+  for (const val of arr) console.log(val); // 10, 20, 30
+  for (const idx in arr) console.log(idx); // 0, 1, 2
+  ```
+</details>
+
+<details>
+  <summary>**2. What happens if you forget break in a switch?**</summary>
+  Execution "falls through" to subsequent cases until a break is encountered or the switch ends. This can be intentional (grouping cases) or a bug.
+</details>
+
+<details>
+  <summary>**3. When should you use while vs for loop?**</summary>
+  - **for**: When you know the number of iterations
+  - **while**: When iterations depend on a condition that may change unpredictably
+  - **do-while**: When you need at least one execution
+</details>
+
+<details>
+  <summary>**4. What are labeled statements?**</summary>
+  Labels allow you to `break` or `continue` outer loops from within nested loops.
+  
+  ```javascript
+  outer: for (...) {
+    for (...) {
+      break outer; // Breaks the outer loop
+    }
+  }
+  ```
+</details>

@@ -1,0 +1,138 @@
+---
+id: function-declaration
+title: Function Declaration vs Expression
+sidebar_label: Function Declaration
+sidebar_position: 3
+---
+
+# Function Declaration vs Expression
+
+**Functions** are reusable blocks of code that perform a specific task. JavaScript offers multiple ways to define functions.
+
+## Function Declaration
+
+A named function defined using the `function` keyword. **It is hoisted**, meaning it can be called before its definition in the code.
+
+```javascript
+// Function declaration - hoisted
+sayHello(); // Works! Function is hoisted
+
+function sayHello() {
+  console.log("Hello!");
+}
+
+// With parameters and return
+function add(a, b) {
+  return a + b;
+}
+
+let sum = add(5, 3); // 8
+```
+
+## Function Expression
+
+A function assigned to a variable. **Not hoisted** - must be defined before use.
+
+```javascript
+// Function expression - NOT hoisted
+// greet(); // Error: greet is not defined
+
+const greet = function(name) {
+  return `Hello, ${name}`;
+};
+
+greet("John"); // "Hello, John"
+```
+
+### Named Function Expression
+
+Useful for recursion and debugging:
+
+```javascript
+const factorial = function fact(n) {
+  if (n <= 1) return 1;
+  return n * fact(n - 1); // Can reference itself
+};
+
+factorial(5); // 120
+```
+
+## Key Differences
+
+| Aspect | Declaration | Expression |
+|--------|-------------|------------|
+| **Hoisting** | Fully hoisted | Not hoisted |
+| **Name** | Required | Optional |
+| **Use before definition** | Yes | No |
+| **As IIFE** | Needs wrapping | Works directly |
+
+## Default Parameters (ES6)
+
+```javascript
+function greet(name = "Guest", greeting = "Hello") {
+  return `${greeting}, ${name}!`;
+}
+
+greet();              // "Hello, Guest!"
+greet("John");        // "Hello, John!"
+greet("Jane", "Hi");  // "Hi, Jane!"
+```
+
+## Rest Parameters
+
+Collect remaining arguments into an array:
+
+```javascript
+function sum(...numbers) {
+  return numbers.reduce((acc, n) => acc + n, 0);
+}
+
+sum(1, 2, 3, 4); // 10
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Function declaration (hoisted)
+console.log("Sum:", add(5, 3));
+
+function add(a, b) {
+  return a + b;
+}
+
+// Function expression (not hoisted)
+const multiply = function(a, b) {
+  return a * b;
+};
+console.log("Product:", multiply(4, 5));
+
+// Default parameters
+function greet(name = "Guest") {
+  return "Hello, " + name + "!";
+}
+console.log(greet());
+console.log(greet("John"));
+
+// Rest parameters
+function sumAll(...nums) {
+  return nums.reduce((a, b) => a + b, 0);
+}
+console.log("Sum of 1-5:", sumAll(1, 2, 3, 4, 5));`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is hoisting with functions?**</summary>
+  Function declarations are fully hoisted - you can call them before they appear in the code. Function expressions are not hoisted.
+</details>
+
+<details>
+  <summary>**2. When would you use a function expression?**</summary>
+  - As callbacks
+  - When you need to conditionally define functions
+  - For IIFEs
+  - To prevent hoisting (for code organization)
+</details>

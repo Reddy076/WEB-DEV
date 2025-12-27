@@ -1,0 +1,85 @@
+---
+id: fetch-api
+title: Fetch API
+sidebar_label: Fetch API
+sidebar_position: 8
+---
+
+# Fetch API
+
+The **Fetch API** provides a modern interface for making HTTP requests.
+
+## Basic Usage
+
+```javascript
+// GET request
+fetch("https://api.example.com/users")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
+
+// With async/await
+async function getUsers() {
+  try {
+    const response = await fetch("/api/users");
+    if (!response.ok) throw new Error("HTTP error!");
+    return await response.json();
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+```
+
+## HTTP Methods
+
+```javascript
+// POST request
+await fetch("/api/users", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ name: "John" })
+});
+
+// DELETE request
+await fetch("/api/users/1", { method: "DELETE" });
+```
+
+## Response Object
+
+```javascript
+const response = await fetch(url);
+
+response.ok;        // true if 200-299
+response.status;    // 200, 404, etc.
+await response.json();  // Parse as JSON
+await response.text();  // Parse as text
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`console.log("=== Fetch API ===");
+
+console.log("\\nGET request:");
+console.log("fetch('/api/data')");
+console.log("  .then(res => res.json())");
+console.log("  .then(data => console.log(data))");
+
+console.log("\\nPOST request:");
+console.log("fetch('/api/data', {");
+console.log("  method: 'POST',");
+console.log("  headers: { 'Content-Type': 'application/json' },");
+console.log("  body: JSON.stringify({ name: 'John' })");
+console.log("})");
+
+console.log("\\nResponse properties:");
+console.log("response.ok, response.status");
+console.log("response.json(), response.text()");`}
+/>

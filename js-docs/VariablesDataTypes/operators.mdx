@@ -1,0 +1,310 @@
+---
+id: operators
+title: JavaScript Operators
+sidebar_label: Operators
+sidebar_position: 3
+---
+
+# JavaScript Operators
+
+**Operators** are symbols that perform operations on operands (values/variables). They manipulate data and produce results.
+
+## Arithmetic Operators
+
+Perform mathematical calculations on numeric operands.
+
+| Operator | Name | Description | Example |
+|----------|------|-------------|---------|
+| `+` | Addition | Adds two values | `5 + 3 = 8` |
+| `-` | Subtraction | Subtracts right from left | `5 - 3 = 2` |
+| `*` | Multiplication | Multiplies values | `5 * 3 = 15` |
+| `/` | Division | Divides left by right | `6 / 3 = 2` |
+| `%` | Modulus | Returns remainder | `5 % 3 = 2` |
+| `**` | Exponentiation | Raises to power (ES6) | `2 ** 3 = 8` |
+| `++` | Increment | Increases by 1 | `x++` |
+| `--` | Decrement | Decreases by 1 | `x--` |
+
+```javascript
+let a = 10, b = 3;
+console.log(a + b);   // 13
+console.log(a - b);   // 7
+console.log(a * b);   // 30
+console.log(a / b);   // 3.333...
+console.log(a % b);   // 1 (remainder)
+console.log(a ** b);  // 1000 (10³)
+
+// Increment/Decrement
+let x = 5;
+console.log(x++);  // 5 (post-increment: returns then increments)
+console.log(++x);  // 7 (pre-increment: increments then returns)
+```
+
+## Comparison Operators
+
+Compare two values and return a boolean (`true` or `false`).
+
+| Operator | Name | Description |
+|----------|------|-------------|
+| `==` | Loose Equality | Compares values (type coercion) |
+| `===` | Strict Equality | Compares values AND types |
+| `!=` | Loose Inequality | Not equal (type coercion) |
+| `!==` | Strict Inequality | Not equal (no type coercion) |
+| `>` | Greater Than | Left is greater |
+| `<` | Less Than | Left is less |
+| `>=` | Greater or Equal | Left is greater or equal |
+| `<=` | Less or Equal | Left is less or equal |
+
+```javascript
+// Loose vs Strict equality
+5 == "5";       // true (converts string to number)
+5 === "5";      // false (different types)
+null == undefined;  // true
+null === undefined; // false
+
+// Always prefer strict equality (===)
+0 == false;     // true (problematic!)
+0 === false;    // false (safe)
+"" == false;    // true (problematic!)
+"" === false;   // false (safe)
+```
+
+:::warning Always Use Strict Equality
+Use `===` and `!==` to avoid unexpected type coercion behavior. Loose equality (`==`) can lead to subtle bugs.
+:::
+
+## Logical Operators
+
+Perform logical operations and return boolean values or operands.
+
+| Operator | Name | Description |
+|----------|------|-------------|
+| `&&` | AND | Returns first falsy or last truthy |
+| `\|\|` | OR | Returns first truthy or last falsy |
+| `!` | NOT | Inverts boolean value |
+| `??` | Nullish Coalescing | Returns right if left is null/undefined |
+
+```javascript
+// AND (&&) - all must be true
+true && true;       // true
+true && false;      // false
+"hello" && "world"; // "world" (returns last truthy)
+0 && "hello";       // 0 (returns first falsy)
+
+// OR (||) - at least one must be true
+true || false;      // true
+false || false;     // false
+"" || "default";    // "default" (returns first truthy)
+"hello" || "default"; // "hello"
+
+// NOT (!) - inverts boolean
+!true;              // false
+!0;                 // true (0 is falsy)
+!!"hello";          // true (double negation for boolean conversion)
+
+// Nullish Coalescing (??) - ES2020
+// Only null/undefined trigger the fallback
+null ?? "default";      // "default"
+undefined ?? "default"; // "default"
+0 ?? "default";         // 0 (0 is not nullish)
+"" ?? "default";        // "" (empty string is not nullish)
+```
+
+## Assignment Operators
+
+Assign values to variables.
+
+| Operator | Description | Equivalent |
+|----------|-------------|------------|
+| `=` | Assign | `x = 5` |
+| `+=` | Add and assign | `x = x + 5` |
+| `-=` | Subtract and assign | `x = x - 5` |
+| `*=` | Multiply and assign | `x = x * 5` |
+| `/=` | Divide and assign | `x = x / 5` |
+| `%=` | Modulus and assign | `x = x % 5` |
+| `**=` | Exponent and assign | `x = x ** 5` |
+| `&&=` | Logical AND assign | `x = x && y` |
+| `\|\|=` | Logical OR assign | `x = x \|\| y` |
+| `??=` | Nullish assign | `x = x ?? y` |
+
+```javascript
+let x = 10;
+x += 5;   // x = 15
+x -= 3;   // x = 12
+x *= 2;   // x = 24
+x /= 4;   // x = 6
+
+// Logical assignment (ES2021)
+let a = null;
+a ??= "default"; // a = "default"
+
+let b = 0;
+b ||= 10;  // b = 10 (0 is falsy)
+
+let c = 5;
+c &&= 10;  // c = 10 (5 is truthy)
+```
+
+## Ternary Operator
+
+A concise way to write if-else statements.
+
+**Syntax:** `condition ? valueIfTrue : valueIfFalse`
+
+```javascript
+let age = 20;
+let status = age >= 18 ? "Adult" : "Minor";
+console.log(status); // "Adult"
+
+// Nested ternary (use sparingly)
+let score = 85;
+let grade = score >= 90 ? "A" 
+          : score >= 80 ? "B" 
+          : score >= 70 ? "C" 
+          : "F";
+```
+
+## Type Operators
+
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `typeof` | Returns type as string | `typeof "hello" // "string"` |
+| `instanceof` | Checks if object is instance | `arr instanceof Array // true` |
+
+```javascript
+typeof "hello";      // "string"
+typeof 42;           // "number"
+typeof true;         // "boolean"
+typeof undefined;    // "undefined"
+typeof null;         // "object" (bug!)
+typeof {};           // "object"
+typeof [];           // "object"
+typeof function(){}; // "function"
+
+[] instanceof Array;     // true
+{} instanceof Object;    // true
+new Date() instanceof Date; // true
+```
+
+## Optional Chaining (?.)
+
+Safely access nested properties without checking each level.
+
+```javascript
+const user = {
+  name: "John",
+  address: {
+    city: "New York"
+  }
+};
+
+// Without optional chaining
+const zip = user && user.address && user.address.zip;
+
+// With optional chaining
+const zip2 = user?.address?.zip; // undefined (no error)
+
+// With methods
+user.getAge?.(); // undefined if getAge doesn't exist
+
+// With arrays
+const arr = null;
+arr?.[0]; // undefined (no error)
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Experiment with JavaScript operators:
+
+<JSPlayground 
+  initialCode={`// Arithmetic
+console.log("=== Arithmetic ===");
+console.log("10 + 3 =", 10 + 3);
+console.log("10 % 3 =", 10 % 3);
+console.log("2 ** 4 =", 2 ** 4);
+
+// Comparison
+console.log("\\n=== Comparison ===");
+console.log("5 == '5':", 5 == '5');   // true (loose)
+console.log("5 === '5':", 5 === '5'); // false (strict)
+
+// Logical
+console.log("\\n=== Logical ===");
+console.log("true && false:", true && false);
+console.log("true || false:", true || false);
+console.log('0 || "default":', 0 || "default");
+console.log('0 ?? "default":', 0 ?? "default");
+
+// Short-circuit evaluation
+console.log("\\n=== Short-circuit ===");
+const user = { name: "John" };
+console.log("user.age || 25:", user.age || 25);
+console.log("user.name || 'Guest':", user.name || 'Guest');
+
+// Optional chaining
+console.log("\\n=== Optional Chaining ===");
+const obj = { a: { b: { c: 42 } } };
+console.log("obj?.a?.b?.c:", obj?.a?.b?.c);
+console.log("obj?.x?.y?.z:", obj?.x?.y?.z);
+
+// Ternary
+console.log("\\n=== Ternary ===");
+const age = 20;
+console.log("Status:", age >= 18 ? "Adult" : "Minor");`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between == and ===?**</summary>
+  - `==` (loose equality): Compares values after type coercion
+  - `===` (strict equality): Compares values AND types without coercion
+  
+  Always use `===` to avoid unexpected type conversions.
+</details>
+
+<details>
+  <summary>**2. What is the difference between || and ??**</summary>
+  - `||` (OR): Returns first **truthy** value or last value
+  - `??` (Nullish Coalescing): Returns right side only if left is **null or undefined**
+  
+  ```javascript
+  0 || "default"  // "default" (0 is falsy)
+  0 ?? "default"  // 0 (0 is not nullish)
+  ```
+</details>
+
+<details>
+  <summary>**3. What is short-circuit evaluation?**</summary>
+  Short-circuit evaluation stops as soon as the result is determined:
+  
+  - `&&`: Returns first falsy value (doesn't evaluate rest)
+  - `||`: Returns first truthy value (doesn't evaluate rest)
+  
+  ```javascript
+  false && expensiveOperation(); // Never calls function
+  true || expensiveOperation();  // Never calls function
+  ```
+</details>
+
+<details>
+  <summary>**4. What is optional chaining?**</summary>
+  Optional chaining (`?.`) safely accesses nested properties without throwing errors if an intermediate value is null/undefined.
+  
+  ```javascript
+  user?.address?.city  // undefined if any part is null/undefined
+  ```
+</details>
+
+<details>
+  <summary>**5. What is the difference between prefix and postfix increment?**</summary>
+  - **Prefix (`++x`)**: Increments first, then returns the new value
+  - **Postfix (`x++`)**: Returns current value, then increments
+  
+  ```javascript
+  let x = 5;
+  console.log(++x); // 6 (incremented first)
+  console.log(x++); // 6 (returned first, then became 7)
+  ```
+</details>

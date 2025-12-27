@@ -1,0 +1,115 @@
+---
+id: callbacks
+title: Callbacks
+sidebar_label: Callbacks
+sidebar_position: 5
+---
+
+# Callbacks
+
+A **callback** is a function passed as an argument to another function, to be executed later (usually after an event or operation completes).
+
+## Basic Example
+
+```javascript
+function processData(data, callback) {
+  const result = data.toUpperCase();
+  callback(result);
+}
+
+processData("hello", function(result) {
+  console.log(result); // "HELLO"
+});
+
+// With arrow function
+processData("world", result => console.log(result));
+```
+
+## Asynchronous Callbacks
+
+```javascript
+function fetchData(callback) {
+  console.log("Fetching data...");
+  setTimeout(() => {
+    const data = { id: 1, name: "Product" };
+    callback(data);
+  }, 2000);
+}
+
+console.log("Before fetch");
+fetchData(data => console.log("Data received:", data));
+console.log("After fetch (doesn't wait)");
+
+// Output:
+// Before fetch
+// Fetching data...
+// After fetch (doesn't wait)
+// (2 seconds later) Data received: { id: 1, name: "Product" }
+```
+
+## Error-First Callback Pattern
+
+Node.js convention for handling errors:
+
+```javascript
+function readFile(path, callback) {
+  setTimeout(() => {
+    const error = null; // or new Error("...")
+    const data = "File contents";
+    callback(error, data);
+  }, 1000);
+}
+
+readFile("file.txt", (err, data) => {
+  if (err) {
+    console.error("Error:", err);
+    return;
+  }
+  console.log("Data:", data);
+});
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Synchronous callback - executes immediately
+function calculate(a, b, operation) {
+  return operation(a, b);
+}
+
+const add = (x, y) => x + y;
+const multiply = (x, y) => x * y;
+
+console.log("5 + 3 =", calculate(5, 3, add));
+console.log("5 × 3 =", calculate(5, 3, multiply));
+
+// Array methods use callbacks
+const numbers = [1, 2, 3, 4, 5];
+numbers.forEach((n, i) => {
+  console.log(\`Index \${i}: \${n}\`);
+});
+
+// Async callback with setTimeout
+console.log("\\n--- Async Callback ---");
+console.log("Starting async...");
+
+setTimeout(() => {
+  console.log("Async callback executed after 1 second!");
+}, 1000);
+
+console.log("This runs before the async callback!");`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is a callback function?**</summary>
+  A callback is a function passed as an argument to another function to be executed after an operation completes. It enables asynchronous programming and customizable behavior.
+</details>
+
+<details>
+  <summary>**2. What is the error-first callback pattern?**</summary>
+  A Node.js convention where the first parameter of a callback is an error object (null if no error), and subsequent parameters contain the result data.
+</details>

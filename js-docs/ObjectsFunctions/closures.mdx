@@ -1,0 +1,115 @@
+---
+id: closures
+title: Closures
+sidebar_label: Closures
+sidebar_position: 6
+---
+
+# Closures
+
+A **closure** is a function that "remembers" and has access to variables from its outer (enclosing) scope, even after the outer function has finished executing.
+
+## How Closures Work
+
+```javascript
+function outer() {
+  let outerVar = "I'm from outer";
+  
+  function inner() {
+    console.log(outerVar); // Has access to outerVar
+  }
+  
+  return inner;
+}
+
+const closureFn = outer();
+closureFn(); // "I'm from outer" (outerVar is "remembered")
+```
+
+## Practical Example: Counter
+
+```javascript
+function createCounter() {
+  let count = 0; // Private variable
+  
+  return {
+    increment() { return ++count; },
+    decrement() { return --count; },
+    getCount() { return count; },
+    reset() { count = 0; }
+  };
+}
+
+const counter = createCounter();
+counter.increment(); // 1
+counter.increment(); // 2
+counter.getCount();  // 2
+// count is not accessible directly - it's private!
+```
+
+## Use Cases
+
+- **Data privacy/encapsulation**
+- **Factory functions**
+- **Memoization**
+- **Partial application/currying**
+
+```javascript
+// Factory function with closure
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+double(5);  // 10
+triple(5);  // 15
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Basic closure
+function createGreeter(greeting) {
+  return function(name) {
+    return \`\${greeting}, \${name}!\`;
+  };
+}
+
+const sayHello = createGreeter("Hello");
+const sayHi = createGreeter("Hi");
+
+console.log(sayHello("John"));
+console.log(sayHi("Jane"));
+
+// Counter with private state
+function createCounter() {
+  let count = 0;
+  return {
+    increment: () => ++count,
+    getCount: () => count
+  };
+}
+
+const counter = createCounter();
+console.log("\\nCounter:");
+console.log("Increment:", counter.increment());
+console.log("Increment:", counter.increment());
+console.log("Count:", counter.getCount());`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is a closure?**</summary>
+  A closure is a function bundled together with its lexical environment - it has access to variables from its outer scope even after the outer function has returned.
+</details>
+
+<details>
+  <summary>**2. How do closures enable data privacy?**</summary>
+  Variables in the outer function are not accessible directly from outside. Only the inner functions (returned by the outer function) can access them.
+</details>

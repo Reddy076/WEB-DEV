@@ -1,0 +1,188 @@
+---
+id: js-fundamentals
+title: JavaScript Fundamentals
+sidebar_label: JavaScript Fundamentals
+sidebar_position: 2
+---
+
+# JavaScript Fundamentals
+
+Understanding JavaScript fundamentals is essential for becoming a proficient developer. This page provides an overview of the core concepts you'll learn throughout this documentation.
+
+## Core Concepts Overview
+
+### 1. Variables and Data Types
+
+JavaScript uses **variables** to store data. Modern JavaScript offers three ways to declare variables:
+
+```javascript
+var oldWay = "legacy syntax";     // Function scoped, hoisted
+let modern = "modern syntax";      // Block scoped
+const constant = "cannot reassign"; // Block scoped, immutable binding
+```
+
+JavaScript has **7 primitive types** and **reference types**:
+
+| Primitive Types | Reference Types |
+|-----------------|-----------------|
+| String | Object |
+| Number | Array |
+| Boolean | Function |
+| Undefined | Date |
+| Null | RegExp |
+| Symbol | Map, Set |
+| BigInt | |
+
+### 2. Operators
+
+JavaScript provides various operators for performing operations:
+
+```javascript
+// Arithmetic
+5 + 3    // 8
+10 - 4   // 6
+3 * 4    // 12
+10 / 2   // 5
+10 % 3   // 1 (remainder)
+2 ** 3   // 8 (exponentiation)
+
+// Comparison
+5 === 5  // true (strict equality)
+5 == "5" // true (loose equality - avoid!)
+5 !== 3  // true
+
+// Logical
+true && false  // false
+true || false  // true
+!true          // false
+```
+
+### 3. Control Flow
+
+Control flow determines which code executes based on conditions:
+
+```javascript
+// Conditionals
+if (score >= 90) {
+  grade = "A";
+} else if (score >= 80) {
+  grade = "B";
+} else {
+  grade = "C";
+}
+
+// Loops
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+
+while (condition) {
+  // execute while true
+}
+```
+
+### 4. Functions
+
+Functions are reusable blocks of code:
+
+```javascript
+// Function declaration
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+// Arrow function
+const greet = (name) => `Hello, ${name}!`;
+
+// Function expression
+const greet = function(name) {
+  return `Hello, ${name}!`;
+};
+```
+
+### 5. Objects and Arrays
+
+Objects store key-value pairs, arrays store ordered collections:
+
+```javascript
+// Object
+const person = {
+  name: "John",
+  age: 30,
+  greet() {
+    return `Hi, I'm ${this.name}`;
+  }
+};
+
+// Array
+const fruits = ["apple", "banana", "cherry"];
+fruits.push("date");
+fruits.map(fruit => fruit.toUpperCase());
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Experiment with JavaScript fundamentals:
+
+<JSPlayground 
+  initialCode={`// Variables
+let name = "JavaScript";
+const year = 1995;
+
+console.log(name + " was created in " + year);
+
+// Data types
+console.log("Type of name:", typeof name);
+console.log("Type of year:", typeof year);
+console.log("Type of true:", typeof true);
+console.log("Type of null:", typeof null); // Known bug!
+
+// Simple function
+function add(a, b) {
+  return a + b;
+}
+
+console.log("5 + 3 =", add(5, 3));
+
+// Array
+const colors = ["red", "green", "blue"];
+console.log("Colors:", colors);
+console.log("First color:", colors[0]);`}
+/>
+
+## Learning Path
+
+This documentation is organized to take you from basics to advanced concepts:
+
+1. **Variables & Data Types** - Understanding how data is stored
+2. **Operators** - Performing operations on data
+3. **Control Flow** - Making decisions and repeating code
+4. **Functions** - Creating reusable code blocks
+5. **Objects** - Working with complex data structures
+6. **DOM Manipulation** - Interacting with web pages
+7. **Events** - Responding to user actions
+8. **Async JavaScript** - Handling asynchronous operations
+9. **ES6+ Features** - Modern JavaScript syntax
+10. **Debugging** - Finding and fixing errors
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What are the different data types in JavaScript?**</summary>
+  JavaScript has 7 primitive types: `String`, `Number`, `Boolean`, `Undefined`, `Null`, `Symbol`, and `BigInt`. Reference types include `Object`, `Array`, `Function`, `Date`, `Map`, `Set`, etc.
+</details>
+
+<details>
+  <summary>**2. What is the difference between == and ===?**</summary>
+  - `==` (loose equality): Compares values after type coercion
+  - `===` (strict equality): Compares values AND types without coercion
+  
+  Always use `===` to avoid unexpected behavior.
+</details>
+
+<details>
+  <summary>**3. What is hoisting in JavaScript?**</summary>
+  Hoisting is JavaScript's behavior of moving declarations to the top of their scope during compilation. `var` declarations are hoisted and initialized as `undefined`. `let` and `const` are hoisted but not initialized (Temporal Dead Zone).
+</details>

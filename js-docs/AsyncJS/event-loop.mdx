@@ -1,0 +1,61 @@
+---
+id: event-loop
+title: Event Loop & Callback Queue
+sidebar_label: Event Loop
+sidebar_position: 3
+---
+
+# Event Loop and Callback Queue
+
+The **event loop** coordinates the call stack, callback queue, and microtask queue.
+
+## Components
+
+1. **Call Stack**: Executes synchronous code
+2. **Web APIs**: Browser async APIs (setTimeout, fetch)
+3. **Callback Queue (Macrotask)**: setTimeout, setInterval callbacks
+4. **Microtask Queue**: Promise callbacks, queueMicrotask (higher priority)
+
+## Event Loop Process
+
+1. Execute all synchronous code (call stack)
+2. Check microtask queue, execute all microtasks
+3. Check callback queue, execute one callback
+4. Repeat
+
+```javascript
+console.log("1. Sync");
+setTimeout(() => console.log("2. Timeout (macrotask)"), 0);
+Promise.resolve().then(() => console.log("3. Promise (microtask)"));
+console.log("4. Sync");
+
+// Output: 1. Sync, 4. Sync, 3. Promise, 2. Timeout
+// Microtasks always execute before macrotasks!
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Watch the event loop in action - microtasks run before macrotasks:
+
+<JSPlayground 
+  initialCode={`// Event Loop Demo - watch the order!
+console.log("1. Sync (first)");
+
+// Macrotask (callback queue)
+setTimeout(() => {
+  console.log("4. Timeout (macrotask - last!)");
+}, 0);
+
+// Microtask (higher priority than macrotask)
+Promise.resolve().then(() => {
+  console.log("3. Promise (microtask)");
+});
+
+console.log("2. Sync (second)");
+
+// Order: 1, 2, 3, 4
+// Microtasks (Promise) run BEFORE macrotasks (setTimeout)!`}
+/>
+

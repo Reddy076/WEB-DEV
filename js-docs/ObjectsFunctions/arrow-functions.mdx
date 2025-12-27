@@ -1,0 +1,122 @@
+---
+id: arrow-functions
+title: Arrow Functions
+sidebar_label: Arrow Functions
+sidebar_position: 4
+---
+
+# Arrow Functions (ES6)
+
+**Arrow functions** provide a concise syntax for writing functions using `=>`. They have important differences from regular functions.
+
+## Syntax
+
+```javascript
+// Basic syntax
+const add = (a, b) => a + b;
+
+// Single parameter - parentheses optional
+const double = x => x * 2;
+
+// No parameters - parentheses required
+const sayHi = () => "Hi!";
+
+// Multiple statements - braces required
+const greet = name => {
+  const message = `Hello, ${name}`;
+  return message;
+};
+
+// Returning object literal - wrap in parentheses
+const createUser = (name, age) => ({ name, age });
+```
+
+## Key Differences from Regular Functions
+
+| Feature | Regular Function | Arrow Function |
+|---------|------------------|----------------|
+| **`this` binding** | Own `this` | Lexical `this` |
+| **`arguments` object** | Has it | No |
+| **Can be constructor** | Yes (`new`) | No |
+| **`prototype` property** | Has it | No |
+
+## Arrow Functions and `this`
+
+Arrow functions inherit `this` from their enclosing scope:
+
+```javascript
+const counter = {
+  count: 0,
+  
+  // Arrow function inherits 'this' from counter
+  increment() {
+    setInterval(() => {
+      this.count++; // Works! 'this' is counter
+      console.log(this.count);
+    }, 1000);
+  }
+};
+
+// Without arrow function, 'this' would be window/undefined
+```
+
+## When NOT to Use Arrow Functions
+
+```javascript
+// ❌ Object methods (this won't work as expected)
+const obj = {
+  value: 10,
+  getValue: () => this.value // 'this' is not obj!
+};
+
+// ❌ Event handlers (if you need 'this' to be the element)
+button.addEventListener('click', () => {
+  this.classList.toggle('active'); // 'this' is not button!
+});
+
+// ❌ Constructors
+const Person = (name) => { this.name = name; }; // Can't use 'new'
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Arrow function syntax variations
+const add = (a, b) => a + b;
+const square = x => x * x;
+const random = () => Math.random();
+
+console.log("3 + 5 =", add(3, 5));
+console.log("4² =", square(4));
+console.log("Random:", random().toFixed(3));
+
+// Returning objects
+const createPerson = (name, age) => ({ name, age });
+console.log("Person:", createPerson("John", 30));
+
+// Array methods with arrow functions
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(n => n * 2);
+const evens = numbers.filter(n => n % 2 === 0);
+const sum = numbers.reduce((a, b) => a + b, 0);
+
+console.log("Doubled:", doubled);
+console.log("Evens:", evens);
+console.log("Sum:", sum);`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What are the advantages of arrow functions?**</summary>
+  - Shorter, more concise syntax
+  - Lexical `this` binding (no rebinding issues)
+  - Great for callbacks and array methods
+</details>
+
+<details>
+  <summary>**2. Why can't arrow functions be used as constructors?**</summary>
+  Arrow functions don't have their own `this` or `prototype` property, which are required for constructor behavior with `new`.
+</details>

@@ -1,0 +1,125 @@
+---
+id: promises
+title: Promises & async/await
+sidebar_label: Promises, async/await
+sidebar_position: 6
+---
+
+# Promises and async/await
+
+## Promises
+
+A **Promise** represents the eventual completion (or failure) of an async operation.
+
+### Promise States
+
+- **Pending**: Initial state, operation in progress
+- **Fulfilled**: Operation completed successfully
+- **Rejected**: Operation failed
+
+```javascript
+// Creating a Promise
+const promise = new Promise((resolve, reject) => {
+  const success = true;
+  setTimeout(() => {
+    if (success) {
+      resolve({ data: "Success!" });
+    } else {
+      reject(new Error("Operation failed"));
+    }
+  }, 1000);
+});
+
+// Consuming a Promise
+promise
+  .then(result => console.log("Success:", result))
+  .catch(error => console.error("Error:", error))
+  .finally(() => console.log("Done"));
+```
+
+### Promise Static Methods
+
+| Method | Description |
+|--------|-------------|
+| `Promise.all([...])` | Wait for all; reject if any rejects |
+| `Promise.allSettled([...])` | Wait for all; return all results |
+| `Promise.race([...])` | First to settle wins |
+| `Promise.any([...])` | First to fulfill wins |
+
+## async/await (ES2017)
+
+Syntactic sugar over Promises that makes async code look synchronous.
+
+```javascript
+async function fetchUserData(userId) {
+  try {
+    const user = await getUser(userId);
+    const posts = await getPosts(user.id);
+    return { user, posts };
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+// Parallel execution
+async function fetchAllData() {
+  const [users, posts] = await Promise.all([
+    getUsers(),
+    getPosts()
+  ]);
+  return { users, posts };
+}
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+Try working with Promises and async/await:
+
+<JSPlayground 
+  initialCode={`// Promise with setTimeout
+const myPromise = new Promise((resolve, reject) => {
+  console.log("Promise started...");
+  setTimeout(() => {
+    const success = Math.random() > 0.3;
+    if (success) {
+      resolve("Success! 🎉");
+    } else {
+      reject("Failed 😢");
+    }
+  }, 1000);
+});
+
+myPromise
+  .then(result => console.log("Resolved:", result))
+  .catch(error => console.log("Rejected:", error))
+  .finally(() => console.log("Promise completed!"));
+
+console.log("This runs immediately (sync)");
+console.log("Wait 1 second for promise result...");
+
+// async/await example
+async function getData() {
+  console.log("\\n--- async/await example ---");
+  const result = await new Promise(resolve => {
+    setTimeout(() => resolve("Data loaded!"), 1500);
+  });
+  console.log("Awaited result:", result);
+}
+
+getData();`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between Promises and callbacks?**</summary>
+  Promises provide cleaner syntax, better error handling with .catch(), and avoid callback hell through chaining.
+</details>
+
+<details>
+  <summary>**2. What does async/await do?**</summary>
+  `async` makes a function return a Promise. `await` pauses execution until a Promise resolves, making async code look synchronous.
+</details>

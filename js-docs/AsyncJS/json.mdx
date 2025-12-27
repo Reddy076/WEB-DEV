@@ -1,0 +1,69 @@
+---
+id: json
+title: JSON.parse() & JSON.stringify()
+sidebar_label: JSON Methods
+sidebar_position: 7
+---
+
+# JSON Methods
+
+**JSON** (JavaScript Object Notation) is a lightweight data-interchange format.
+
+## JSON.parse()
+
+Converts a JSON string into a JavaScript object:
+
+```javascript
+const jsonString = '{"name": "John", "age": 30}';
+const obj = JSON.parse(jsonString);
+console.log(obj.name); // "John"
+
+// Error handling
+try {
+  JSON.parse("invalid json");
+} catch (e) {
+  console.error("Parse error:", e.message);
+}
+```
+
+## JSON.stringify()
+
+Converts a JavaScript value to a JSON string:
+
+```javascript
+const obj = { name: "John", age: 30 };
+const json = JSON.stringify(obj);
+// '{"name":"John","age":30}'
+
+// Pretty printing
+const pretty = JSON.stringify(obj, null, 2);
+/*
+{
+  "name": "John",
+  "age": 30
+}
+*/
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// JSON.parse
+const jsonString = '{"name": "John", "age": 30, "active": true}';
+const parsed = JSON.parse(jsonString);
+console.log("Parsed object:", parsed);
+console.log("Name:", parsed.name);
+console.log("Type:", typeof parsed);
+
+// JSON.stringify
+const user = { name: "Jane", hobbies: ["reading", "coding"] };
+const stringified = JSON.stringify(user);
+console.log("\\nStringified:", stringified);
+
+// Pretty print
+const pretty = JSON.stringify(user, null, 2);
+console.log("\\nPretty printed:");
+console.log(pretty);`}
+/>

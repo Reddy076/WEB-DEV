@@ -1,0 +1,127 @@
+---
+id: foreach-map-filter-reduce
+title: forEach, map, filter, reduce
+sidebar_label: forEach, map, filter, reduce
+sidebar_position: 2
+---
+
+# forEach, map, filter, reduce
+
+These are the most important array iteration methods in JavaScript.
+
+## forEach()
+
+Executes a function for each element. Returns `undefined`.
+
+```javascript
+const fruits = ["apple", "banana", "cherry"];
+
+fruits.forEach((fruit, index) => {
+  console.log(`${index}: ${fruit}`);
+});
+```
+
+## map()
+
+Creates a **new array** by transforming each element:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+// [2, 4, 6, 8, 10]
+
+const users = [{ name: "John" }, { name: "Jane" }];
+const names = users.map(user => user.name);
+// ["John", "Jane"]
+```
+
+## filter()
+
+Creates a **new array** with elements that pass a test:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+const evens = numbers.filter(n => n % 2 === 0);
+// [2, 4, 6, 8]
+
+const products = [
+  { name: "Phone", price: 500 },
+  { name: "Laptop", price: 1200 }
+];
+const expensive = products.filter(p => p.price > 600);
+```
+
+## reduce()
+
+Reduces array to a **single value**:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Sum
+const sum = numbers.reduce((acc, num) => acc + num, 0);
+// 15
+
+// Count occurrences
+const fruits = ["apple", "banana", "apple", "cherry"];
+const count = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+// { apple: 2, banana: 1, cherry: 1 }
+```
+
+## Method Chaining
+
+```javascript
+const result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  .filter(n => n % 2 === 0)    // [2, 4, 6, 8, 10]
+  .map(n => n * 2)              // [4, 8, 12, 16, 20]
+  .reduce((sum, n) => sum + n, 0); // 60
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`const numbers = [1, 2, 3, 4, 5];
+console.log("Original:", numbers);
+
+// forEach - just iterates
+console.log("\\nforEach:");
+numbers.forEach(n => console.log(n));
+
+// map - transforms
+const doubled = numbers.map(n => n * 2);
+console.log("\\nmap (doubled):", doubled);
+
+// filter - filters
+const evens = numbers.filter(n => n % 2 === 0);
+console.log("filter (evens):", evens);
+
+// reduce - accumulates
+const sum = numbers.reduce((acc, n) => acc + n, 0);
+console.log("reduce (sum):", sum);
+
+// Chaining
+console.log("\\nChaining example:");
+const result = numbers
+  .filter(n => n > 2)
+  .map(n => n * 10)
+  .reduce((a, b) => a + b, 0);
+console.log("Filter > 2, × 10, sum:", result);`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What's the difference between map and forEach?**</summary>
+  - `map()` returns a new array with transformed elements
+  - `forEach()` returns undefined, used for side effects
+</details>
+
+<details>
+  <summary>**2. When would you use reduce?**</summary>
+  When you need to transform an array into a single value: sum, product, counting, grouping, flattening, etc.
+</details>

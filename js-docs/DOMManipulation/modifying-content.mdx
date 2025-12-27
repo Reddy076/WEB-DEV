@@ -1,0 +1,71 @@
+---
+id: modifying-content
+title: Modifying Content
+sidebar_label: Modifying Content
+sidebar_position: 2
+---
+
+# Modifying DOM Content
+
+Methods and properties to change the content, attributes, and styles of DOM elements.
+
+## Content Modification
+
+```javascript
+const element = document.querySelector("#myElement");
+
+// Text content
+element.textContent = "Plain text only";      // Safest
+element.innerText = "Visible text";           // Respects CSS
+element.innerHTML = "<strong>Bold</strong>";  // Parses HTML (security risk!)
+```
+
+## Attribute Modification
+
+```javascript
+element.setAttribute("data-id", "123");
+element.getAttribute("data-id");      // "123"
+element.removeAttribute("disabled");
+element.hasAttribute("disabled");     // false
+
+// Direct property access
+element.id = "newId";
+element.className = "class1 class2";
+```
+
+## classList API
+
+```javascript
+element.classList.add("active");
+element.classList.remove("inactive");
+element.classList.toggle("visible");
+element.classList.contains("active"); // true
+element.classList.replace("old", "new");
+```
+
+## Style Modification
+
+```javascript
+element.style.color = "red";
+element.style.backgroundColor = "blue";
+element.style.cssText = "color: red; font-size: 16px;";
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// DOM content modification methods
+console.log("Content Methods:");
+console.log("textContent - Plain text, safest");
+console.log("innerText - Visible text only");
+console.log("innerHTML - Parses HTML (careful!)");
+
+console.log("\\nclassList methods:");
+console.log("add(), remove(), toggle(), contains()");
+
+console.log("\\nStyle examples:");
+console.log("element.style.color = 'red'");
+console.log("element.style.backgroundColor = 'blue'");`}
+/>

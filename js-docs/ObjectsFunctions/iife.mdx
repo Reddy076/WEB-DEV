@@ -1,0 +1,103 @@
+---
+id: iife
+title: IIFE (Immediately Invoked Function Expression)
+sidebar_label: IIFE
+sidebar_position: 7
+---
+
+# IIFE
+
+An **IIFE** (Immediately Invoked Function Expression) is a function that is defined and executed immediately after creation.
+
+## Syntax
+
+```javascript
+(function() {
+  // code here runs immediately
+})();
+
+// Arrow function IIFE
+(() => {
+  console.log("Arrow IIFE");
+})();
+```
+
+## Why Use IIFE
+
+- Create private scope
+- Avoid global namespace pollution
+- Execute initialization code
+- Module pattern (pre-ES6)
+
+```javascript
+// Basic IIFE
+(function() {
+  let privateVar = "I'm private";
+  console.log("IIFE executed!");
+})();
+// privateVar is not accessible here
+
+// IIFE with parameters
+(function(name, age) {
+  console.log(`${name} is ${age} years old`);
+})("John", 30);
+
+// IIFE returning a value
+const result = (function() {
+  return 5 + 5;
+})();
+console.log(result); // 10
+```
+
+## Module Pattern
+
+```javascript
+const Calculator = (function() {
+  let result = 0; // Private
+  
+  return {
+    add(n) { result += n; return this; },
+    subtract(n) { result -= n; return this; },
+    getResult() { return result; },
+    reset() { result = 0; return this; }
+  };
+})();
+
+Calculator.add(5).add(3).subtract(2).getResult(); // 6
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Basic IIFE
+(function() {
+  console.log("IIFE runs immediately!");
+})();
+
+// IIFE with parameters
+(function(greeting) {
+  console.log(greeting);
+})("Hello from IIFE!");
+
+// IIFE returning a value
+const sum = (function(a, b) {
+  return a + b;
+})(10, 20);
+console.log("Sum:", sum);
+
+// Module pattern
+const counter = (function() {
+  let count = 0; // Private
+  return {
+    increment() { return ++count; },
+    getCount() { return count; }
+  };
+})();
+
+console.log("\\nModule pattern counter:");
+console.log(counter.increment());
+console.log(counter.increment());
+console.log("Count:", counter.getCount());`}
+/>

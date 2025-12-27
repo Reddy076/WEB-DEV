@@ -1,0 +1,198 @@
+---
+id: objects
+title: Object Creation & Properties
+sidebar_label: Objects
+sidebar_position: 1
+---
+
+# Objects in JavaScript
+
+**Objects** are collections of key-value pairs (properties and methods) that represent real-world entities or abstract concepts.
+
+## Object Literal (Most Common)
+
+Creating an object directly using curly braces `{}`:
+
+```javascript
+const person = {
+  // Properties
+  firstName: "John",
+  lastName: "Doe",
+  age: 30,
+  
+  // Method
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  
+  // Computed property
+  ["dynamic" + "Key"]: "value"
+};
+
+console.log(person.firstName);      // "John"
+console.log(person["lastName"]);    // "Doe"
+console.log(person.getFullName());  // "John Doe"
+```
+
+## Accessing Properties
+
+```javascript
+const user = { name: "John", age: 30 };
+
+// Dot notation (cleaner)
+user.name;   // "John"
+
+// Bracket notation (dynamic keys)
+user["age"]; // 30
+
+const key = "name";
+user[key];   // "John"
+```
+
+## Modifying Objects
+
+```javascript
+const car = { brand: "Toyota" };
+
+// Add properties
+car.model = "Camry";
+car["year"] = 2024;
+
+// Modify properties
+car.brand = "Honda";
+
+// Delete properties
+delete car.year;
+
+// Check if property exists
+"model" in car;           // true
+car.hasOwnProperty("model"); // true
+```
+
+## Constructor Functions
+
+Create multiple objects with the same structure:
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return `Hello, I'm ${this.name}`;
+  };
+}
+
+const john = new Person("John", 30);
+const jane = new Person("Jane", 25);
+```
+
+## ES6 Classes
+
+Modern syntax for object-oriented programming:
+
+```javascript
+class User {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+  
+  greet() {
+    return `Hello, ${this.name}`;
+  }
+  
+  // Getter
+  get info() {
+    return `${this.name} (${this.email})`;
+  }
+  
+  // Static method
+  static createGuest() {
+    return new User("Guest", "guest@example.com");
+  }
+}
+
+const user = new User("John", "john@email.com");
+const guest = User.createGuest();
+```
+
+## Object Methods
+
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+
+// Get keys
+Object.keys(obj);    // ["a", "b", "c"]
+
+// Get values
+Object.values(obj);  // [1, 2, 3]
+
+// Get entries
+Object.entries(obj); // [["a", 1], ["b", 2], ["c", 3]]
+
+// Merge objects
+const merged = { ...obj, d: 4 };
+Object.assign({}, obj, { d: 4 });
+
+// Freeze (make immutable)
+Object.freeze(obj);
+
+// Seal (can modify, can't add/delete)
+Object.seal(obj);
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Object literal
+const person = {
+  name: "John",
+  age: 30,
+  greet() {
+    return \`Hello, I'm \${this.name}\`;
+  }
+};
+
+console.log("Person:", person);
+console.log("Name:", person.name);
+console.log("Greeting:", person.greet());
+
+// Object methods
+console.log("\\nObject.keys:", Object.keys(person));
+console.log("Object.values:", Object.values(person));
+
+// Class example
+class Car {
+  constructor(brand, model) {
+    this.brand = brand;
+    this.model = model;
+  }
+  
+  describe() {
+    return \`\${this.brand} \${this.model}\`;
+  }
+}
+
+const myCar = new Car("Toyota", "Camry");
+console.log("\\nCar:", myCar.describe());`}
+/>
+
+## Important Interview Questions
+
+<details>
+  <summary>**1. What is the difference between dot and bracket notation?**</summary>
+  - **Dot notation**: Cleaner, used with valid identifiers
+  - **Bracket notation**: Required for dynamic keys, special characters, or reserved words
+</details>
+
+<details>
+  <summary>**2. How do you check if a property exists?**</summary>
+  
+  ```javascript
+  "prop" in obj;              // Checks own and inherited
+  obj.hasOwnProperty("prop"); // Own properties only
+  obj.prop !== undefined;     // May give false positives
+  ```
+</details>

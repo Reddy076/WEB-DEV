@@ -1,0 +1,63 @@
+---
+id: selecting-elements
+title: Selecting Elements
+sidebar_label: Selecting Elements
+sidebar_position: 1
+---
+
+# Selecting DOM Elements
+
+Methods to access and reference HTML elements in JavaScript.
+
+## Selection Methods
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `getElementById()` | Single element | Selects by ID |
+| `querySelector()` | First match | CSS selector |
+| `querySelectorAll()` | NodeList | All matches |
+| `getElementsByClassName()` | HTMLCollection | By class |
+| `getElementsByTagName()` | HTMLCollection | By tag |
+
+```javascript
+// By ID (fastest)
+const header = document.getElementById("header");
+
+// CSS selector (most flexible)
+const button = document.querySelector("button");
+const container = document.querySelector(".container");
+const submit = document.querySelector("#form button[type='submit']");
+
+// All matching elements
+const allButtons = document.querySelectorAll("button");
+
+// NodeList forEach
+allButtons.forEach(btn => btn.classList.add("styled"));
+
+// Convert to array
+const buttonsArray = Array.from(allButtons);
+```
+
+import JSPlayground from '@site/src/components/JSPlayground';
+
+## Interactive Playground
+
+<JSPlayground 
+  initialCode={`// Simulating DOM selection (can't access real DOM here)
+console.log("DOM Selection Methods:");
+console.log("1. document.getElementById('id')");
+console.log("2. document.querySelector('.class')");
+console.log("3. document.querySelectorAll('tag')");
+
+// Example selectors
+const selectors = [
+  "#header",
+  ".nav-item",
+  "button[type='submit']",
+  "div > p:first-child",
+  "[data-active='true']"
+];
+
+console.log("\\nExample selectors:");
+selectors.forEach(s => console.log("  " + s));`}
+/>
