@@ -1,0 +1,60 @@
+---
+id: flexbox-layout
+title: Flexbox Layout
+sidebar_label: Flexbox Layout
+sidebar_position: 12
+---
+
+# Flexbox Layout
+
+**Flexbox** (Flexible Box Module) is designed for 1-dimensional layouts (Row or Column). It distributes space between items and aligns them.
+
+## 1. The Container (`display: flex`)
+Activating flexbox transforms the direct children into "flex items".
+
+```css
+.container {
+  display: flex;
+}
+```
+
+## 2. Flex Direction
+Two axes:
+- **Main Axis**: Default Horizontal (Row).
+- **Cross Axis**: Default Vertical (Column).
+
+We can potential swap these using `flex-direction: column`.
+
+## 3. Key Benefits
+- Vertical Centering!
+- Equal height columns.
+- Reordering items without changing HTML.
+
+import Playground from '@site/src/components/Playground';
+
+## 4. Interactive Playground
+
+Turn the divs into a row by uncommenting `display: flex`.
+
+<Playground 
+  initialHTML={`<div class="container">\n  <div class="item">1</div>\n  <div class="item">2</div>\n  <div class="item">3</div>\n</div>`}
+  initialCSS={`.container {\n  /* display: flex; */\n  background: #222;\n  padding: 10px;\n}\n\n.item {\n  background: coral;\n  margin: 5px;\n  padding: 20px;\n  color: white;\n}`}
+/>
+
+## 5. Important Interview Questions
+
+<details>
+  <summary>**1. Flexbox vs Grid?**</summary>
+  - Flexbox: 1D (Line). Content-first.
+  - Grid: 2D (Rows & Columns). Layout-first.
+</details>
+
+<details>
+  <summary>**2. What is `justify-content`?**</summary>
+  Aligns items along the **Main Axis**.
+</details>
+
+<details>
+  <summary>**3. What is `align-items`?**</summary>
+  Aligns items along the **Cross Axis**.
+</details>

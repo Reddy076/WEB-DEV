@@ -1,0 +1,74 @@
+---
+id: content-padding-border-margin
+title: Content, Padding, Border, Margin
+sidebar_label: Content, Padding, Border, Margin
+sidebar_position: 7
+---
+
+# Content, Padding, Border, Margin
+
+A detailed breakdown of the properties that control the Box Model.
+
+## 1. Margin (Outer Spacing)
+Creates space **between** elements.
+- **Shorthand**: `margin: 10px 20px 10px 20px` (Top Right Bottom Left - Clockwise).
+- **Auto**: `margin: 0 auto` centers a block horizontally.
+- **Negative**: `margin-top: -10px` pulls element up.
+- **Collapse**: Adjacent vertical margins merge to the largest one.
+
+## 2. Padding (Inner Spacing)
+Creates space **inside** the element.
+- **Shorthand**: Same as margin (Clockwise).
+- **No Negative**: Cannot have negative padding.
+- Used to give content "breathing room".
+
+## 3. Border (The Line)
+- `border-width`: `1px`.
+- `border-style`: `solid`, `dashed`, `dotted`, `none`.
+- `border-color`: `red`.
+- **Shorthand**: `border: 1px solid red;`
+
+## 4. Content
+Controlled by `width` and `height`.
+- `min-width` / `max-width`: Limits.
+- `min-height` / `max-height`.
+
+import Playground from '@site/src/components/Playground';
+
+## 5. Interactive Playground
+
+See **Margin Collapse** in action. Top paragraph has `margin-bottom: 20px`. Bottom has `margin-top: 30px`. The gap is NOT 50px, it is 30px.
+
+<Playground 
+  initialHTML={`<div class="wrapper">\n  <p class="one">I have 20px bottom margin</p>\n  <p class="two">I have 30px top margin</p>\n</div>`}
+  initialCSS={`.wrapper {\n  border: 1px solid grey;\n  width: 300px;\n  margin: 0 auto;\n}\n\np {\n  background: #ddd;\n  padding: 10px;\n}\n\n.one {\n  margin-bottom: 20px;\n}\n\n.two {\n  margin-top: 30px;\n  /* Gap is max(20, 30) = 30px, not 50px */\n}`}
+/>
+
+## 6. Important Interview Questions
+
+<details>
+  <summary>**1. What is Margin Collapse?**</summary>
+  When vertical margins of adjacent block elements meet, they combine into a single margin equal to the larger of the two values.
+</details>
+
+<details>
+  <summary>**2. How to "un-collapse" margins?**</summary>
+  Put something between them (like `padding: 1px` or a `border` on the parent container) or use a BFC (Block Formatting Context) via `overflow: hidden`.
+</details>
+
+<details>
+  <summary>**3. Margin vs Padding: When to use which?**</summary>
+  - Use **Margin** to separate this element from neighbors.
+  - Use **Padding** to separate content from the border of this element.
+  - *Tip: If you need a clickable background area, use padding.*
+</details>
+
+<details>
+  <summary>**4. Can margin be percentage based?**</summary>
+  Yes, but vertical margin % is calculated based on the **width** of the container, not the height.
+</details>
+
+<details>
+  <summary>**5. How to draw a circle?**</summary>
+  Square width/height + `border-radius: 50%`.
+</details>

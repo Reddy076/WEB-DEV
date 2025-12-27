@@ -1,0 +1,72 @@
+---
+id: flex-properties
+title: flex-direction, justify-content...
+sidebar_label: flex-direction, justify-content...
+sidebar_position: 13
+---
+
+# Flex Properties: Deep Dive
+
+## 1. Container Properties
+
+### `flex-direction`
+- `row` (default): Left to right.
+- `row-reverse`: Right to left.
+- `column`: Top to bottom.
+- `column-reverse`: Bottom to top.
+
+### `justify-content` (Main Axis Alignment)
+- `flex-start`: Pack to start.
+- `flex-end`: Pack to end.
+- `center`: Center pack.
+- `space-between`: First at start, last at end, equal space inside.
+- `space-around`: Equal space around each item.
+- `space-evenly`: Equal space everywhere.
+
+### `align-items` (Cross Axis Alignment)
+- `stretch` (default): Stretch to fill container height.
+- `flex-start` / `flex-end` / `center`.
+- `baseline`: Align text baselines.
+
+### `flex-wrap`
+- `nowrap` (default): Shrink items to fit one line.
+- `wrap`: Allow items to drop to next line.
+
+## 2. Item Properties
+
+### `flex-grow`
+Unitless number. Percentage of *extra* space this item should take.
+`flex-grow: 1` means "take up all remaining space".
+
+### `flex-shrink`
+Factor of shrinkability if space is tight.
+
+### `flex-basis`
+Initial size before growing/shrinking.
+
+### Shorthand: `flex`
+`flex: grow shrink basis;`
+*Example*: `flex: 1 1 auto;`
+
+import Playground from '@site/src/components/Playground';
+
+## 3. Interactive Playground
+
+Master vertical centering! Set `justify-content: center` (Main) and `align-items: center` (Cross).
+
+<Playground 
+  initialHTML={`<div class="flex-box">\n  <div class="center-me">I am Centered</div>\n</div>`}
+  initialCSS={`.flex-box {\n  display: flex;\n  width: 100%;\n  height: 200px;\n  background: #333;\n  /* Add alignment here */\n  justify-content: center;\n  align-items: center;\n}\n\n.center-me {\n  background: #ff00ff;\n  padding: 20px;\n  color: white;\n}`}
+/>
+
+## 4. Important Interview Questions
+
+<details>
+  <summary>**1. What does `flex: 1` do?**</summary>
+  Ensures the item grows to fill available space equally.
+</details>
+
+<details>
+  <summary>**2. What creates the "Holy Grail" layout with Flexbox?**</summary>
+  Header (block), Footer (block), Middle area (flex) with Sidebar (fixed width) and Content (flex: 1).
+</details>

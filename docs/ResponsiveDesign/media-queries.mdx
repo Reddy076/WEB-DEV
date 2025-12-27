@@ -1,0 +1,77 @@
+---
+id: media-queries
+title: Media Queries
+sidebar_label: Media Queries
+sidebar_position: 15
+---
+
+# Media Queries
+
+Media queries allow you to modify your site depending on the device characteristics (width, height, orientation). This is the key to **Responsiveness**.
+
+## 1. Syntax
+
+```css
+@media (condition) {
+  /* Rules to apply if condition is true */
+}
+```
+
+## 2. Conditions
+
+## 2. Conditions & Strategies
+
+### Mobile First (Recommended)
+We style for mobile (default), then add rules for larger screens. Use `min-width`.
+```css
+/* Base styles (Mobile) */
+body { font-size: 14px; }
+
+/* Tablet */
+@media (min-width: 768px) {
+  body { font-size: 16px; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body { font-size: 18px; }
+}
+```
+
+### Desktop First (Legacy)
+We style for desktop, then fix issues for smaller screens. Use `max-width`.
+```css
+/* Base (Desktop) */
+body { font-size: 18px; }
+
+@media (max-width: 768px) {
+  /* Fix for mobile */
+  body { font-size: 14px; }
+}
+```
+
+## 3. Orientation
+`@media (orientation: landscape)`
+
+import Playground from '@site/src/components/Playground';
+
+## 4. Interactive Playground
+
+Since we can't resize the iframe width easily here, we use a logic check. In production, resizing the browser would change the color.
+
+<Playground 
+  initialHTML={`<div class="box">Resize Window to see color change</div>`}
+  initialCSS={`.box {\n  background: red;\n  color: white;\n  padding: 20px;\n}\n\n@media (min-width: 600px) {\n  .box {\n    background: green;\n    content: "Wide Screen";\n  }\n}`}
+/>
+
+## 5. Important Interview Questions
+
+<details>
+  <summary>**1. What is the viewport meta tag?**</summary>
+  `<meta name="viewport" content="width=device-width, initial-scale=1">`. Without this, mobile phones zoom out to show the desktop site (980px), ignoring your media queries.
+</details>
+
+<details>
+  <summary>**2. What is Mobile First design?**</summary>
+  Writing CSS for mobile devices *first* (default), then using `min-width` queries to add complexity for larger screens. It's performant because mobile devices parse less code.
+</details>

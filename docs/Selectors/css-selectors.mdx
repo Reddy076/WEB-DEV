@@ -1,0 +1,130 @@
+---
+id: css-selectors
+title: CSS Selectors
+sidebar_label: CSS Selectors
+sidebar_position: 3
+---
+
+# CSS Selectors
+
+Selectors define **which** HTML elements a rule applies to. Mastery of selectors is crucial for writing clean, efficient CSS.
+
+## 1. Basic Selectors
+
+1.  **Universal (`*`)**: Matches everything.
+2.  **Type (`div`, `p`)**: Matches elements by tag name.
+3.  **Class (`.classname`)**: Matches `class="classname"`. Reusable.
+4.  **ID (`#idname`)**: Matches `id="idname"`. Unique.
+
+## 2. Combinators (Relationships)
+
+| Combinator | Syntax | Description |
+| :--- | :--- | :--- |
+| **Descendant** | `div p` | All paragraphs inside div. |
+| **Child** | `div > p` | Direct children only. |
+| **Adj. Sibling** | `h1 + p` | Paragraph immediately after h1. |
+| **Gen. Sibling** | `h1 ~ p` | All paragraphs after h1 (same parent). |
+
+## 3. Attribute Selectors
+
+Target elements based on their HTML attributes.
+- `[disabled]`: Has disabled attribute.
+- `input[type="text"]`: Exact match.
+- `a[href^="https"]`: Starts with "https".
+- `[class*="col-"]`: Contains "col-".
+
+## 4. Pseudo-Classes (`:`)
+
+State-based selection.
+- `:hover`, `:active`, `:focus`.
+- `:checked` (inputs).
+- `:first-child`, `:last-child`.
+- `:nth-child(2)` (2nd child).
+- `:nth-child(even/odd)`.
+
+## 5. Pseudo-Elements (`::`)
+
+Part-based selection.
+- `::before` / `::after`: Inject content.
+- `::first-letter`.
+- `::placeholder`.
+
+import Playground from '@site/src/components/Playground';
+
+## 6. Interactive Playground
+
+1.  We use `li:nth-child(odd)` to stripe the list.
+2.  We use `::marker` (or list styles) to change bullets.
+3.  We use `input:focus` to highlight the box.
+
+<Playground 
+  initialHTML={`<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n  <li>Item 3</li>\n  <li>Item 4</li>\n</ul>\n\n<input type="text" placeholder="Click me to Focus" />`}
+  initialCSS={`/* Striped List */\nli:nth-child(odd) {\n  background: #eee;\n}\n\n/* Focus State */\ninput:focus {\n  background: lightyellow;\n  border: 2px solid orange;\n  outline: none;\n}`}
+/>
+
+## 7. CSS Specificity
+
+**Specificity** determines which CSS rule is applied when multiple rules target the same element. It is calculated as a 4-part value: `(Inline, ID, Class, Element)`.
+
+### Specificity Hierarchy (Highest to Lowest)
+1.  **Inline styles**: `style="..."` (1,0,0,0)
+2.  **IDs**: `#header` (0,1,0,0)
+3.  **Classes, Attributes, Pseudo-classes**: `.btn`, `[type="text"]`, `:hover` (0,0,1,0)
+4.  **Elements, Pseudo-elements**: `div`, `::before` (0,0,0,1)
+5.  **Universal**: `*` (0,0,0,0) - No specificity.
+
+### Calculation Examples
+```css
+/* Specificity: 0,0,0,1 */
+p { color: black; }
+
+/* Specificity: 0,0,1,0 */
+.text { color: blue; }
+
+/* Specificity: 0,1,0,0 */
+#header { color: green; }
+
+/* Specificity: 0,0,1,1 */
+p.text { color: red; }
+
+/* Specificity: 0,1,1,1 */
+#header p.text { color: purple; }
+
+/* !important beats everything (except another !important specific rule) */
+p { color: orange !important; }
+```
+
+## 8. Important Interview Questions
+
+<details>
+  <summary>**1. Difference between Class and ID?**</summary>
+  - **Class**: Reusable (many elements), lower specificity.
+  - **ID**: Unique (one element per page), high specificity.
+</details>
+
+<details>
+  <summary>**2. What does `div > p` do vs `div p`?**</summary>
+  `>` matches only **direct children**. Space matches any descendant (children, grandchildren, etc.).
+</details>
+
+<details>
+  <summary>**3. Explain Specificity calculation.**</summary>
+  It's a score: (Inline, ID, Class, Tag).
+  - `#nav` (1,0,0) beats `.nav` (0,1,0).
+  - `.nav li` (0,1,1) beats `.nav` (0,1,0).
+</details>
+
+<details>
+  <summary>**4. How to select every `<a>` tag with a `title` attribute?**</summary>
+  `a[title]`.
+</details>
+
+<details>
+  <summary>**5. What is the `:root` selector?**</summary>
+  It targets the highest-level parent (html). It's preferred for defining global variables because it has slightly higher specificity than `html` selector.
+</details>
+
+<details>
+  <summary>**6. How do you select the *last* paragraph in a container?**</summary>
+  `p:last-of-type` or `p:last-child` (if it is indeed the very last child).
+</details>

@@ -1,0 +1,79 @@
+.playground-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background: var(--ifm-background-surface-color);
+}
+
+.playground-header {
+  padding: 0.5rem 1rem;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.playground-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+@media (min-width: 997px) {
+  .playground-body {
+    flex-direction: row;
+  }
+
+  .playground-editors {
+    width: 40%;
+    border-right: 1px solid var(--ifm-color-emphasis-200);
+  }
+
+  .playground-preview {
+    width: 60%;
+  }
+}
+
+.playground-editors {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.editor-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.editor-section:last-child {
+  border-bottom: none;
+}
+
+.editor-label {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+  background: var(--ifm-color-emphasis-50);
+  border-bottom: 1px solid var(--ifm-color-emphasis-100);
+}
+
+.playground-preview {
+  flex: 1;
+  background: white;
+  /* Preview should assume white by default unless CSS overrides */
+  display: flex;
+  flex-direction: column;
+}
+
+.playground-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  flex: 1;
+}

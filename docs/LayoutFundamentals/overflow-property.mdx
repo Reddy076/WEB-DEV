@@ -1,0 +1,73 @@
+---
+id: overflow-property
+title: Overflow Property
+sidebar_label: Overflow Property
+sidebar_position: 12
+---
+
+# Overflow Property
+
+**overflow** controls what happens when content is too large for its container.
+
+## 1. Overflow Values
+
+```css
+.container {
+    overflow: visible;  /* Default - content spills out */
+    overflow: hidden;   /* Clips content that sticks out */
+    overflow: scroll;   /* Always shows scrollbars */
+    overflow: auto;     /* Shows scrollbars only when needed */
+}
+```
+
+## 2. Axis Control
+
+You can control X (horizontal) and Y (vertical) separately.
+
+```css
+.container {
+    overflow-x: scroll; /* Allow horizontal scrolling */
+    overflow-y: hidden; /* Disable vertical scrolling */
+}
+```
+
+## 3. Text Overflow (Ellipsis)
+
+Handling long text that needs to conform to a single line.
+
+```css
+.truncate {
+    width: 200px;
+    white-space: nowrap;      /* Prevent wrapping */
+    overflow: hidden;         /* Hide overflow */
+    text-overflow: ellipsis;  /* Show "..." */
+}
+```
+
+import Playground from '@site/src/components/Playground';
+
+## 4. Interactive Playground
+
+Try changing `overflow: hidden` to `overflow: scroll` to read the rest of the text.
+
+<Playground 
+  initialHTML={`<div class="box">\n  The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n</div>`}
+  initialCSS={`.box {\n  width: 150px;\n  height: 80px;\n  border: 2px solid black;\n  /* Change this value */\n  overflow: hidden;\n}`}
+/>
+
+## 5. Important Interview Questions
+
+<details>
+  <summary>**1. How does `overflow: hidden` affect floats?**</summary>
+  It establishes a new **Block Formatting Context (BFC)**. This means the container will expand to contain its floated children (eliminating the need for a clearfix hack).
+</details>
+
+<details>
+  <summary>**2. What creates scrollbars on the body?**</summary>
+  Usually an element with `width: 100vw` combined with a scrollbar width, or an element positioned outside the viewport. `overflow-x: hidden` on body is a common fix.
+</details>
+
+<details>
+  <summary>**3. Custom Scrollbars?**</summary>
+  Use `::-webkit-scrollbar` for Chrome/Safari. Firefox uses `scrollbar-width`.
+</details>

@@ -1,0 +1,110 @@
+---
+id: css-syntax
+title: CSS Syntax
+sidebar_label: CSS Syntax
+sidebar_position: 1
+---
+
+# CSS Syntax
+
+**CSS (Cascading Style Sheets)** is the styling language used to describe the presentation of a document written in HTML. Understanding its syntax is the first step to mastering web design.
+
+## 1. The Anatomy of a CSS Rule
+
+A CSS rule set consists of a **selector** and a **declaration block**.
+
+```css
+/* Selector */
+h1 {
+  /* Declaration Block */
+  color: blue;
+  font-size: 24px;
+}
+```
+
+### Components Breakdown
+
+1.  **Selector (`h1`)**: This points to the HTML element you want to style. It can be a tag name, a class, an ID, or a complex relationship (which we will cover in the Selectors chapter).
+2.  **Declaration Block (`{ ... }`)**: Wraps the style instructions.
+3.  **Property (`color`)**: The specific quality you want to change (e.g., color, width, margin).
+4.  **Value (`blue`)**: The specific setting for that property.
+5.  **Separator (`:`)**: Splits the property from the value.
+6.  **Terminator (`;`)**: Ends the instruction. **Crucial**: If you miss this, the browser may ignore the next line.
+
+## 2. Formatting Best Practices
+
+Whitespace is mostly ignored in CSS, but readability is key.
+
+**Good Practice (Multi-line):**
+```css
+p {
+  color: red;
+  text-align: center;
+}
+```
+
+**Valid but Bad (Single-line):**
+```css
+p{color:red;text-align:center;}
+```
+*Use single-line only for very small, utility-like classes.*
+
+## 3. Comments
+
+Comments are lines of code ignored by the browser. They are for humans.
+
+```css
+/* This is a single line comment */
+p {
+  color: red; /* Inline comment */
+}
+
+/* 
+   This is a multi-line comment.
+   Useful for section headers or
+   disabling large blocks of code.
+*/
+```
+
+## 4. Case Sensitivity
+
+- **CSS Keywords**: Not case-sensitive. `COLOR: RED` is the same as `color: red`.
+- **Selectors (HTML Hooks)**: **Case-sensitive**. Class names `.Sidebar` and `.sidebar` are different.
+
+import Playground from '@site/src/components/Playground';
+
+## 5. Interactive Playground
+
+Try modifying the syntax below. Remove the semicolon after `blue` and see what happens to the font size (it might break!).
+
+<Playground 
+  initialHTML={`<h1>Hello World</h1>\n<p>Syntax is easy.</p>`}
+  initialCSS={`h1 {\n  color: blue;\n  font-size: 40px;\n}\n\np {\n  font-family: monospace;\n  background-color: #eee;\n  padding: 10px;\n}`}
+/>
+
+## 6. Important Interview Questions
+
+<details>
+  <summary>**1. What does CSS stand for?**</summary>
+  **Cascading Style Sheets**.
+</details>
+
+<details>
+  <summary>**2. What happens if you forget a semicolon?**</summary>
+  The browser often cannot parse where the next property begins, causing it to discard the *next* property (and potentially the rest of the block).
+</details>
+
+<details>
+  <summary>**3. Is CSS a programming language?**</summary>
+  Technically, it is a **Style Sheet Language**. However, with modern features like Variables (`--var`), Calculations (`calc()`), and Nesting, it is gaining programming-like capabilities (Turing completeness is debated, but generally "no" in the imperative sense).
+</details>
+
+<details>
+  <summary>**4. How does the browser handle unknown properties?**</summary>
+  It **ignores** them. This is a feature, not a bug, allowing new CSS features to be added without breaking old browsers (Progressive Enhancement).
+</details>
+
+<details>
+  <summary>**5. Can you nest comments?**</summary>
+  **No**. Identifying the end of a comment is done by finding the first `*/`.
+</details>

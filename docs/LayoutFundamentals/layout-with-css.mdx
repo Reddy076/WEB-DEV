@@ -1,0 +1,57 @@
+---
+id: layout-with-css
+title: Layout with CSS
+sidebar_label: Layout with CSS
+sidebar_position: 10
+---
+
+# Layout with CSS
+
+Understanding **Layout** is distinguishing between the "Normal Flow" and the special layout modes (Flex/Grid).
+
+## 1. Normal Flow
+Unless you specify otherwise (`float`, `position`, `flex`), browsers place elements in Normal Flow.
+- **Block**: Vertical stack.
+- **Inline**: Human text flow (left to right, wrapping).
+
+## 2. Block vs Inline vs Inline-Block
+
+| Mode | Line | Width/Height | Margins |
+| :--- | :--- | :--- | :--- |
+| **Block** | New Line | Respected | Respected |
+| **Inline** | Same Line | Ignored | Horizontal only |
+| **Inline-Block**| Same Line | Respected | Respected |
+
+## 3. Centering Reference
+
+- **Horizontal Text**: `text-align: center`.
+- **Horizontal Block**: `margin: 0 auto` (needs width).
+- **Vertical**: `display: flex; align-items: center;`.
+
+import Playground from '@site/src/components/Playground';
+
+## 4. Interactive Playground
+
+See the difference between `inline` (spans) and `block` (divs).
+
+<Playground 
+  initialHTML={`<span class="bad">I am Inline - Width ignored</span>\n<div class="good">I am Block - Width respected</div>\n<div class="best">I am Inline-Block</div>`}
+  initialCSS={`.bad {\n  background: red;\n  width: 200px; /* Ignored! */\n  padding: 10px;\n}\n\n.good {\n  background: lightblue;\n  width: 200px;\n  padding: 10px;\n  margin-top: 10px;\n}\n\n.best {\n  display: inline-block;\n  background: lightgreen;\n  width: 200px;\n  padding: 10px;\n}`}
+/>
+
+## 5. Important Interview Questions
+
+<details>
+  <summary>**1. What is the value of `display` for `<li>` tags?**</summary>
+  `display: list-item`. It acts like a block but makes room for a marker (bullet).
+</details>
+
+<details>
+  <summary>**2. How to clear floats?**</summary>
+  Using the "Clearfix" hack:  `.parent::after { content: ""; clear: both; display: table; }`.
+</details>
+
+<details>
+  <summary>**3. What is a "replaced element"?**</summary>
+  Elements whose appearance is controlled by external resources, like `<img>`, `<video>`, `<input>`. They have intrinsic dimensions.
+</details>

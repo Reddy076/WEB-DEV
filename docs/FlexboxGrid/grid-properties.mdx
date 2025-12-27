@@ -1,0 +1,67 @@
+---
+id: grid-properties
+title: grid-template-columns...
+sidebar_label: grid-template-columns...
+sidebar_position: 14
+---
+
+# Grid Properties
+
+CSS Grid Layout (Grid) works on 2 Dimensions (Rows & Columns) simultaneously.
+
+## 1. Container Properties
+
+### `grid-template-columns` / `rows`
+Defines the tracks.
+- `100px 200px`: First col 100px, second 200px.
+- `1fr 1fr`: Two equal columns (fractions of free space).
+- `repeat(3, 1fr)`: Three equal columns.
+
+### `gap`
+Space between cells.
+- `gap: 20px;`
+
+### `grid-template-areas`
+Semantic layout map.
+```css
+grid-template-areas:
+  "header header"
+  "sidebar content"
+  "footer footer";
+```
+
+## 2. Item Properties
+
+- `grid-column`: `start / end`.
+    - `grid-column: 1 / 3` (Spans from line 1 to line 3).
+    - `grid-column: span 2`.
+- `grid-area`: Assign to name (`grid-area: header`).
+
+import Playground from '@site/src/components/Playground';
+
+## 3. Interactive Playground
+
+Change `grid-template-columns` to `1fr 2fr` (2nd column is 2x wider).
+
+<Playground 
+  initialHTML={`<div class="grid">\n  <div class="item">1</div>\n  <div class="item">2</div>\n  <div class="item">3</div>\n  <div class="item">4</div>\n</div>`}
+  initialCSS={`.grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 10px;\n}\n\n.item {\n  background: teal;\n  color: white;\n  padding: 20px;\n  text-align: center;\n}`}
+/>
+
+## 4. Important Interview Questions
+
+<details>
+  <summary>**1. What is the `fr` unit?**</summary>
+  Fraction of available space. It calculates *after* fixed widths (px) are subtracted.
+</details>
+
+<details>
+  <summary>**2. `max-content` vs `min-content`?**</summary>
+  - `min-content`: Narrowest possible (wrap text at longest word).
+  - `max-content`: Widest possible (no wrapping).
+</details>
+
+<details>
+  <summary>**3. Difference between Grid and Flexbox?**</summary>
+  Grid locks items to the grid lines (X and Y). Flexbox flows items based on content size (X).
+</details>

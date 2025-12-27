@@ -1,0 +1,56 @@
+---
+id: display-position-float
+title: Display, Position, Float
+sidebar_label: Display, Position, Float
+sidebar_position: 11
+---
+
+# Display, Position, Float
+
+Tools for breaking the normal flow.
+
+## 1. Position Property
+
+- **Static**: Default.
+- **Relative**: Offset from original spot. Space remains reserved.
+- **Absolute**: Removed from flow. Relative to nearest *positioned* parent.
+- **Fixed**: Relative to Viewport (Screen). Sticky navbars.
+- **Sticky**: Hybrid. Relative until scrolled passed, then Fixed.
+
+## 2. Float
+`float: left` / `right`.
+Originally used to wrap text around images.
+Abused for grid layouts until 2010. **Do not use for layout anymore.**
+
+## 3. Z-Index
+Controls stacking order.
+- **Rules**: Works only on positioned elements (`relative/absolute/fixed`).
+- Elements with higher Z index appear on top.
+
+import Playground from '@site/src/components/Playground';
+
+## 4. Interactive Playground
+
+See `absolute` positioning inside a `relative` container. The red box moves related to the grey container, not the body.
+
+<Playground 
+  initialHTML={`<div class="relative-parent">\n  I am Relative.\n  <div class="absolute-child">Abs Child</div>\n</div>`}
+  initialCSS={`.relative-parent {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  background: #eee;\n  border: 2px solid black;\n}\n\n.absolute-child {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  width: 50px;\n  height: 50px;\n  background: red;\n  color: white;\n}`}
+/>
+
+## 5. Important Interview Questions
+
+<details>
+  <summary>**1. Difference between `relative` and `absolute`?**</summary>
+  Relative occupies space in the flow. Absolute is removed from flow (floats over everything).
+</details>
+
+<details>
+  <summary>**2. What creates a Stacking Context?**</summary>
+  `opacity` < 1, `transform`, `filter`, `z-index` + position.
+</details>
+
+<details>
+  <summary>**3. When to use `float`?**</summary>
+  Only for text-wrap around images.
+</details>

@@ -1,0 +1,41 @@
+---
+id: breakpoints
+title: Breakpoints
+sidebar_label: Breakpoints
+sidebar_position: 16
+---
+
+# Breakpoints
+
+Breakpoints are the pixel widths where your layout "breaks" or changes to adapt to the new size.
+
+## 1. Common Breakpoints (Bootstrap Standard)
+
+- **Extra Small (xs)**: < 576px (Phones portrait)
+- **Small (sm)**: ≥ 576px (Phones landscape)
+- **Medium (md)**: ≥ 768px (Tablets)
+- **Large (lg)**: ≥ 992px (Desktops)
+- **Extra Large (xl)**: ≥ 1200px (Wide screens)
+
+## 2. Strategy
+
+Do not target specific devices (e.g., iPhone 12 width). Target **content**. Add a breakpoint when your design looks broken.
+
+## 3. SCSS / Mixins (Bonus)
+
+In professional projects, we abstract breakpoints:
+```scss
+@include media-breakpoint-up(md) { ... }
+```
+
+## 4. Important Interview Questions
+
+<details>
+  <summary>**1. How many breakpoints should you have?**</summary>
+  Usually 3 or 4 major ones (Mobile, Tablet, Desktop, Wide). Too many makes maintenance hard.
+</details>
+
+<details>
+  <summary>**2. Can you nest media queries?**</summary>
+  Yes (in SCSS natively, or CSS nesting level 4), but usually they are written at the bottom of the file or in separate files.
+</details>
