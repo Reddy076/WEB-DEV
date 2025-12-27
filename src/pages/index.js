@@ -17,10 +17,6 @@ function HeroSection() {
           Documenting <Link to="/Introduction/css-syntax">CSS</Link>,{' '}
           <Link to="/js/Fundamentals/getting-started">JavaScript</Link>, and more.
         </p>
-        <div className={styles.searchBox}>
-          <span className={styles.searchIcon}>🔍</span>
-          <span className={styles.searchText}>Search documentation...</span>
-        </div>
       </div>
       <div className={styles.heroGraphic}>
         <div className={styles.codePattern}></div>
@@ -86,9 +82,9 @@ function QuickLinks() {
         <h3 className={styles.quickLinksTitle}>🎨 CSS</h3>
         <ul className={styles.quickLinksList}>
           <li><Link to="/Introduction/css-syntax">CSS Syntax</Link></li>
-          <li><Link to="/Selectors/selectors">Selectors</Link></li>
-          <li><Link to="/BoxModel/box-model">Box Model</Link></li>
-          <li><Link to="/FlexboxGrid/flexbox">Flexbox</Link></li>
+          <li><Link to="/Selectors/css-selectors">Selectors</Link></li>
+          <li><Link to="/BoxModel/box-model-basics">Box Model</Link></li>
+          <li><Link to="/FlexboxGrid/flexbox-layout">Flexbox</Link></li>
           <li><Link to="/ResponsiveDesign/media-queries">Media Queries</Link></li>
         </ul>
       </div>

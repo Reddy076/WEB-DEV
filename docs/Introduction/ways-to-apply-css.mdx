@@ -90,30 +90,3 @@ See how **Inline** beats **Internal**. The internal block sets color to `red`, b
   initialHTML={`<!-- Inline style overrides Internal -->\n<h1 style="color: purple;">I have higher priority!</h1>\n\n<h1>I follow internal rules.</h1>`}
   initialCSS={`/* Internal Style */\nh1 {\n  color: red;\n  text-decoration: underline;\n}`}
 />
-
-## 6. Important Interview Questions
-
-<details>
-  <summary>**1. Which application method has the highest priority?**</summary>
-  **Inline CSS** overrides Internal and External CSS (unless `!important` is used).
-</details>
-
-<details>
-  <summary>**2. What is the priority order for Internal vs External?**</summary>
-  It depends on **Source Order**. Whichever is defined *last* in the `<head>` wins. If `<link>` corresponds to external, and `<style>` corresponds to internal, placing `<style>` after `<link>` makes internal win.
-</details>
-
-<details>
-  <summary>**3. What is FOUC (Flash of Unstyled Content) and how to avoid it?**</summary>
-  It's when the user sees raw HTML before CSS loads. Avoid it by placing all CSS `<link>` tags in the `<head>`, never in the `<body>`.
-</details>
-
-<details>
-  <summary>**4. Can you link a stylesheet inside the `<body>`?**</summary>
-  Technically browsers might render it, but it is invalid HTML5 and causes performance issues (repainting). Always put it in `<head>`.
-</details>
-
-<details>
-  <summary>**5. Why are multiple `<link>` tags better than `@import`?**</summary>
-  Browsers can download multiple `<link>` files in **parallel**. With `@import`, the browser must download the first file, parse it, find the import, and *then* download the second, creating a chain delay.
-</details>

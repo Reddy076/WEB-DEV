@@ -2,11 +2,12 @@
 
 /* Container */
 .jsplayground-container {
-  border: 1px solid var(--border-color, #e5e5e5);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   overflow: hidden;
   margin: 1.5rem 0;
-  background: var(--ifm-background-color, #fff);
+  background: var(--ifm-background-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Header */
@@ -14,15 +15,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 1rem;
-  background: var(--ifm-background-surface-color, #f9f9fb);
-  border-bottom: 1px solid var(--border-color, #e5e5e5);
+  padding: 0.75rem 1rem;
+  background: #1b1b1b;
+  border-bottom: 1px solid #333;
 }
 
 .jsplayground-title {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--ifm-font-color-base, #333);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.jsplayground-title::before {
+  content: '⚡';
+  font-size: 1rem;
 }
 
 /* Action buttons */
@@ -32,184 +41,198 @@
 }
 
 .jsplayground-btn {
-  padding: 0.4rem 0.85rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  border: 1px solid var(--border-color, #e5e5e5);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
+  background: transparent;
+  color: #fff;
 }
 
 .run-btn {
-  background: var(--ifm-color-primary, #3584e4);
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
   color: #fff;
-  border-color: var(--ifm-color-primary, #3584e4);
 }
 
-.run-btn:hover:not(:disabled) {
-  opacity: 0.9;
-}
-
-.run-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.clear-btn {
-  background: var(--ifm-background-color, #fff);
-  color: var(--ifm-font-color-base, #333);
+.run-btn:hover {
+  background: var(--ifm-color-primary-dark);
+  filter: brightness(1.1);
 }
 
 .clear-btn:hover {
-  background: var(--ifm-background-surface-color, #f5f5f5);
-  border-color: var(--ifm-color-primary, #3584e4);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Body */
+/* Body Layout */
 .jsplayground-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  min-height: 350px;
 }
 
 @media (max-width: 768px) {
   .jsplayground-body {
     grid-template-columns: 1fr;
+    min-height: auto;
   }
 }
 
-/* Editor */
+/* Editor Section */
 .jsplayground-editor {
-  border-right: 1px solid var(--border-color, #e5e5e5);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  background: #1e1e1e;
 }
 
 @media (max-width: 768px) {
   .jsplayground-editor {
     border-right: none;
-    border-bottom: 1px solid var(--border-color, #e5e5e5);
+    border-bottom: 1px solid var(--border-color);
+    min-height: 250px;
   }
 }
 
 .editor-label {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
-  font-size: 0.65rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.5);
-  z-index: 10;
-  pointer-events: none;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+  background: #252526;
+  border-bottom: 1px solid #333;
+}
+
+/* CodeMirror Override */
+.jsplayground-editor .cm-theme {
+  height: 100%;
 }
 
 .jsplayground-editor .cm-editor {
-  font-size: 0.875rem;
+  height: 100%;
 }
 
-/* Output */
+/* Output Section */
 .jsplayground-output {
   display: flex;
   flex-direction: column;
-  background: var(--ifm-background-color, #fff);
+  background: #1b1b1b;
+  overflow: hidden;
 }
 
 .output-label {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.7rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--ifm-font-color-secondary, #666);
-  background: var(--ifm-background-surface-color, #f9f9fb);
-  border-bottom: 1px solid var(--border-color, #e5e5e5);
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+  background: #252526;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.output-label::after {
+  content: 'CONSOLE';
+  opacity: 0.5;
+  font-size: 0.65rem;
 }
 
 .output-content {
   flex: 1;
-  padding: 0.75rem;
-  min-height: 150px;
-  max-height: 250px;
+  padding: 1rem;
+  font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+  font-size: 0.85rem;
   overflow-y: auto;
-  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
-  font-size: 0.8rem;
-  line-height: 1.5;
+  color: #e0e0e0;
+  max-height: 400px;
 }
 
 .output-placeholder {
-  color: var(--ifm-font-color-secondary, #888);
+  color: rgba(255, 255, 255, 0.3);
   font-style: italic;
+  text-align: center;
+  margin-top: 2rem;
 }
 
+/* Console Lines */
 .output-line {
-  margin-bottom: 0.25rem;
+  padding: 0.2rem 0;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
 }
 
 .output-line pre {
   margin: 0;
   white-space: pre-wrap;
-  word-break: break-word;
-  font-family: inherit;
-  font-size: inherit;
+  word-break: break-all;
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
 }
 
 .output-log {
-  color: var(--ifm-font-color-base, #333);
+  color: #e0e0e0;
+}
+
+.output-log::before {
+  content: '› ';
+  color: rgba(255, 255, 255, 0.3);
+  margin-right: 0.5rem;
 }
 
 .output-error {
-  color: #dc3545;
+  color: #ff6b6b;
+  background: rgba(255, 0, 0, 0.05);
+  margin: 0 -1rem;
+  padding: 0.2rem 1rem;
+}
+
+.output-error::before {
+  content: '✕ ';
+  color: #ff6b6b;
+  margin-right: 0.5rem;
 }
 
 .output-warn {
-  color: #856404;
+  color: #ffd93d;
+  background: rgba(255, 217, 61, 0.05);
+  margin: 0 -1rem;
+  padding: 0.2rem 1rem;
 }
 
-.output-info {
-  color: var(--ifm-color-primary, #3584e4);
+.output-warn::before {
+  content: '⚠ ';
+  color: #ffd93d;
+  margin-right: 0.5rem;
 }
 
-/* ===== Dark Mode ===== */
+/* ===== Dark Mode Improvements ===== */
 [data-theme='dark'] .jsplayground-container {
-  border-color: var(--border-color, #3d3d3d);
-  background: var(--ifm-background-color, #1b1b1b);
-}
-
-[data-theme='dark'] .jsplayground-header {
-  background: var(--ifm-background-surface-color, #252526);
-  border-color: var(--border-color, #3d3d3d);
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme='dark'] .jsplayground-btn {
-  border-color: var(--border-color, #3d3d3d);
-}
-
-[data-theme='dark'] .clear-btn {
-  background: transparent;
-  color: #d4d4d4;
-}
-
-[data-theme='dark'] .clear-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme='dark'] .jsplayground-editor {
-  border-color: var(--border-color, #3d3d3d);
-}
-
-[data-theme='dark'] .jsplayground-output {
-  background: var(--ifm-background-color, #1b1b1b);
-}
-
-[data-theme='dark'] .output-label {
-  background: var(--ifm-background-surface-color, #252526);
-  border-color: var(--border-color, #3d3d3d);
+  border-right-color: #333;
 }
 
 [data-theme='dark'] .output-content {
-  background: var(--ifm-background-color, #1b1b1b);
+  background: #1b1b1b;
 }
 
 [data-theme='dark'] .output-log {

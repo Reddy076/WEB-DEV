@@ -136,22 +136,3 @@ const obj = {
 };
 console.log("Arrow this:", obj.getValue());`}
 />
-
-## Important Interview Questions
-
-<details>
-  <summary>**1. What is `this` in JavaScript?**</summary>
-  `this` is a keyword that refers to the object that is executing the current function. Its value is determined by how the function is called, not where it's defined.
-</details>
-
-<details>
-  <summary>**2. How does `this` work in arrow functions?**</summary>
-  Arrow functions don't have their own `this`. They inherit `this` from their enclosing lexical scope (where they were defined).
-</details>
-
-<details>
-  <summary>**3. What's the difference between call, apply, and bind?**</summary>
-  - **call**: Invokes immediately, arguments separately
-  - **apply**: Invokes immediately, arguments as array
-  - **bind**: Returns new function with bound `this`
-</details>

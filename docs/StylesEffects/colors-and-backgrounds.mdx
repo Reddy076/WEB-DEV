@@ -41,32 +41,3 @@ Create a gradient button!
   initialHTML={`<button>Gradient Button</button>`}
   initialCSS={`button {\n  background: linear-gradient(90deg, #ff8a00, #e52e71);\n  color: white;\n  border: none;\n  padding: 15px 30px;\n  border-radius: 25px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: transform 0.2s;\n}\n\nbutton:hover {\n  transform: scale(1.05);\n}`}
 />
-
-## 5. Important Interview Questions
-
-<details>
-  <summary>**1. `display: none` vs `opacity: 0` vs `visibility: hidden`?**</summary>
-  - `display: none`: Removed from layout. No space.
-  - `opacity: 0`: Invisible, takes space, **interactive** (clickable).
-  - `visibility: hidden`: Invisible, takes space, **not interactive**.
-</details>
-
-<details>
-  <summary>**2. What is `background-attachment: fixed`?**</summary>
-  Parallax effect. The background image stays stuck to the viewport while the page content scrolls.
-</details>
-
-<details>
-  <summary>**3. Difference between `opacity` and `rgba` alpha?**</summary>
-  `opacity` property fades the element *and children*. `rgba` background only fades the background color; children stay solid.
-</details>
-
-<details>
-  <summary>**4. How to use a sprite sheet?**</summary>
-  One large image with many icons. Use `background-image` + `background-position` to show only the slice you want through a fixed width/height container. Saves HTTP requests.
-</details>
-
-<details>
-  <summary>**5. CSS variables?**</summary>
-  `--primary: #ff0000;` then `color: var(--primary);`.
-</details>

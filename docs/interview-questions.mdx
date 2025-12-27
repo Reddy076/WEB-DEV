@@ -1,0 +1,305 @@
+---
+sidebar_position: 100
+title: CSS Interview Questions
+description: Comprehensive list of CSS Interview Questions
+---
+
+# CSS Interview Questions
+
+## Transitions & Animations
+
+### 1. Difference between Transition and Animation?
+
+  - **Transition**: Simple A to B change. Requires a trigger (hover, class change). 
+  - **Animation**: Complex (A -> B -> C). Can start automatically (on load), loop, and pause.
+### 2. Which properties are GPU accelerated (Performant)?
+
+  `transform` (translate, scale, rotate) and `opacity`. Animating `left/top` or `width/height` triggers layout recalculation (slow).
+### 3. What is `will-change`?
+
+  A property to hint to the browser that an element is about to change, allowing it to optimize beforehand. Use sparingly.
+---
+
+## Box Model Basics
+
+### 1. Explain the Box Model.
+
+  It's the specification that determines how elements are sized and rendered. Content > Padding > Border > Margin.
+### 2. Why use `box-sizing: border-box`?
+
+  It makes layout math predictable. `width: 50%` means half the screen, regardless of borders or padding used.
+### 3. Which parts of the box are transparent?
+
+  Content (usually), Padding (always matches background), and Margin (Always transparent).
+### 4. Does `background-color` cover the margin?
+
+  No. It covers Content, Padding, and Border (if border is transparent/dotted). Margin remains transparent.
+### 5. Calculating width (content-box): 100px width, 10px padding, 5px border?
+
+  100 + 20 (padding L/R) + 10 (border L/R) = **130px**.
+---
+
+## Content, Padding, Border, Margin
+
+### 1. What is Margin Collapse?
+
+  When vertical margins of adjacent block elements meet, they combine into a single margin equal to the larger of the two values.
+### 2. How to "un-collapse" margins?
+
+  Put something between them (like `padding: 1px` or a `border` on the parent container) or use a BFC (Block Formatting Context) via `overflow: hidden`.
+### 3. Margin vs Padding: When to use which?
+
+  - Use **Margin** to separate this element from neighbors.
+  - Use **Padding** to separate content from the border of this element.
+  - *Tip: If you need a clickable background area, use padding.*
+### 4. Can margin be percentage based?
+
+  Yes, but vertical margin % is calculated based on the **width** of the container, not the height.
+### 5. How to draw a circle?
+
+  Square width/height + `border-radius: 50%`.
+---
+
+## Flex Properties: Deep Dive
+
+### 1. What does `flex: 1` do?
+
+  Ensures the item grows to fill available space equally.
+### 2. What creates the "Holy Grail" layout with Flexbox?
+
+  Header (block), Footer (block), Middle area (flex) with Sidebar (fixed width) and Content (flex: 1).
+---
+
+## Flexbox Layout
+
+### 1. Flexbox vs Grid?
+
+  - Flexbox: 1D (Line). Content-first.
+  - Grid: 2D (Rows & Columns). Layout-first.
+### 2. What is `justify-content`?
+
+  Aligns items along the **Main Axis**.
+### 3. What is `align-items`?
+
+  Aligns items along the **Cross Axis**.
+---
+
+## Grid Properties
+
+### 1. What is the `fr` unit?
+
+  Fraction of available space. It calculates *after* fixed widths (px) are subtracted.
+### 2. `max-content` vs `min-content`?
+
+  - `min-content`: Narrowest possible (wrap text at longest word).
+  - `max-content`: Widest possible (no wrapping).
+### 3. Difference between Grid and Flexbox?
+
+  Grid locks items to the grid lines (X and Y). Flexbox flows items based on content size (X).
+---
+
+## CSS Syntax
+
+### 1. What does CSS stand for?
+
+  **Cascading Style Sheets**.
+### 2. What happens if you forget a semicolon?
+
+  The browser often cannot parse where the next property begins, causing it to discard the *next* property (and potentially the rest of the block).
+### 3. Is CSS a programming language?
+
+  Technically, it is a **Style Sheet Language**. However, with modern features like Variables (`--var`), Calculations (`calc()`), and Nesting, it is gaining programming-like capabilities (Turing completeness is debated, but generally "no" in the imperative sense).
+### 4. How does the browser handle unknown properties?
+
+  It **ignores** them. This is a feature, not a bug, allowing new CSS features to be added without breaking old browsers (Progressive Enhancement).
+### 5. Can you nest comments?
+
+  **No**. Identifying the end of a comment is done by finding the first `*/`.
+---
+
+## Ways to apply CSS
+
+### 1. Which application method has the highest priority?
+
+  **Inline CSS** overrides Internal and External CSS (unless `!important` is used).
+### 2. What is the priority order for Internal vs External?
+
+  It depends on **Source Order**. Whichever is defined *last* in the `<head>` wins. If `<link>` corresponds to external, and `<style>` corresponds to internal, placing `<style>` after `<link>` makes internal win.
+### 3. What is FOUC (Flash of Unstyled Content) and how to avoid it?
+
+  It's when the user sees raw HTML before CSS loads. Avoid it by placing all CSS `<link>` tags in the `<head>`, never in the `<body>`.
+### 4. Can you link a stylesheet inside the `<body>`?
+
+  Technically browsers might render it, but it is invalid HTML5 and causes performance issues (repainting). Always put it in `<head>`.
+### 5. Why are multiple `<link>` tags better than `@import`?
+
+  Browsers can download multiple `<link>` files in **parallel**. With `@import`, the browser must download the first file, parse it, find the import, and *then* download the second, creating a chain delay.
+---
+
+## Display, Position, Float
+
+### 1. Difference between `relative` and `absolute`?
+
+  Relative occupies space in the flow. Absolute is removed from flow (floats over everything).
+### 2. What creates a Stacking Context?
+
+  `opacity` < 1, `transform`, `filter`, `z-index` + position.
+### 3. When to use `float`?
+
+  Only for text-wrap around images.
+---
+
+## Layout with CSS
+
+### 1. What is the value of `display` for `<li>` tags?
+
+  `display: list-item`. It acts like a block but makes room for a marker (bullet).
+### 2. How to clear floats?
+
+  Using the "Clearfix" hack:  `.parent::after { content: ""; clear: both; display: table; }`.
+### 3. What is a "replaced element"?
+
+  Elements whose appearance is controlled by external resources, like `<img>`, `<video>`, `<input>`. They have intrinsic dimensions.
+---
+
+## Overflow Property
+
+### 1. How does `overflow: hidden` affect floats?
+
+  It establishes a new **Block Formatting Context (BFC)**. This means the container will expand to contain its floated children (eliminating the need for a clearfix hack).
+### 2. What creates scrollbars on the body?
+
+  Usually an element with `width: 100vw` combined with a scrollbar width, or an element positioned outside the viewport. `overflow-x: hidden` on body is a common fix.
+### 3. Custom Scrollbars?
+
+  Use `::-webkit-scrollbar` for Chrome/Safari. Firefox uses `scrollbar-width`.
+---
+
+## Breakpoints
+
+### 1. How many breakpoints should you have?
+
+  Usually 3 or 4 major ones (Mobile, Tablet, Desktop, Wide). Too many makes maintenance hard.
+### 2. Can you nest media queries?
+
+  Yes (in SCSS natively, or CSS nesting level 4), but usually they are written at the bottom of the file or in separate files.
+---
+
+## Media Queries
+
+### 1. What is the viewport meta tag?
+
+  `<meta name="viewport" content="width=device-width, initial-scale=1">`. Without this, mobile phones zoom out to show the desktop site (980px), ignoring your media queries.
+### 2. What is Mobile First design?
+
+  Writing CSS for mobile devices *first* (default), then using `min-width` queries to add complexity for larger screens. It's performant because mobile devices parse less code.
+---
+
+## CSS Selectors
+
+### 1. Difference between Class and ID?
+
+  - **Class**: Reusable (many elements), lower specificity.
+  - **ID**: Unique (one element per page), high specificity.
+### 2. What does `div > p` do vs `div p`?
+
+  `>` matches only **direct children**. Space matches any descendant (children, grandchildren, etc.).
+### 3. Explain Specificity calculation.
+
+  It's a score: (Inline, ID, Class, Tag).
+  - `#nav` (1,0,0) beats `.nav` (0,1,0).
+  - `.nav li` (0,1,1) beats `.nav` (0,1,0).
+### 4. How to select every `<a>` tag with a `title` attribute?
+
+  `a[title]`.
+### 5. What is the `:root` selector?
+
+  It targets the highest-level parent (html). It's preferred for defining global variables because it has slightly higher specificity than `html` selector.
+### 6. How do you select the *last* paragraph in a container?
+
+  `p:last-of-type` or `p:last-child` (if it is indeed the very last child).
+---
+
+## Borders and Effects
+
+### 1. `box-shadow` vs `border` layout impact?
+
+  Border takes up space (adds to width). Box-shadow does not; it acts like paint spilling out.
+### 2. How to create a donut shape?
+
+  Circle with a thick, transparent border? Actually better: Circle with a `border` colored, but strictly it's usually `border-radius: 50%` + `border: 20px solid red` + transparent background.
+### 3. What is `clip-path`?
+
+  Allows cutting the element into shapes (triangle, polygon) like using scissors.
+### 4. Default outline style?
+
+  Browsers add a blue/black outline on `:focus`. Never remove it (`outline: none`) without replacing it (e.g., with a `box-shadow`), or you kill accessibility.
+---
+
+## Colors and Backgrounds
+
+### 1. `display: none` vs `opacity: 0` vs `visibility: hidden`?
+
+  - `display: none`: Removed from layout. No space.
+  - `opacity: 0`: Invisible, takes space, **interactive** (clickable).
+  - `visibility: hidden`: Invisible, takes space, **not interactive**.
+### 2. What is `background-attachment: fixed`?
+
+  Parallax effect. The background image stays stuck to the viewport while the page content scrolls.
+### 3. Difference between `opacity` and `rgba` alpha?
+
+  `opacity` property fades the element *and children*. `rgba` background only fades the background color; children stay solid.
+### 4. How to use a sprite sheet?
+
+  One large image with many icons. Use `background-image` + `background-position` to show only the slice you want through a fixed width/height container. Saves HTTP requests.
+### 5. CSS variables?
+
+  `--primary: #ff0000;` then `color: var(--primary);`.
+---
+
+## Font Properties
+
+### 1. Why use `rem` instead of `px`?
+
+  `rem` respects the user's browser font size settings (default 16px, but visually impaired users might set it to 24px). If you hardcode `16px`, you override their preference.
+### 2. What is a "Web Safe Font"?
+
+  Fonts that are pre-installed on almost all devices (Arial, Times New Roman, Courier). You don't need to download them.
+### 3. Explain `@font-face`.
+
+  A CSS rule that allows you to load custom fonts from a server.
+  ```css
+  @font-face {
+    font-family: 'MyFont';
+    src: url('myfont.woff2');
+  }
+  ```
+### 4. `font-display: swap`?
+
+  Performance property. It tells the browser to display text in a fallback font immediately, then "swap" to the custom font once it loads. Prevents invisible text.
+### 5. What is a Variable Font?
+
+  A newer font technology where one single file contains all weights and styles (thin, bold, italic), adjustable via `font-variation-settings`.
+---
+
+## Styling Text and Fonts
+
+### 1. Why use unitless `line-height`?
+
+  If you use `line-height: 20px` on a parent, and a child has `font-size: 30px`, the lines will overlap. If you use `line-height: 1.5`, the child creates a line height of `1.5 * 30px = 45px`, which scales correctly.
+### 2. How to handle text overflow?
+
+  To get "..." (ellipsis):
+  1. `white-space: nowrap;` (Force single line)
+  2. `overflow: hidden;` (Hide extra)
+  3. `text-overflow: ellipsis;` (Add dots)
+### 3. How to remove the blue link underline?
+
+  `text-decoration: none;`.
+### 4. Can you align text vertically using `text-align`?
+
+  No. `text-align` is strictly horizontal. Vertical alignment requires `line-height` (hacky), `vertical-align` (inline elements), or Flexbox/Grid (modern).
+### 5. Difference between `word-break` and `overflow-wrap`?
+
+  `overflow-wrap: break-word` will break a long word only if it *has* to. `word-break: break-all` is more aggressive and will break words at random points to fit tightly.
+---

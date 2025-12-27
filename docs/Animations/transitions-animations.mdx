@@ -55,21 +55,3 @@ Watch the box bounce!
   initialHTML={`<div class="ball"></div>`}
   initialCSS={`@keyframes bounce {\n  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-100px); }\n}\n\n.ball {\n  width: 50px;\n  height: 50px;\n  background: orange;\n  border-radius: 50%;\n  animation: bounce 1s infinite ease-in-out;\n  margin-top: 120px;\n}`}
 />
-
-## 4. Important Interview Questions
-
-<details>
-  <summary>**1. Difference between Transition and Animation?**</summary>
-  - **Transition**: Simple A to B change. Requires a trigger (hover, class change). 
-  - **Animation**: Complex (A -> B -> C). Can start automatically (on load), loop, and pause.
-</details>
-
-<details>
-  <summary>**2. Which properties are GPU accelerated (Performant)?**</summary>
-  `transform` (translate, scale, rotate) and `opacity`. Animating `left/top` or `width/height` triggers layout recalculation (slow).
-</details>
-
-<details>
-  <summary>**3. What is `will-change`?**</summary>
-  A property to hint to the browser that an element is about to change, allowing it to optimize beforehand. Use sparingly.
-</details>

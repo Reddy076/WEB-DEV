@@ -43,32 +43,3 @@ See **Margin Collapse** in action. Top paragraph has `margin-bottom: 20px`. Bott
   initialHTML={`<div class="wrapper">\n  <p class="one">I have 20px bottom margin</p>\n  <p class="two">I have 30px top margin</p>\n</div>`}
   initialCSS={`.wrapper {\n  border: 1px solid grey;\n  width: 300px;\n  margin: 0 auto;\n}\n\np {\n  background: #ddd;\n  padding: 10px;\n}\n\n.one {\n  margin-bottom: 20px;\n}\n\n.two {\n  margin-top: 30px;\n  /* Gap is max(20, 30) = 30px, not 50px */\n}`}
 />
-
-## 6. Important Interview Questions
-
-<details>
-  <summary>**1. What is Margin Collapse?**</summary>
-  When vertical margins of adjacent block elements meet, they combine into a single margin equal to the larger of the two values.
-</details>
-
-<details>
-  <summary>**2. How to "un-collapse" margins?**</summary>
-  Put something between them (like `padding: 1px` or a `border` on the parent container) or use a BFC (Block Formatting Context) via `overflow: hidden`.
-</details>
-
-<details>
-  <summary>**3. Margin vs Padding: When to use which?**</summary>
-  - Use **Margin** to separate this element from neighbors.
-  - Use **Padding** to separate content from the border of this element.
-  - *Tip: If you need a clickable background area, use padding.*
-</details>
-
-<details>
-  <summary>**4. Can margin be percentage based?**</summary>
-  Yes, but vertical margin % is calculated based on the **width** of the container, not the height.
-</details>
-
-<details>
-  <summary>**5. How to draw a circle?**</summary>
-  Square width/height + `border-radius: 50%`.
-</details>

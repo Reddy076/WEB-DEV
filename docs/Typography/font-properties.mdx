@@ -52,36 +52,3 @@ Compare `serif` vs `sans-serif` and see `small-caps` in action.
   initialHTML={`<p class="serif">I am a Serif font (Traditional)</p>\n<p class="sans">I am Sans-Serif (Modern)</p>\n<p class="caps">I am Small Caps</p>`}
   initialCSS={`.serif {\n  font-family: "Georgia", serif;\n  font-size: 20px;\n}\n\n.sans {\n  font-family: "Arial", sans-serif;\n  font-size: 20px;\n}\n\n.caps {\n  font-variant: small-caps;\n  font-weight: bold;\n}`}
 />
-
-## 8. Important Interview Questions
-
-<details>
-  <summary>**1. Why use `rem` instead of `px`?**</summary>
-  `rem` respects the user's browser font size settings (default 16px, but visually impaired users might set it to 24px). If you hardcode `16px`, you override their preference.
-</details>
-
-<details>
-  <summary>**2. What is a "Web Safe Font"?**</summary>
-  Fonts that are pre-installed on almost all devices (Arial, Times New Roman, Courier). You don't need to download them.
-</details>
-
-<details>
-  <summary>**3. Explain `@font-face`.**</summary>
-  A CSS rule that allows you to load custom fonts from a server.
-  ```css
-  @font-face {
-    font-family: 'MyFont';
-    src: url('myfont.woff2');
-  }
-  ```
-</details>
-
-<details>
-  <summary>**4. `font-display: swap`?**</summary>
-  Performance property. It tells the browser to display text in a fallback font immediately, then "swap" to the custom font once it loads. Prevents invisible text.
-</details>
-
-<details>
-  <summary>**5. What is a Variable Font?**</summary>
-  A newer font technology where one single file contains all weights and styles (thin, bold, italic), adjustable via `font-variation-settings`.
-</details>

@@ -178,21 +178,3 @@ class Car {
 const myCar = new Car("Toyota", "Camry");
 console.log("\\nCar:", myCar.describe());`}
 />
-
-## Important Interview Questions
-
-<details>
-  <summary>**1. What is the difference between dot and bracket notation?**</summary>
-  - **Dot notation**: Cleaner, used with valid identifiers
-  - **Bracket notation**: Required for dynamic keys, special characters, or reserved words
-</details>
-
-<details>
-  <summary>**2. How do you check if a property exists?**</summary>
-  
-  ```javascript
-  "prop" in obj;              // Checks own and inherited
-  obj.hasOwnProperty("prop"); // Own properties only
-  obj.prop !== undefined;     // May give false positives
-  ```
-</details>

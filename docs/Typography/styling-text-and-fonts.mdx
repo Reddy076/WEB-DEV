@@ -50,33 +50,3 @@ Play with `letter-spacing` and `text-transform`.
   initialHTML={`<h1>Cinematic Title</h1>\n<p>This paragraph is justified. It will stretch to fill the width of the container, making clean edges on both left and right sides.</p>`}
   initialCSS={`h1 {\n  text-align: center;\n  text-transform: uppercase;\n  letter-spacing: 5px;\n  text-shadow: 2px 2px 0px #ccc;\n}\n\np {\n  text-align: justify;\n  line-height: 1.6;\n  width: 80%;\n  margin: 0 auto;\n}`}
 />
-
-## 8. Important Interview Questions
-
-<details>
-  <summary>**1. Why use unitless `line-height`?**</summary>
-  If you use `line-height: 20px` on a parent, and a child has `font-size: 30px`, the lines will overlap. If you use `line-height: 1.5`, the child creates a line height of `1.5 * 30px = 45px`, which scales correctly.
-</details>
-
-<details>
-  <summary>**2. How to handle text overflow?**</summary>
-  To get "..." (ellipsis):
-  1. `white-space: nowrap;` (Force single line)
-  2. `overflow: hidden;` (Hide extra)
-  3. `text-overflow: ellipsis;` (Add dots)
-</details>
-
-<details>
-  <summary>**3. How to remove the blue link underline?**</summary>
-  `text-decoration: none;`.
-</details>
-
-<details>
-  <summary>**4. Can you align text vertically using `text-align`?**</summary>
-  No. `text-align` is strictly horizontal. Vertical alignment requires `line-height` (hacky), `vertical-align` (inline elements), or Flexbox/Grid (modern).
-</details>
-
-<details>
-  <summary>**5. Difference between `word-break` and `overflow-wrap`?**</summary>
-  `overflow-wrap: break-word` will break a long word only if it *has* to. `word-break: break-all` is more aggressive and will break words at random points to fit tightly.
-</details>

@@ -82,6 +82,14 @@ const sidebars = {
         'Animations/transitions-animations',
       ],
     },
+    {
+      type: 'category',
+      label: '11. Resources',
+      collapsed: false,
+      items: [
+        'interview-questions',
+      ],
+    },
   ],
 };
 

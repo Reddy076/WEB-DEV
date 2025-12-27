@@ -41,25 +41,3 @@ Contrast `box-shadow` (box based) with `filter: drop-shadow` (shape based). The 
   initialHTML={`<div class="card">Box Shadow</div>\n<br>\n<img src="https://docusaurus.io/img/docusaurus_keytar.svg" class="star" alt="shape">`}
   initialCSS={`.card {\n  background: white;\n  padding: 20px;\n  box-shadow: 5px 5px 10px #888;\n  display: inline-block;\n}\n\n.star {\n  width: 100px;\n  /* Follows image shape */\n  filter: drop-shadow(5px 5px 5px red);\n}`}
 />
-
-## 6. Important Interview Questions
-
-<details>
-  <summary>**1. `box-shadow` vs `border` layout impact?**</summary>
-  Border takes up space (adds to width). Box-shadow does not; it acts like paint spilling out.
-</details>
-
-<details>
-  <summary>**2. How to create a donut shape?**</summary>
-  Circle with a thick, transparent border? Actually better: Circle with a `border` colored, but strictly it's usually `border-radius: 50%` + `border: 20px solid red` + transparent background.
-</details>
-
-<details>
-  <summary>**3. What is `clip-path`?**</summary>
-  Allows cutting the element into shapes (triangle, polygon) like using scissors.
-</details>
-
-<details>
-  <summary>**4. Default outline style?**</summary>
-  Browsers add a blue/black outline on `:focus`. Never remove it (`outline: none`) without replacing it (e.g., with a `box-shadow`), or you kill accessibility.
-</details>

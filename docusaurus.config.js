@@ -12,7 +12,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const config = {
   title: 'WebDev',
   tagline: 'Master CSS & JavaScript with Interactive Docs',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -28,7 +28,7 @@ const config = {
   organizationName: 'Reddy076', // Usually your GitHub org/user name.
   projectName: 'CSS', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
@@ -44,6 +44,22 @@ const config = {
         path: 'js-docs',
         routeBasePath: 'js',
         sidebarPath: './jsSidebars.js',
+      },
+    ],
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        docsRouteBasePath: ['/', '/js'],
+        docsDir: ['docs', 'js-docs'],
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: false,
+        highlightSearchTermsOnTargetPage: true,
+        searchBarShortcut: true,
+        searchBarShortcutHint: true,
+        searchResultLimits: 10,
       },
     ],
   ],
@@ -79,7 +95,7 @@ const config = {
         logo: {
           alt: 'WebDev Logo',
           src: 'img/logo.svg',
-          href: '/Introduction/css-syntax',
+          href: '/',
         },
         items: [
           {

@@ -93,38 +93,3 @@ p.text { color: red; }
 /* !important beats everything (except another !important specific rule) */
 p { color: orange !important; }
 ```
-
-## 8. Important Interview Questions
-
-<details>
-  <summary>**1. Difference between Class and ID?**</summary>
-  - **Class**: Reusable (many elements), lower specificity.
-  - **ID**: Unique (one element per page), high specificity.
-</details>
-
-<details>
-  <summary>**2. What does `div > p` do vs `div p`?**</summary>
-  `>` matches only **direct children**. Space matches any descendant (children, grandchildren, etc.).
-</details>
-
-<details>
-  <summary>**3. Explain Specificity calculation.**</summary>
-  It's a score: (Inline, ID, Class, Tag).
-  - `#nav` (1,0,0) beats `.nav` (0,1,0).
-  - `.nav li` (0,1,1) beats `.nav` (0,1,0).
-</details>
-
-<details>
-  <summary>**4. How to select every `<a>` tag with a `title` attribute?**</summary>
-  `a[title]`.
-</details>
-
-<details>
-  <summary>**5. What is the `:root` selector?**</summary>
-  It targets the highest-level parent (html). It's preferred for defining global variables because it has slightly higher specificity than `html` selector.
-</details>
-
-<details>
-  <summary>**6. How do you select the *last* paragraph in a container?**</summary>
-  `p:last-of-type` or `p:last-child` (if it is indeed the very last child).
-</details>

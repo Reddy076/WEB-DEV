@@ -1,0 +1,368 @@
+---
+sidebar_position: 100
+title: JavaScript Interview Questions
+description: Comprehensive list of JavaScript Interview Questions
+---
+
+# JavaScript Interview Questions
+
+## forEach, map, filter, reduce
+
+### 1. What's the difference between map and forEach?
+
+  - `map()` returns a new array with transformed elements
+  - `forEach()` returns undefined, used for side effects
+### 2. When would you use reduce?
+
+  When you need to transform an array into a single value: sum, product, counting, grouping, flattening, etc.
+---
+
+## Promises and async/await
+
+### 1. What is the difference between Promises and callbacks?
+
+  Promises provide cleaner syntax, better error handling with .catch(), and avoid callback hell through chaining.
+### 2. What does async/await do?
+
+  `async` makes a function return a Promise. `await` pauses execution until a Promise resolves, making async code look synchronous.
+---
+
+## Conditionals and Loops
+
+### 1. What is the difference between for...of and for...in?
+
+  
+  - **for...of**: Iterates over **values** of iterables (arrays, strings, Maps)
+  - **for...in**: Iterates over **enumerable properties/keys** of objects
+  
+  ```javascript
+  const arr = [10, 20, 30];
+  for (const val of arr) console.log(val); // 10, 20, 30
+  for (const idx in arr) console.log(idx); // 0, 1, 2
+  ```
+### 2. What happens if you forget break in a switch?
+
+  Execution "falls through" to subsequent cases until a break is encountered or the switch ends. This can be intentional (grouping cases) or a bug.
+### 3. When should you use while vs for loop?
+
+  - **for**: When you know the number of iterations
+  - **while**: When iterations depend on a condition that may change unpredictably
+  - **do-while**: When you need at least one execution
+### 4. What are labeled statements?
+
+  Labels allow you to `break` or `continue` outer loops from within nested loops.
+  
+  ```javascript
+  outer: for (...) {
+    for (...) {
+      break outer; // Breaks the outer loop
+    }
+  }
+  ```
+---
+
+## Control Flow
+
+### 1. What is the difference between for...of and for...in?
+
+  - `for...of`: Iterates over **values** of iterable objects (arrays, strings)
+  - `for...in`: Iterates over **keys/indices** of objects and arrays
+### 2. When would you use a switch instead of if-else?
+
+  Use switch when comparing one value against multiple specific cases. It's more readable and potentially faster for many comparisons.
+---
+
+## Debugging and Testing
+
+### 1. What is the difference between throw and return?
+
+  - `throw` signals an error and stops execution (can be caught)
+  - `return` exits a function normally and returns a value
+### 2. When does the finally block run?
+
+  The `finally` block always runs, whether or not an exception was thrown or caught. It's used for cleanup operations.
+---
+
+## Events and Event Listeners
+
+### 1. What is event bubbling?
+
+  When an event occurs on an element, it first triggers on that element, then "bubbles" up to its parent, grandparent, etc. up to the document.
+### 2. What is event delegation?
+
+  Attaching one event listener to a parent element to handle events from its children using event bubbling. Benefits: better performance, works with dynamically added elements.
+---
+
+## JavaScript Frameworks and Libraries
+
+### 1. What is the difference between a library and a framework?
+
+  - **Library**: You control when and how to use it (e.g., jQuery, Lodash)
+  - **Framework**: It controls your code structure and calls your code (e.g., Angular)
+  
+  This is called "Inversion of Control."
+### 2. What is the Virtual DOM?
+
+  The Virtual DOM is a lightweight JavaScript representation of the actual DOM. Frameworks like React use it to:
+  1. Create a virtual copy of the UI
+  2. Compare changes (diffing)
+  3. Update only changed parts of the real DOM (reconciliation)
+  
+  This improves performance by minimizing expensive DOM operations.
+### 3. Why use TypeScript with JavaScript frameworks?
+
+  TypeScript adds static typing to JavaScript, providing:
+  - Compile-time error detection
+  - Better IDE support (autocomplete, refactoring)
+  - Self-documenting code
+  - Easier maintenance of large codebases
+### 4. What is Node.js and how is it different from browser JavaScript?
+
+  Node.js is a JavaScript runtime built on V8 engine that runs on servers.
+  
+  Differences:
+  - **Node.js**: Has `fs`, `http`, `process` modules; no `window` or `document`
+  - **Browser**: Has DOM APIs, `window`, `document`; no file system access
+---
+
+## Getting Started with JavaScript
+
+### 1. What is JavaScript?
+
+  JavaScript is a high-level, interpreted programming language that enables interactive web pages. It runs in browsers and servers (via Node.js) and supports object-oriented, functional, and event-driven programming paradigms.
+### 2. What's the difference between Java and JavaScript?
+
+  Despite similar names, they are completely different languages:
+  - **Java**: Compiled, strongly typed, class-based OOP, runs in JVM
+  - **JavaScript**: Interpreted, dynamically typed, prototype-based, runs in browsers/Node.js
+### 3. Is JavaScript synchronous or asynchronous?
+
+  JavaScript is **single-threaded and synchronous** by default, but it supports **asynchronous** operations through callbacks, promises, and async/await using the event loop.
+### 4. What does 'use strict' do?
+
+  `'use strict'` enables strict mode which catches common coding errors, prevents use of undeclared variables, and makes it easier to write secure JavaScript.
+### 5. Where should the script tag be placed?
+
+  Ideally at the **end of the body tag** (before `</body>`) to ensure the DOM is loaded before the script runs. Alternatively, use `defer` or `async` attributes in the `<head>`.
+---
+
+## JavaScript Fundamentals
+
+### 1. What are the different data types in JavaScript?
+
+  JavaScript has 7 primitive types: `String`, `Number`, `Boolean`, `Undefined`, `Null`, `Symbol`, and `BigInt`. Reference types include `Object`, `Array`, `Function`, `Date`, `Map`, `Set`, etc.
+### 2. What is the difference between == and ===?
+
+  - `==` (loose equality): Compares values after type coercion
+  - `===` (strict equality): Compares values AND types without coercion
+  
+  Always use `===` to avoid unexpected behavior.
+### 3. What is hoisting in JavaScript?
+
+  Hoisting is JavaScript's behavior of moving declarations to the top of their scope during compilation. `var` declarations are hoisted and initialized as `undefined`. `let` and `const` are hoisted but not initialized (Temporal Dead Zone).
+---
+
+## Arrow Functions (ES6)
+
+### 1. What are the advantages of arrow functions?
+
+  - Shorter, more concise syntax
+  - Lexical `this` binding (no rebinding issues)
+  - Great for callbacks and array methods
+### 2. Why can't arrow functions be used as constructors?
+
+  Arrow functions don't have their own `this` or `prototype` property, which are required for constructor behavior with `new`.
+---
+
+## Callbacks
+
+### 1. What is a callback function?
+
+  A callback is a function passed as an argument to another function to be executed after an operation completes. It enables asynchronous programming and customizable behavior.
+### 2. What is the error-first callback pattern?
+
+  A Node.js convention where the first parameter of a callback is an error object (null if no error), and subsequent parameters contain the result data.
+---
+
+## Closures
+
+### 1. What is a closure?
+
+  A closure is a function bundled together with its lexical environment - it has access to variables from its outer scope even after the outer function has returned.
+### 2. How do closures enable data privacy?
+
+  Variables in the outer function are not accessible directly from outside. Only the inner functions (returned by the outer function) can access them.
+---
+
+## Function Declaration vs Expression
+
+### 1. What is hoisting with functions?
+
+  Function declarations are fully hoisted - you can call them before they appear in the code. Function expressions are not hoisted.
+### 2. When would you use a function expression?
+
+  - As callbacks
+  - When you need to conditionally define functions
+  - For IIFEs
+  - To prevent hoisting (for code organization)
+---
+
+## Objects in JavaScript
+
+### 1. What is the difference between dot and bracket notation?
+
+  - **Dot notation**: Cleaner, used with valid identifiers
+  - **Bracket notation**: Required for dynamic keys, special characters, or reserved words
+### 2. How do you check if a property exists?
+
+  
+  ```javascript
+  "prop" in obj;              // Checks own and inherited
+  obj.hasOwnProperty("prop"); // Own properties only
+  obj.prop !== undefined;     // May give false positives
+  ```
+---
+
+## The `this` Keyword
+
+### 1. What is `this` in JavaScript?
+
+  `this` is a keyword that refers to the object that is executing the current function. Its value is determined by how the function is called, not where it's defined.
+### 2. How does `this` work in arrow functions?
+
+  Arrow functions don't have their own `this`. They inherit `this` from their enclosing lexical scope (where they were defined).
+### 3. What's the difference between call, apply, and bind?
+
+  - **call**: Invokes immediately, arguments separately
+  - **apply**: Invokes immediately, arguments as array
+  - **bind**: Returns new function with bound `this`
+---
+
+## JavaScript Data Types
+
+### 1. What are the primitive data types in JavaScript?
+
+  JavaScript has 7 primitive types:
+  1. **String** - Textual data
+  2. **Number** - Numeric values
+  3. **Boolean** - true/false
+  4. **Undefined** - Unassigned variable
+  5. **Null** - Intentional empty value
+  6. **Symbol** - Unique identifier
+  7. **BigInt** - Large integers
+### 2. What is the difference between null and undefined?
+
+  - **undefined**: Variable declared but not assigned a value; default return of functions
+  - **null**: Intentional absence of value; explicitly assigned
+  
+  ```javascript
+  let x;          // undefined
+  let y = null;   // null (intentional)
+  ```
+### 3. Why does typeof null return "object"?
+
+  This is a historical bug from the first JavaScript implementation. In the original JavaScript, values were represented with a type tag and a value. The type tag for objects was 0, and null was represented as the NULL pointer (0x00). This caused null to be incorrectly identified as an object.
+### 4. What are truthy and falsy values?
+
+  **Falsy values** (evaluate to false in boolean context):
+  - `false`, `0`, `""`, `null`, `undefined`, `NaN`
+  
+  **Truthy values** (evaluate to true):
+  - Everything else, including `[]`, `{}`, `"0"`, `"false"`
+### 5. What is the difference between primitives and reference types?
+
+  - **Primitives**: Stored by value, immutable, copied when assigned
+  - **Reference types**: Stored by reference, mutable, reference is copied (same object)
+  
+  ```javascript
+  // Primitive - copied by value
+  let a = 5; let b = a; b = 10;
+  console.log(a); // 5
+  
+  // Reference - same object
+  let x = {v: 5}; let y = x; y.v = 10;
+  console.log(x.v); // 10
+  ```
+---
+
+## JavaScript Operators
+
+### 1. What is the difference between == and ===?
+
+  - `==` (loose equality): Compares values after type coercion
+  - `===` (strict equality): Compares values AND types without coercion
+  
+  Always use `===` to avoid unexpected type conversions.
+### 2. What is the difference between || and ??
+
+  - `||` (OR): Returns first **truthy** value or last value
+  - `??` (Nullish Coalescing): Returns right side only if left is **null or undefined**
+  
+  ```javascript
+  0 || "default"  // "default" (0 is falsy)
+  0 ?? "default"  // 0 (0 is not nullish)
+  ```
+### 3. What is short-circuit evaluation?
+
+  Short-circuit evaluation stops as soon as the result is determined:
+  
+  - `&&`: Returns first falsy value (doesn't evaluate rest)
+  - `||`: Returns first truthy value (doesn't evaluate rest)
+  
+  ```javascript
+  false && expensiveOperation(); // Never calls function
+  true || expensiveOperation();  // Never calls function
+  ```
+### 4. What is optional chaining?
+
+  Optional chaining (`?.`) safely accesses nested properties without throwing errors if an intermediate value is null/undefined.
+  
+  ```javascript
+  user?.address?.city  // undefined if any part is null/undefined
+  ```
+### 5. What is the difference between prefix and postfix increment?
+
+  - **Prefix (`++x`)**: Increments first, then returns the new value
+  - **Postfix (`x++`)**: Returns current value, then increments
+  
+  ```javascript
+  let x = 5;
+  console.log(++x); // 6 (incremented first)
+  console.log(x++); // 6 (returned first, then became 7)
+  ```
+---
+
+## Variables in JavaScript
+
+### 1. What is the difference between var, let, and const?
+
+  
+  - **var**: Function-scoped, hoisted with `undefined`, can be redeclared
+  - **let**: Block-scoped, hoisted but in TDZ, cannot be redeclared
+  - **const**: Block-scoped, must be initialized, cannot be reassigned
+### 2. What is hoisting?
+
+  Hoisting is JavaScript's behavior of moving variable and function declarations to the top of their scope during compilation.
+  
+  - `var` is hoisted and initialized as `undefined`
+  - `let` and `const` are hoisted but not initialized (TDZ)
+  - Function declarations are fully hoisted
+### 3. What is the Temporal Dead Zone?
+
+  The TDZ is the period between entering a scope and the variable's declaration where accessing `let` or `const` variables throws a `ReferenceError`. It enforces proper declaration before use.
+### 4. Can you change a const object's properties?
+
+  **Yes!** `const` only prevents reassignment of the variable binding, not mutation of the value itself. Object properties and array elements can be modified.
+  
+  ```javascript
+  const arr = [1, 2];
+  arr.push(3); // Works!
+  arr = [4, 5]; // Error!
+  ```
+### 5. Why should you avoid var?
+
+  - Function scope causes unexpected behavior in blocks
+  - Hoisting with `undefined` can hide bugs
+  - Allows accidental redeclaration
+  - `let` and `const` are safer and more predictable
+---

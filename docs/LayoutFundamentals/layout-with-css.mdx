@@ -38,20 +38,3 @@ See the difference between `inline` (spans) and `block` (divs).
   initialHTML={`<span class="bad">I am Inline - Width ignored</span>\n<div class="good">I am Block - Width respected</div>\n<div class="best">I am Inline-Block</div>`}
   initialCSS={`.bad {\n  background: red;\n  width: 200px; /* Ignored! */\n  padding: 10px;\n}\n\n.good {\n  background: lightblue;\n  width: 200px;\n  padding: 10px;\n  margin-top: 10px;\n}\n\n.best {\n  display: inline-block;\n  background: lightgreen;\n  width: 200px;\n  padding: 10px;\n}`}
 />
-
-## 5. Important Interview Questions
-
-<details>
-  <summary>**1. What is the value of `display` for `<li>` tags?**</summary>
-  `display: list-item`. It acts like a block but makes room for a marker (bullet).
-</details>
-
-<details>
-  <summary>**2. How to clear floats?**</summary>
-  Using the "Clearfix" hack:  `.parent::after { content: ""; clear: both; display: table; }`.
-</details>
-
-<details>
-  <summary>**3. What is a "replaced element"?**</summary>
-  Elements whose appearance is controlled by external resources, like `<img>`, `<video>`, `<input>`. They have intrinsic dimensions.
-</details>

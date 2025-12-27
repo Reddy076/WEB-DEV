@@ -103,6 +103,14 @@ const sidebars = {
         'Debugging/debugging',
       ],
     },
+    {
+      type: 'category',
+      label: '11. Resources',
+      collapsed: false,
+      items: [
+        'interview-questions',
+      ],
+    },
   ],
 };
 

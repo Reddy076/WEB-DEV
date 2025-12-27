@@ -93,15 +93,3 @@ console.log("parent.addEventListener('click', e => {");
 console.log("  if (e.target.matches('.child')) { ... }");
 console.log("});");`}
 />
-
-## Important Interview Questions
-
-<details>
-  <summary>**1. What is event bubbling?**</summary>
-  When an event occurs on an element, it first triggers on that element, then "bubbles" up to its parent, grandparent, etc. up to the document.
-</details>
-
-<details>
-  <summary>**2. What is event delegation?**</summary>
-  Attaching one event listener to a parent element to handle events from its children using event bubbling. Benefits: better performance, works with dynamically added elements.
-</details>

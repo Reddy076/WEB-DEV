@@ -54,20 +54,3 @@ Try changing `overflow: hidden` to `overflow: scroll` to read the rest of the te
   initialHTML={`<div class="box">\n  The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.\n</div>`}
   initialCSS={`.box {\n  width: 150px;\n  height: 80px;\n  border: 2px solid black;\n  /* Change this value */\n  overflow: hidden;\n}`}
 />
-
-## 5. Important Interview Questions
-
-<details>
-  <summary>**1. How does `overflow: hidden` affect floats?**</summary>
-  It establishes a new **Block Formatting Context (BFC)**. This means the container will expand to contain its floated children (eliminating the need for a clearfix hack).
-</details>
-
-<details>
-  <summary>**2. What creates scrollbars on the body?**</summary>
-  Usually an element with `width: 100vw` combined with a scrollbar width, or an element positioned outside the viewport. `overflow-x: hidden` on body is a common fix.
-</details>
-
-<details>
-  <summary>**3. Custom Scrollbars?**</summary>
-  Use `::-webkit-scrollbar` for Chrome/Safari. Firefox uses `scrollbar-width`.
-</details>

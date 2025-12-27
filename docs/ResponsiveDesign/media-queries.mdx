@@ -63,15 +63,3 @@ Since we can't resize the iframe width easily here, we use a logic check. In pro
   initialHTML={`<div class="box">Resize Window to see color change</div>`}
   initialCSS={`.box {\n  background: red;\n  color: white;\n  padding: 20px;\n}\n\n@media (min-width: 600px) {\n  .box {\n    background: green;\n    content: "Wide Screen";\n  }\n}`}
 />
-
-## 5. Important Interview Questions
-
-<details>
-  <summary>**1. What is the viewport meta tag?**</summary>
-  `<meta name="viewport" content="width=device-width, initial-scale=1">`. Without this, mobile phones zoom out to show the desktop site (980px), ignoring your media queries.
-</details>
-
-<details>
-  <summary>**2. What is Mobile First design?**</summary>
-  Writing CSS for mobile devices *first* (default), then using `min-width` queries to add complexity for larger screens. It's performant because mobile devices parse less code.
-</details>

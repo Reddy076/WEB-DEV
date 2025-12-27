@@ -59,30 +59,3 @@ Toggle the class `border-box` to see how the width snaps!
   initialHTML={`<div class="box content-box">Content Box (Default)</div>\n<div class="box border-box">Border Box (Modern)</div>`}
   initialCSS={`.box {\n  width: 200px;\n  padding: 20px;\n  border: 5px solid black;\n  background: lightblue;\n  margin-bottom: 2rem;\n  text-align: center;\n}\n\n.content-box {\n  box-sizing: content-box;\n}\n\n.border-box {\n  box-sizing: border-box;\n}`}
 />
-
-## 5. Important Interview Questions
-
-<details>
-  <summary>**1. Explain the Box Model.**</summary>
-  It's the specification that determines how elements are sized and rendered. Content > Padding > Border > Margin.
-</details>
-
-<details>
-  <summary>**2. Why use `box-sizing: border-box`?**</summary>
-  It makes layout math predictable. `width: 50%` means half the screen, regardless of borders or padding used.
-</details>
-
-<details>
-  <summary>**3. Which parts of the box are transparent?**</summary>
-  Content (usually), Padding (always matches background), and Margin (Always transparent).
-</details>
-
-<details>
-  <summary>**4. Does `background-color` cover the margin?**</summary>
-  No. It covers Content, Padding, and Border (if border is transparent/dotted). Margin remains transparent.
-</details>
-
-<details>
-  <summary>**5. Calculating width (content-box): 100px width, 10px padding, 5px border?**</summary>
-  100 + 20 (padding L/R) + 10 (border L/R) = **130px**.
-</details>

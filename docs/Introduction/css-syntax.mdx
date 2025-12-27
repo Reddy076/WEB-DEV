@@ -81,30 +81,3 @@ Try modifying the syntax below. Remove the semicolon after `blue` and see what h
   initialHTML={`<h1>Hello World</h1>\n<p>Syntax is easy.</p>`}
   initialCSS={`h1 {\n  color: blue;\n  font-size: 40px;\n}\n\np {\n  font-family: monospace;\n  background-color: #eee;\n  padding: 10px;\n}`}
 />
-
-## 6. Important Interview Questions
-
-<details>
-  <summary>**1. What does CSS stand for?**</summary>
-  **Cascading Style Sheets**.
-</details>
-
-<details>
-  <summary>**2. What happens if you forget a semicolon?**</summary>
-  The browser often cannot parse where the next property begins, causing it to discard the *next* property (and potentially the rest of the block).
-</details>
-
-<details>
-  <summary>**3. Is CSS a programming language?**</summary>
-  Technically, it is a **Style Sheet Language**. However, with modern features like Variables (`--var`), Calculations (`calc()`), and Nesting, it is gaining programming-like capabilities (Turing completeness is debated, but generally "no" in the imperative sense).
-</details>
-
-<details>
-  <summary>**4. How does the browser handle unknown properties?**</summary>
-  It **ignores** them. This is a feature, not a bug, allowing new CSS features to be added without breaking old browsers (Progressive Enhancement).
-</details>
-
-<details>
-  <summary>**5. Can you nest comments?**</summary>
-  **No**. Identifying the end of a comment is done by finding the first `*/`.
-</details>
