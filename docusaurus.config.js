@@ -10,8 +10,8 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Web Dev Docs',
-  tagline: 'The Ultimate Guide to CSS & JavaScript',
+  title: 'WebDev',
+  tagline: 'Master CSS & JavaScript with Interactive Docs',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -20,13 +20,13 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://css-master-docs.com',
+  url: 'https://webdev-docs.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  organizationName: 'css-mastery', // Usually your GitHub org/user name.
-  projectName: 'css-docs', // Usually your repo name.
+  organizationName: 'Reddy076', // Usually your GitHub org/user name.
+  projectName: 'CSS', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -71,12 +71,13 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
+        defaultMode: 'dark',
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'CSS Master Docs',
+        title: 'WebDev',
         logo: {
-          alt: 'CSS Master Docs Logo',
+          alt: 'WebDev Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -84,17 +85,17 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'CSS',
+            label: '🎨 CSS',
           },
           {
             type: 'docSidebar',
             sidebarId: 'jsSidebar',
             docsPluginId: 'js-docs',
             position: 'left',
-            label: 'JavaScript',
+            label: '⚡ JavaScript',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Reddy076/CSS',
             label: 'GitHub',
             position: 'right',
           },
@@ -104,33 +105,47 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: '📚 Documentation',
             items: [
               {
-                label: 'Basics',
-                to: '/basics/intro',
+                label: 'CSS Basics',
+                to: '/Introduction/getting-started',
               },
               {
-                label: 'Properties',
-                to: '/properties/display',
+                label: 'JavaScript',
+                to: '/js/Fundamentals/getting-started',
               },
             ],
           },
           {
-            title: 'Community',
+            title: '🔗 Resources',
             items: [
               {
+                label: 'MDN Web Docs',
+                href: 'https://developer.mozilla.org/',
+              },
+              {
                 label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/css',
+                href: 'https://stackoverflow.com/',
+              },
+            ],
+          },
+          {
+            title: '🌐 Connect',
+            items: [
+              {
+                label: 'GitHub',
+                href: 'https://github.com/Reddy076/CSS',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} CSS Master Docs. Built with Docusaurus.`,
+        copyright: `© ${new Date().getFullYear()} WebDev Docs. Built with 💜 and Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'json'],
       },
     }),
 };
