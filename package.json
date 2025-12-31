@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start",
+    "start": "node backend/server.js",
+    "start:dev-server": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -14,7 +15,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "start:backend": "node backend/server.js",
     "dev:backend": "nodemon backend/server.js",
-    "dev": "concurrently \"npm run start\" \"npm run dev:backend\""
+    "dev": "concurrently \"npm run start:dev-server\" \"npm run dev:backend\"",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@codemirror/lang-css": "^6.3.1",

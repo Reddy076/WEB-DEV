@@ -12,9 +12,21 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
+
 // Define Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.get('/api/health', (req, res) => res.send('API Running'));
+
+// Serve static assets in production
+if (process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'production') {
+  const path = require('path');
+  // Set static folder
+  app.use(express.static(path.join(__dirname, '../build')));
+
+  app.get(/.*/, (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 

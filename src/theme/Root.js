@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Redirect } from '@docusaurus/router';
+import AuthModal from '../components/AuthModal';
 
 export default function Root({ children }) {
   const location = useLocation();
@@ -41,6 +42,18 @@ export default function Root({ children }) {
 
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
+    // Handle login-page-active persistence
+    const loginObserver = new MutationObserver(() => {
+      if (location.pathname === '/login' && !document.documentElement.classList.contains('login-page-active')) {
+        document.documentElement.classList.add('login-page-active');
+        document.body.classList.add('login-page-active');
+      } else if (location.pathname !== '/login' && document.documentElement.classList.contains('login-page-active')) {
+        document.documentElement.classList.remove('login-page-active');
+        document.body.classList.remove('login-page-active');
+      }
+    });
+    loginObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
     // Initial check
     checkAuth();
 
@@ -50,6 +63,7 @@ export default function Root({ children }) {
 
     return () => {
       observer.disconnect();
+      loginObserver.disconnect();
       window.removeEventListener('auth-change', checkAuth);
       window.removeEventListener('storage', checkAuth);
     };
@@ -62,8 +76,14 @@ export default function Root({ children }) {
   const isPublic = publicPaths.includes(location.pathname);
 
   if (!token && !isPublic) {
-    return <Redirect to="/login" />;
+    // Preserve the query params (like ?auth=login) when redirecting
+    return <Redirect to={`/login${location.search}`} />;
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <AuthModal />
+    </>
+  );
 }

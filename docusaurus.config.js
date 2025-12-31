@@ -125,7 +125,7 @@ const config = {
             className: 'auth-item-login',
           },
           {
-            to: '/register',
+            to: '/?auth=register',
             label: 'Register',
             position: 'right',
             className: 'auth-item-login',
