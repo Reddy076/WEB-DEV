@@ -1,0 +1,94 @@
+---
+sidebar_position: 2
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Tables
+
+Tables allow web developers to arrange data into rows and columns.
+
+## Basic Table Structure
+
+- `<table>`: Defines the table
+- `<tr>`: Defines a table row
+- `<th>`: Defines a table header (bold and centered by default)
+- `<td>`: Defines a table cell (data)
+
+```html
+<table>
+  <tr>
+    <th>Header 1</th>
+    <th>Header 2</th>
+  </tr>
+  <tr>
+    <td>Data 1</td>
+    <td>Data 2</td>
+  </tr>
+</table>
+```
+
+## Grouping Elements
+For accessibility and styling, it's best practice to group rows using:
+- `<thead>`: Group header content
+- `<tbody>`: Group body content
+- `<tfoot>`: Group footer content
+
+## Spanning
+- `colspan`: Spans a cell across multiple columns.
+- `rowspan`: Spans a cell across multiple rows.
+
+## Interactive Playground
+
+A complex table example demonstrating spans and structure.
+
+<HTMLPlayground initialCode={`<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: sans-serif;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+</style>
+
+<table>
+  <caption>Employee Schedule</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Shift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John Doe</td>
+      <td>Manager</td>
+      <td rowspan="2">Morning</td>
+    </tr>
+    <tr>
+      <td>Jane Smith</td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td>Bob Johnson</td>
+      <td>Designer</td>
+      <td>Afternoon</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">Total Employees: 3</td>
+    </tr>
+  </tfoot>
+</table>`} />

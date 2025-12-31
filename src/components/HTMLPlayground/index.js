@@ -1,48 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { css } from '@codemirror/lang-css';
-import { html as langHtml } from '@codemirror/lang-html';
+import { html } from '@codemirror/lang-html';
+import { useColorMode } from '@docusaurus/theme-common';
 import '../../css/playground.css';
 
-const Playground = ({ initialHTML = '', initialCSS = '' }) => {
-  const [htmlCode, setHtmlCode] = useState(initialHTML.trim());
-  const [cssCode, setCssCode] = useState(initialCSS.trim());
+const HTMLPlayground = ({ initialCode = '' }) => {
+  const [code, setCode] = useState(initialCode.trim());
+  const { colorMode } = useColorMode();
+  const [srcDoc, setSrcDoc] = useState('');
   const [layout, setLayout] = useState('split'); // 'split' | 'preview' | 'code'
 
+  // Update preview with delay to avoid rapid re-renders
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrcDoc(code);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [code]);
+
   const handleReset = () => {
-    setHtmlCode(initialHTML.trim());
-    setCssCode(initialCSS.trim());
+    setCode(initialCode.trim());
     setLayout('split');
   };
-
-  // Debounce could be added here if performance is an issue, 
-  // but for local static docs, direct state update is usually fine.
-
-  const srcDoc = `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-          body { font-family: system-ui, -apple-system, sans-serif; padding: 1rem; margin: 0; background-color: #fff; }
-          * { box-sizing: border-box; }
-          ${cssCode}
-        </style>
-      </head>
-      <body>
-        ${htmlCode}
-      </body>
-    </html>
-  `;
 
   const getGridStyle = () => {
     if (layout === 'preview') return '30% 70%';
     if (layout === 'code') return '70% 30%';
     return '1fr 1fr';
   };
-
-
 
   return (
     <div className="playground-container">
@@ -53,21 +38,21 @@ const Playground = ({ initialHTML = '', initialCSS = '' }) => {
             <button
               className={`layout-btn ${layout === 'code' ? 'active' : ''}`}
               onClick={() => setLayout('code')}
-              title="Big Code"
+              title="Code Only"
             >
               Code
             </button>
             <button
               className={`layout-btn ${layout === 'split' ? 'active' : ''}`}
               onClick={() => setLayout('split')}
-              title="Equal Split"
+              title="Split View"
             >
               Split
             </button>
             <button
               className={`layout-btn ${layout === 'preview' ? 'active' : ''}`}
               onClick={() => setLayout('preview')}
-              title="Big Preview"
+              title="Preview Only"
             >
               Preview
             </button>
@@ -81,36 +66,27 @@ const Playground = ({ initialHTML = '', initialCSS = '' }) => {
         </div>
       </div>
       <div className="playground-body" style={{ '--playground-cols': getGridStyle() }}>
-        <div className="playground-editors">
+        <div className="playground-editors" style={{ overflow: 'hidden' }}>
           <div className="editor-section">
             <div className="editor-label">HTML</div>
             <CodeMirror
-              value={htmlCode}
+              value={code}
               height="100%"
-              extensions={[langHtml()]}
-              onChange={(value) => setHtmlCode(value)}
-              theme="dark"
-              style={{ fontSize: '14px', height: '100%' }}
-            />
-          </div>
-          <div className="editor-section">
-            <div className="editor-label">CSS</div>
-            <CodeMirror
-              value={cssCode}
-              height="100%"
-              extensions={[css()]}
-              onChange={(value) => setCssCode(value)}
-              theme="dark"
+              extensions={[html()]}
+              onChange={(value) => setCode(value)}
+              theme="dark" // Always dark theme for editor to match CSS playground style
               style={{ fontSize: '14px', height: '100%' }}
             />
           </div>
         </div>
-        <div className="playground-preview">
+        <div className="playground-preview" style={{ overflow: 'hidden' }}>
           <iframe
-            title="preview"
             srcDoc={srcDoc}
+            title="output"
             sandbox="allow-scripts"
-            style={{ width: '100%', height: '100%', border: 'none' }}
+            frameBorder="0"
+            width="100%"
+            height="100%"
           />
         </div>
       </div>
@@ -118,4 +94,4 @@ const Playground = ({ initialHTML = '', initialCSS = '' }) => {
   );
 };
 
-export default Playground;
+export default HTMLPlayground;

@@ -1,0 +1,41 @@
+---
+sidebar_position: 3
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Advanced Inputs
+
+### Textarea
+Used for multi-line text input.
+
+<HTMLPlayground initialCode={`<label for="msg">Message:</label><br>
+<textarea id="msg" rows="4" cols="50">
+Default text...
+</textarea>
+`} />
+
+### Select (Dropdown)
+Creates a dropdown list. Use `<option>` for items and `<optgroup>` for categories.
+
+<HTMLPlayground initialCode={`<label for="cars">Choose a car:</label>
+<select id="cars" name="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="fiat" selected>Fiat (Selected)</option>
+  <option value="audi">Audi</option>
+</select>
+`} />
+
+### Label
+Improves accessibility. Clicking the label focuses the input.
+```html
+<!-- Explicit Association -->
+<label for="username">Username</label>
+<input id="username" type="text" />
+
+<!-- Implicit Association (Wrapping) -->
+<label>
+  Username <input type="text" />
+</label>
+```

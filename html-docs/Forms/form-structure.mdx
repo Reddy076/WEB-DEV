@@ -1,0 +1,61 @@
+---
+sidebar_position: 1
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Form Structure
+
+An HTML form is used to collect user input. The user input is most often sent to a server for processing.
+
+## The `<form>` Element
+The `<form>` element defines the document section for user input.
+
+```html
+<form>
+  <!-- Form elements -->
+</form>
+```
+
+### Critical Attributes
+
+| Attribute | Description |
+|-----------|-------------|
+| `action` | The URL where form data is sent on submission. |
+| `method` | The HTTP method (`GET` or `POST`). |
+| `enctype` | Encoding type (use `multipart/form-data` for file uploads). |
+| `target` | Where to display the response associated with the result of submitting the form. |
+| `autocomplete` | `on` or `off`. Specifies if browser should autocomplete. |
+
+### GET vs POST
+- **GET**: Appends form data to the URL `?name=value`. NEVER use for sensitive data. Good for search forms.
+- **POST**: Sends data in the HTTP request body. Secure. No size limitations.
+
+## Grouping Form Data
+The `<fieldset>` element groups related data in a form.
+The `<legend>` element defines a caption for the `<fieldset>`.
+
+## Interactive Playground
+
+<HTMLPlayground initialCode={`<form action="/submit-data" method="POST" target="_blank">
+  
+  <fieldset style="margin-bottom: 20px;">
+    <legend>Personal Information:</legend>
+    
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="John"><br>
+    
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" value="Doe"><br>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Account Details:</legend>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="john@example.com"><br>
+  </fieldset>
+
+  <br>
+  <button type="button" onclick="alert('Form simulated!')">Submit</button>
+</form>`} />

@@ -33,7 +33,9 @@
 .playground-body {
   display: grid;
   grid-template-columns: var(--playground-cols, 1fr 1fr);
-  min-height: 350px;
+  height: 500px;
+  /* Fixed height to enforce scrolling */
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
@@ -48,7 +50,8 @@
   flex-direction: column;
   border-right: 1px solid var(--border-color);
   background: #1e1e1e;
-  /* Dark editor background */
+  overflow: hidden;
+  /* Constrain editors to grid cell */
 }
 
 @media (max-width: 768px) {
@@ -63,6 +66,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  /* Constrain CodeMirror to section */
+  min-height: 0;
+  /* Flexbox overflow fix */
 }
 
 .editor-section:not(:last-child) {
@@ -136,14 +143,194 @@
 }
 
 [data-theme='dark'] .playground-preview {
-  background: #1b1b1b;
+  background: #fff;
 }
 
 [data-theme='dark'] .playground-preview::before {
-  background: #333;
-  color: #aaa;
+  background: #f0f0f0;
+  color: #666;
+  /* Keep label consistent with light mode */
 }
 
 [data-theme='dark'] .playground-preview iframe {
+  background: #fff;
+}
+
+/* Header Actions & Buttons */
+.playground-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+  /* Push to right */
+}
+
+.playground-layout-controls {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.layout-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.layout-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.layout-btn.active {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.reset-btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== JS Playground Console ===== */
+.js-console {
+  display: flex;
+  flex-direction: column;
   background: #1b1b1b;
+  overflow: hidden;
+  height: 100%;
+}
+
+.console-label {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+  background: #252526;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+}
+
+.console-label::after {
+  content: 'CONSOLE';
+  opacity: 0.5;
+  font-size: 0.65rem;
+}
+
+.console-content {
+  flex: 1;
+  padding: 1rem;
+  font-family: 'Consolas', 'Monaco', 'Andale Mono', monospace;
+  font-size: 0.85rem;
+  overflow-y: auto;
+  color: #e0e0e0;
+}
+
+.console-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.console-line {
+  padding: 0.2rem 0;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+}
+
+.console-line pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
+}
+
+.log-type-log {
+  color: #e0e0e0;
+}
+
+.log-type-log::before {
+  content: '› ';
+  color: rgba(255, 255, 255, 0.3);
+  margin-right: 0.5rem;
+}
+
+.log-type-error {
+  color: #ff6b6b;
+  background: rgba(255, 0, 0, 0.05);
+  margin: 0 -1rem;
+  padding: 0.2rem 1rem;
+}
+
+.log-type-error::before {
+  content: '✕ ';
+  color: #ff6b6b;
+  margin-right: 0.5rem;
+}
+
+.log-type-warn {
+  color: #ffd93d;
+  background: rgba(255, 217, 61, 0.05);
+  margin: 0 -1rem;
+  padding: 0.2rem 1rem;
+}
+
+.log-type-warn::before {
+  content: '⚠ ';
+  color: #ffd93d;
+  margin-right: 0.5rem;
+}
+
+/* Console Dark Mode Overrides */
+[data-theme='dark'] .js-console {
+  background: #fff;
+}
+
+[data-theme='dark'] .console-content {
+  color: #333;
+}
+
+[data-theme='dark'] .log-type-log {
+  color: #333;
+}
+
+[data-theme='dark'] .console-placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .console-line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }

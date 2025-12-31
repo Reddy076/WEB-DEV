@@ -1,0 +1,56 @@
+---
+sidebar_position: 1
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Multimedia
+
+Multimedia comes in many different formats. It can be almost anything you can hear or see, like images, music, sound, videos, records, films, animations, and more.
+
+## HTML Video
+The `<video>` element specifies video, such as a movie clip or other video streams.
+
+```html
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+```
+
+### Video Attributes
+- `controls`: Adds play, pause, and volume controls.
+- `autoplay`: Starts playing automatically (often blocked by browsers if not muted).
+- `muted`: Mutes the audio.
+- `loop`: Restarts the video when finished.
+- `poster`: An image to show while the video downloads.
+
+## HTML Audio
+The `<audio>` element specifies audio, like music or other audio streams.
+
+```html
+<audio controls>
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+```
+
+## Interactive Playground
+
+<HTMLPlayground initialCode={`<h3>Video Player</h3>
+<video width="400" controls poster="https://via.placeholder.com/400x225?text=Video+Poster">
+  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<h3>Audio Player</h3>
+<audio controls>
+  <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<h3>YouTube Embed</h3>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe>`} />

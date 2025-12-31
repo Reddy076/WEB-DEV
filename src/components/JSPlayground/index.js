@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { useColorMode } from '@docusaurus/theme-common';
-import '../../css/jsplayground.css';
+import '../../css/playground.css';
 
 const JSPlayground = ({ initialCode = '' }) => {
   const [code, setCode] = useState(initialCode.trim());
@@ -134,47 +134,50 @@ const JSPlayground = ({ initialCode = '' }) => {
   };
 
   return (
-    <div className="jsplayground-container">
-      <div className="jsplayground-header">
+    <div className="playground-container">
+      <div className="playground-header">
         <span>JavaScript Playground</span>
-        <div className="jsplayground-actions">
+        <div className="playground-header-actions">
           <button
-            className="jsplayground-btn run-btn"
+            className="layout-btn active"
             onClick={runCode}
             disabled={isRunning}
+            style={{ fontWeight: 'bold' }}
           >
             ▶ Run
           </button>
           <button
-            className="jsplayground-btn clear-btn"
+            className="reset-btn"
             onClick={clearOutput}
           >
             Clear
           </button>
         </div>
       </div>
-      <div className="jsplayground-body">
-        <div className="jsplayground-editor">
-          <div className="editor-label">JavaScript</div>
-          <CodeMirror
-            value={code}
-            height="250px"
-            extensions={[javascript()]}
-            onChange={(value) => setCode(value)}
-            theme={colorMode === 'dark' ? 'dark' : 'light'}
-            style={{ fontSize: '14px' }}
-          />
+      <div className="playground-body">
+        <div className="playground-editors">
+          <div className="editor-section">
+            <div className="editor-label">JavaScript</div>
+            <CodeMirror
+              value={code}
+              height="100%"
+              extensions={[javascript()]}
+              onChange={(value) => setCode(value)}
+              theme={colorMode === 'dark' ? 'dark' : 'light'}
+              style={{ fontSize: '14px', height: '100%' }}
+            />
+          </div>
         </div>
-        <div className="jsplayground-output">
-          <div className="output-label">Console Output</div>
-          <div className="output-content">
+        <div className="js-console">
+          <div className="console-label">Output</div>
+          <div className="console-content">
             {output.length === 0 ? (
-              <div className="output-placeholder">
+              <div className="console-placeholder">
                 Click "Run" to execute your code...
               </div>
             ) : (
               output.map((item, index) => (
-                <div key={index} className={`output-line output-${item.type}`}>
+                <div key={index} className={`console-line log-type-${item.type}`}>
                   <pre>{item.content}</pre>
                 </div>
               ))

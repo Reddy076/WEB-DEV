@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Basic Forms
+
+Forms are used to collect user input. The `<form>` element wraps various input elements.
+
+### Interactive Form Example
+
+Try interacting with the form below. Notice how different input types behave.
+
+<HTMLPlayground initialCode={`<form>
+  <!-- Text Input -->
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" placeholder="John Doe"><br><br>
+
+  <!-- Email Input -->
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" required><br><br>
+
+  <!-- Radio Buttons -->
+  <label>Frontend Framework:</label><br>
+  <input type="radio" id="react" name="framework" value="react">
+  <label for="react">React</label><br>
+  <input type="radio" id="vue" name="framework" value="vue">
+  <label for="vue">Vue</label><br><br>
+
+  <!-- Submit Button -->
+  <button type="button" onclick="alert('Form submitted!')">Submit</button>
+</form>
+`} />
+
+## Form Structure
+
+```html
+<form action="/submit-url" method="POST">
+  <!-- Inputs go here -->
+</form>
+```
+
+- **action**: Where to send the form data.
+- **method**: HTTP method (GET or POST).

@@ -1,0 +1,94 @@
+---
+sidebar_position: 4
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# HTML APIs
+
+HTML5 introduced several powerful APIs that allow web pages to interact with hardware and system features.
+
+## Geolocation API
+The Geolocation API is used to locate a user's position.
+*User approval is required.*
+
+```javascript
+navigator.geolocation.getCurrentPosition(success, error);
+```
+
+## Drag and Drop API
+HTML Drag and Drop interfaces enable applications to use drag-and-drop features in browsers.
+
+The **Draggable** attribute:
+```html
+<img draggable="true">
+```
+
+Events: `ondragstart`, `ondragover`, `ondrop`.
+
+## Web Workers
+A web worker is a JavaScript that runs in the background, independently of other scripts, without affecting the performance of the page. You can continue to do whatever you want: clicking, selecting things, etc., while the web worker runs in the background.
+
+## Interactive Playground
+
+Test Geolocation (requires permission) and Drag & Drop functionality.
+
+<HTMLPlayground initialCode={`<style>
+  #div1 {
+    width: 200px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+    margin-bottom: 10px;
+  }
+</style>
+
+<h3>Drag and Drop</h3>
+<p>Drag the image into the rectangle:</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<img id="drag1" src="https://via.placeholder.com/150x50" draggable="true" ondragstart="drag(event)" width="150" height="50">
+
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
+<hr>
+
+<h3>Geolocation</h3>
+<button onclick="getLocation()">Get Coordinates</button>
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else { 
+    x.innerHTML = "Not supported.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Lat: " + position.coords.latitude + 
+  "<br>Long: " + position.coords.longitude;
+}
+
+function showError(error) {
+  x.innerHTML = "Error: " + error.message;
+}
+</script>`} />

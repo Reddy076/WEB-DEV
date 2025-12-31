@@ -1,0 +1,62 @@
+---
+sidebar_position: 3
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Links & Images
+
+## Hyperlinks
+HTML links are hyperlinks. You can click on a link and jump to another document.
+
+```html
+<a href="url">Link text</a>
+```
+
+### Attributes
+- `href`: The destination URL.
+- `target`: Where to open the link.
+    - `_self`: Default. Opens in same window.
+    - `_blank`: Opens in a new window/tab.
+- `title`: Tooltip text on hover.
+
+## Images
+HTML images are defined with the `<img>` tag. It is empty, containing attributes only, and does not have a closing tag.
+
+```html
+<img src="url" alt="text">
+```
+
+### Attributes
+- `src`: The path to the image.
+- `alt`: Alternate text for screen readers or if image fails to load.
+- `width`/`height`: Size in pixels.
+- `loading`: `lazy` (defer loading) or `eager`.
+
+## File Paths
+- **Absolute URL**: Full web address (`https://www.google.com`)
+- **Relative URL**: Path relative to current page (`images/logo.png`)
+
+## Interactive Playground
+
+<HTMLPlayground initialCode={`<h3>Links</h3>
+<p>
+  Visit <a href="https://google.com" target="_blank" title="Go to Google">Google</a> 
+  (opens in new tab).
+</p>
+
+<h3>Images</h3>
+<!-- Image from placeholder service -->
+<img 
+  src="https://via.placeholder.com/300x150" 
+  alt="Placeholder Banner"
+  title="A grey banner"
+  width="300"
+  height="150"
+  style="border-radius: 10px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);"
+/>
+
+<h3>Image Link</h3>
+<a href="https://example.com">
+  <img src="https://via.placeholder.com/50" alt="Click me" />
+</a>`} />

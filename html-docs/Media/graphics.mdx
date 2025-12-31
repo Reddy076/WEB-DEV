@@ -1,0 +1,66 @@
+---
+sidebar_position: 2
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Graphics
+
+HTML5 allows you to draw graphics on your web page using `<canvas>` (raster graphics) and `<svg>` (vector graphics).
+
+## SVG (Scalable Vector Graphics)
+SVG defines vector-based graphics in XML format.
+- SVG images are scalable without losing quality.
+- Every element and attribute in SVG files can be animated.
+
+```html
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+</svg>
+```
+
+## Canvas
+The `<canvas>` element is a container for graphics. You must use a script (usually JavaScript) to actually draw the graphics.
+
+```html
+<canvas id="myCanvas" width="200" height="100"></canvas>
+```
+Common methods: `getContext()`, `fillRect()`, `moveTo()`, `lineTo()`, `arc()`.
+
+## Comparison
+| Feature | Canvas | SVG |
+|---------|--------|-----|
+| Resolution | Resolution dependent (Raster) | Resolution independent (Vector) |
+| Event Handlers | No support | Support |
+| Complexity | Good for games/high particle count | Good for apps/maps (DOM accessible) |
+| Rendering | Pixel-by-pixel | DOM based |
+
+## Interactive Playground
+
+<HTMLPlayground initialCode={`<h3>SVG Example</h3>
+<svg width="300" height="100" style="border: 1px solid #ccc">
+  <rect x="10" y="10" width="80" height="80" style="fill:blue;stroke:pink;stroke-width:5;opacity:0.5" />
+  <circle cx="150" cy="50" r="40" fill="red" />
+  <text x="220" y="55" fill="black">I love SVG</text>
+</svg>
+
+<h3>Canvas Example</h3>
+<canvas id="drawArea" width="300" height="100" style="border:1px solid #000000;"></canvas>
+
+<script>
+  var c = document.getElementById("drawArea");
+  var ctx = c.getContext("2d");
+  
+  // Draw Gradient
+  var grd = ctx.createLinearGradient(0, 0, 200, 0);
+  grd.addColorStop(0, "red");
+  grd.addColorStop(1, "white");
+  
+  ctx.fillStyle = grd;
+  ctx.fillRect(10, 10, 280, 80);
+  
+  // Draw Text
+  ctx.font = "30px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText("Canvas Art", 70, 60);
+</script>`} />

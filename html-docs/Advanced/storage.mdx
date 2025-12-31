@@ -1,0 +1,35 @@
+---
+sidebar_position: 1
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Web Storage API
+
+HTML5 web storage allows web applications to store data locally within the user's browser.
+
+### LocalStorage vs SessionStorage
+- **localStorage**: Stores data with **no expiration date**.
+- **sessionStorage**: Stores data for **one session** (lost when tab is closed).
+
+### Interactive Example
+Try saving data, refreshing the iframe (simulated by re-running code), and retrieving it.
+
+<HTMLPlayground initialCode={`<input id="inp" type="text" placeholder="Enter name...">
+<button onclick="save()">Save to LocalStorage</button>
+<button onclick="load()">Load from LocalStorage</button>
+<p id="result"></p>
+
+<script>
+  function save() {
+    var val = document.getElementById('inp').value;
+    localStorage.setItem('username', val);
+    alert('Saved: ' + val);
+  }
+  
+  function load() {
+    var val = localStorage.getItem('username');
+    document.getElementById('result').innerText = "Stored Name: " + (val || 'No data');
+  }
+</script>
+`} />

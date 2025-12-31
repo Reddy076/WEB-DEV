@@ -1,0 +1,79 @@
+---
+sidebar_position: 3
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Text Formatting
+
+HTML contains several elements for defining text with a special meaning.
+
+## Headings
+HTML headings are titles or subtitles that you want to display on a webpage. They range from `<h1>` (most important) to `<h6>` (least important).
+
+:::info Accessibility
+Search engines use your headings to index the structure and content of your web pages. Users often skim a page by its headings. It is important to use headings to show the document structure.
+:::
+
+## paragraphs
+The `<p>` element defines a paragraph. Browsers automatically add a single blank line before and after each `<p>` element.
+
+## Formatting Elements
+
+| Tag | Description |
+|-----|-------------|
+| `<b>` | Bold text (without semantic importance) |
+| `<strong>` | **Important** text (bold visually) |
+| `<i>` | Italic text (without semantic importance) |
+| `<em>` | *Emphasized* text (italic visually) |
+| `<mark>` | Marked or highlighted text |
+| `<small>` | Smaller text |
+| `<del>` | Deleted (strikethrough) text |
+| `<ins>` | Inserted (underlined) text |
+| `<sub>` | Subscript text (e.g., H₂O) |
+| `<sup>` | Superscript text (e.g., X²) |
+| `<blockquote>` | Defines a section that is quoted from another source |
+| `<q>` | Defines a short inline quotation |
+| `<pre>` | Defines preformatted text (preserves spaces and line breaks) |
+| `<code>` | Defines a piece of computer code |
+
+## Interactive Playground
+
+Experiment with different text formats to see how they render.
+
+<HTMLPlayground initialCode={`<!-- Headings -->
+<h1>Main Heading (h1)</h1>
+<h3>Sub-section (h3)</h3>
+
+<!-- Paragraphs & Formatting -->
+<p>
+  This is normal text. 
+  <b>This is bold.</b> 
+  <i>This is italic.</i>
+</p>
+
+<p>
+  <strong>This is important!</strong> 
+  <em>This is emphasized.</em>
+</p>
+
+<!-- Special Formatting -->
+<p>
+  We can <mark>highlight</mark> text or show <del>deleted</del> 
+  and <ins>inserted</ins> content.
+</p>
+
+<!-- Formulas -->
+<p>
+  Water is H<sub>2</sub>O.<br>
+  E = mc<sup>2</sup>
+</p>
+
+<!-- Code & Preformatting -->
+<pre>
+  This text preserves
+      spaces and
+  line breaks.
+</pre>
+
+<p>Press <code>Ctrl + C</code> to copy.</p>`} />

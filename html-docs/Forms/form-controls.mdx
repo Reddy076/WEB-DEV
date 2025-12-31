@@ -1,0 +1,89 @@
+---
+sidebar_position: 3
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Form Controls
+
+Beyond standard input types, HTML offers other controls for richer user interaction.
+
+## Textarea
+The `<textarea>` element defines a multi-line text input control.
+
+```html
+<textarea rows="4" cols="50">
+Default text...
+</textarea>
+```
+
+## Select & Option (Dropdown)
+The `<select>` element creates a drop-down list.
+
+```html
+<select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+```
+
+### Attributes
+- `multiple`: Allow multiple selections.
+- `size`: Number of visible options.
+
+### Grouping Options
+Use `<optgroup>` to group related options.
+
+```html
+<select>
+  <optgroup label="Swedish Cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+  </optgroup>
+</select>
+```
+
+## Buttons
+The `<button>` element defines a clickable button.
+
+```html
+<button type="button" onclick="alert('Hello')">Click Me</button>
+```
+
+## Datalist
+The `<datalist>` element specifies a list of pre-defined options for an `<input>` element. Users can still type their own value.
+
+## Interactive Playground
+
+<HTMLPlayground initialCode={`<form>
+  <h3>Feedback Form</h3>
+  
+  <label for="msg">Message:</label><br>
+  <textarea id="msg" name="msg" rows="4" style="width: 100%;"></textarea><br><br>
+  
+  <label for="browser">Choose a browser:</label>
+  <input list="browsers" name="browser" id="browser" placeholder="Type or select...">
+  <datalist id="browsers">
+    <option value="Edge">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist><br><br>
+  
+  <label for="car">Select Car (Grouped):</label>
+  <select id="car">
+    <optgroup label="German">
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </optgroup>
+    <optgroup label="American">
+      <option value="ford">Ford</option>
+      <option value="tesla">Tesla</option>
+    </optgroup>
+  </select><br><br>
+  
+  <button type="button" style="padding: 10px 20px; background: #2584ff; color: white; border: none; border-radius: 4px;">Submit Feedback</button>
+</form>`} />

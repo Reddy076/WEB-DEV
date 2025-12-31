@@ -47,12 +47,21 @@ const config = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'html-docs',
+        path: 'html-docs',
+        routeBasePath: 'html',
+        sidebarPath: './htmlSidebars.js',
+      },
+    ],
+    [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
         hashed: true,
         language: ['en'],
-        docsRouteBasePath: ['/', '/js'],
-        docsDir: ['docs', 'js-docs'],
+        docsRouteBasePath: ['/', '/js', '/html'],
+        docsDir: ['docs', 'js-docs', 'html-docs'],
         indexDocs: true,
         indexBlog: false,
         indexPages: false,
@@ -98,6 +107,14 @@ const config = {
           href: '/',
         },
         items: [
+          {
+            type: 'docSidebar',
+            sidebarId: 'htmlSidebar',
+            docsPluginId: 'html-docs',
+            position: 'left',
+            label: '📝 HTML',
+            className: 'protected-item',
+          },
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',

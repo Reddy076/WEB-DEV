@@ -1,0 +1,45 @@
+---
+sidebar_position: 2
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Elements & Tags
+
+An **element** usually consists of an opening tag, content, and a closing tag.
+
+## Common Tags
+
+### Headings & Text
+Headings range from `<h1>` (most important) to `<h6>` (least important).
+
+<HTMLPlayground initialCode={`<h1>Main Heading</h1>
+<h2>Sub Heading</h2>
+<p>This is a paragraph with <b>bold</b> and <i>italic</i> text.</p>
+<p>We can also use <mark>highlighted</mark> text.</p>
+`} />
+
+### Lists
+HTML supports unordered (bulleted) and ordered (numbered) lists.
+
+<HTMLPlayground initialCode={`<h3>Unordered List</h3>
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ul>
+
+<h3>Ordered List</h3>
+<ol>
+  <li>Plan</li>
+  <li>Code</li>
+  <li>Deploy</li>
+</ol>
+`} />
+
+### Links & Images
+
+```html
+<a href="https://example.com">Visit Website</a>
+<img src="image.jpg" alt="Description">
+```

@@ -1,0 +1,68 @@
+---
+sidebar_position: 4
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Form Validation
+
+HTML5 validation prevents data from being submitted if it does not meet certain criteria. This provides immediate feedback to the user.
+
+## HTML5 Constraint Validation
+Browsers have built-in validation mechanisms triggered by specific attributes.
+
+| Attribute | Description |
+|-----------|-------------|
+| `required` | Specifies that an input field must be filled out. |
+| `min` / `max` | Specifies a minimum and maximum value for numeric/date inputs. |
+| `minlength` / `maxlength` | Specifies the minimum and maximum number of characters. |
+| `pattern` | Specifies a regular expression that the input value must check against. |
+
+## CSS Pseudo-Classes
+You can style inputs based on their validity state:
+- `:valid`: Selects elements with a valid value.
+- `:invalid`: Selects elements with an invalid value.
+
+```css
+input:invalid {
+  border: 2px solid red;
+}
+```
+
+## Interactive Playground
+
+Try to submit the form with empty or invalid data to see the built-in validation messages.
+
+<HTMLPlayground initialCode={`<!DOCTYPE html>
+<html>
+<head>
+<style>
+  input:invalid {
+    border: 2px solid red;
+    background-color: #fee;
+  }
+  input:valid {
+    border: 2px solid green;
+    background-color: #efe;
+  }
+</style>
+</head>
+<body>
+
+<form>
+  <h3>Registration</h3>
+  
+  <label for="usr">Username (3-15 chars):</label><br>
+  <input type="text" id="usr" name="usr" required minlength="3" maxlength="15"><br><br>
+  
+  <label for="code">Country Code (3 letters):</label><br>
+  <input type="text" id="code" name="code" pattern="[A-Za-z]{3}" title="Three letter country code"><br><br>
+  
+  <label for="age">Age (18-99):</label><br>
+  <input type="number" id="age" name="age" min="18" max="99" required><br><br>
+  
+  <button type="submit">Register</button>
+</form>
+
+</body>
+</html>`} />

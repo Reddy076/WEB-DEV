@@ -1,0 +1,106 @@
+---
+sidebar_position: 3
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Web Storage API
+
+HTML web storage; better than cookies.
+
+## What is HTML Web Storage?
+With web storage, web applications can store data locally within the user's browser.
+
+- **More Secure**: Unlike cookies, storage objects are not sent to the server with every request.
+- **Micro Storage**: Large amounts of data can be stored locally (at least 5MB).
+- **Per Origin**: The data is specific to the protocol, domain, and port.
+
+## Two Storage Objects
+
+1.  **localStorage**
+    - Stores data with no expiration date.
+    - Data will not be deleted when the browser is closed.
+    - Sharing: Shared between all tabs and windows from the same origin.
+
+2.  **sessionStorage**
+    - Stores data for one session.
+    - Data is lost when the browser tab is closed.
+    - Sharing: Not shared between tabs (even of the same URL).
+
+## API Methods
+The API is identical for both objects.
+
+```javascript
+// Store
+localStorage.setItem("key", "value");
+
+// Retrieve
+let result = localStorage.getItem("key");
+
+// Remove
+localStorage.removeItem("key");
+
+// Clear All
+localStorage.clear();
+```
+
+## Interactive Playground
+
+Test saving data securely to your local browser storage. Refreshing the specific iframe logic in this playground might reset the session depending on the implementation, but `localStorage` persists across reloads of the main page.
+
+<HTMLPlayground initialCode={`<h3>Local Storage Manager</h3>
+
+<label for="key">Key:</label>
+<input type="text" id="key" placeholder="e.g. username" value="myNote">
+
+<label for="val">Value:</label>
+<input type="text" id="val" placeholder="e.g. John Doe">
+
+<br><br>
+
+<button onclick="saveData()">Save Item</button>
+<button onclick="readData()">Get Item</button>
+<button onclick="removeData()">Remove Item</button>
+<button onclick="clearAll()">Clear All</button>
+
+<div id="status" style="margin-top:20px; padding:10px; background:#f0f0f0;">
+  Status: Ready
+</div>
+
+<script>
+  function show(msg) {
+    document.getElementById("status").innerText = "Status: " + msg;
+  }
+
+  function saveData() {
+    var k = document.getElementById("key").value;
+    var v = document.getElementById("val").value;
+    if(!k) return alert("Key needed");
+    
+    // Save to LocalStorage
+    localStorage.setItem(k, v);
+    show("Saved [" + k + " : " + v + "]");
+  }
+
+  function readData() {
+    var k = document.getElementById("key").value;
+    var v = localStorage.getItem(k);
+    
+    if (v === null) {
+      show("Key '" + k + "' not found");
+    } else {
+      show("Found: " + v);
+    }
+  }
+
+  function removeData() {
+    var k = document.getElementById("key").value;
+    localStorage.removeItem(k);
+    show("Removed key '" + k + "'");
+  }
+
+  function clearAll() {
+    localStorage.clear();
+    show("Storage Cleared");
+  }
+</script>`} />

@@ -1,0 +1,42 @@
+---
+sidebar_position: 3
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# DOM (Document Object Model)
+
+The **DOM** is a programming interface for HTML documents. It represents the page as a tree of objects that JavaScript can manipulate.
+
+### DOM Tree Structure
+```
+Document
+  └── html
+       ├── head
+       │    ├── title
+       │    └── meta
+       └── body
+            ├── h1
+            ├── p
+            └── div
+```
+
+### Interactive DOM Manipulation
+Click the button below to use JavaScript to change the page content.
+
+<HTMLPlayground initialCode={`<h1 id="heading">Original Text</h1>
+<button onclick="changeText()">Change Text</button>
+
+<script>
+  function changeText() {
+    const el = document.getElementById('heading');
+    el.innerText = "Text Updated via DOM!";
+    el.style.color = "red";
+  }
+</script>
+`} />
+
+### Key Concepts
+- **Nodes**: Every element, attribute, and text is a node.
+- **Parent/Child/Sibling**: Relationships between nodes.
+- **Document Object**: The entry point to the DOM (e.g., `document.getElementById`).

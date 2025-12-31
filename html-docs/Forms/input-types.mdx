@@ -1,0 +1,59 @@
+---
+sidebar_position: 2
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Input Types
+
+The `<input>` element is the most important form element. Its behavior depends heavily on the `type` attribute.
+
+## Common Input Types
+
+1.  **text**: Default single-line text field.
+2.  **password**: Masked characters.
+3.  **submit**: Button to submit form.
+4.  **reset**: Button to reset form.
+5.  **radio**: Select ONE from many.
+6.  **checkbox**: Select ANY from many.
+7.  **button**: Clickable button.
+
+## HTML5 Input Types
+These types provide better semantic meaning and mobile keyboard integration:
+
+- `color`: Color picker.
+- `date` / `time` / `datetime-local`: Native date/time pickers.
+- `email`: Validates email syntax.
+- `number`: Numeric input with spinners.
+- `range`: Slider control.
+- `search`: Styled for search queries.
+- `tel`: Optimized keyboard for phone numbers.
+- `url`: Validates URL syntax.
+
+## Interactive Playground
+
+Test out various input types. Note how modern browsers provide native pickers for things like date and color.
+
+<HTMLPlayground initialCode={`<form>
+  <!-- Basic -->
+  <label>Username:</label> <input type="text" name="user"><br><br>
+  <label>Password:</label> <input type="password" name="pass"><br><br>
+  
+  <!-- Selection -->
+  <p>Gender:</p>
+  <input type="radio" id="m" name="gender" value="male">
+  <label for="m">Male</label>
+  <input type="radio" id="f" name="gender" value="female">
+  <label for="f">Female</label><br>
+  
+  <p>Skills:</p>
+  <input type="checkbox" id="h" name="skill"> <label for="h">HTML</label>
+  <input type="checkbox" id="c" name="skill"> <label for="c">CSS</label><br><br>
+  
+  <!-- HTML5 Native Pickers -->
+  <label>Color:</label> <input type="color" value="#ff0000"><br><br>
+  <label>Date:</label> <input type="date"><br><br>
+  <label>Range (0-10):</label> <input type="range" min="0" max="10"><br><br>
+  
+  <input type="submit" value="Submit Form">
+</form>`} />

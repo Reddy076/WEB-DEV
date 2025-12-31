@@ -1,0 +1,91 @@
+---
+sidebar_position: 2
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Elements & Attributes
+
+## HTML Elements
+
+An HTML element is defined by a start tag, some content, and an end tag.
+
+```html
+<tagname>Content goes here...</tagname>
+```
+
+- **Start tag**: `<p>`
+- **Content**: Hello World
+- **End tag**: `</p>`
+
+Some elements are **empty elements** (like `<br>` or `<img />`) and do not have content or an end tag.
+
+### Nested Elements
+HTML elements can be nested (this means that elements can contain other elements).
+
+```html
+<div>
+    <h1>Main Title</h1>
+    <p>A paragraph inside a div.</p>
+</div>
+```
+
+## HTML Attributes
+
+Attributes provide additional information about HTML elements. They are always specified in the **start tag** and usually come in name/value pairs like: `name="value"`.
+
+### Global Attributes
+These attributes can be used on any HTML element:
+
+| Attribute | Description |
+|-----------|-------------|
+| `class` | A classname for an element (used by CSS). |
+| `id` | A unique id for an element. |
+| `style` | An inline CSS style for an element. |
+| `title` | Extra information about an element (tooltip). |
+| `hidden` | Specifies that an element is not yet, or is no longer, relevant. |
+
+### Common Specific Attributes
+- `href` (for `<a>`): Specifies the URL of the page the link goes to.
+- `src` (for `<img>`): Specifies the path to the image to be displayed.
+- `width` and `height` (for `<img>`): Provide size information for images.
+- `alt` (for `<img>`): Specifies an alternate text for an image.
+
+:::tip Best Practice
+Always use **lowercase** for attributes and always **quote** attribute values.
+:::
+
+## Interactive Playground
+
+Explore how elements nest and how attributes modify their behavior.
+
+<HTMLPlayground initialCode={`<!-- Container with Global Attributes -->
+<div id="main-container" style="border: 2px solid #ccc; padding: 20px;">
+  
+  <!-- Element with Title Tooltip -->
+  <h2 title="I am a header">Hover over me!</h2>
+  
+  <!-- Nested Elements -->
+  <p class="text-content">
+    This is a paragraph with 
+    <span style="color: red; font-weight: bold;">inline styles</span> 
+    and a <a href="#" target="_blank">link</a>.
+  </p>
+
+  <!-- Image with Attributes -->
+  <img 
+    src="https://via.placeholder.com/150" 
+    alt="Placeholder Image" 
+    width="150" 
+    height="100" 
+    style="border-radius: 8px;"
+  />
+  
+  <br><br>
+  
+  <!-- Empty Elements -->
+  <input type="text" placeholder="I am an empty element" />
+  <hr />
+  <p hidden>You cannot see this paragraph.</p>
+
+</div>`} />

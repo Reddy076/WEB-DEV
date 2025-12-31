@@ -1,0 +1,129 @@
+---
+sidebar_position: 4
+---
+
+import HTMLPlayground from '@site/src/components/HTMLPlayground';
+
+# Semantic HTML
+
+A semantic element clearly describes its meaning to both the browser and the developer.
+
+**Non-semantic elements**: `<div>` and `<span>` - Tells nothing about its content.
+**Semantic elements**: `<form>`, `<table>`, `<article>` - Clearly defines its content.
+
+## Why use Semantic Elements?
+1.  **Accessibility**: Screen readers can use semantic tags to help visually impaired users navigate a page ("Jump to navigation").
+2.  **SEO**: Search engines give more weight to content inside semantic elements like headings, articles, and main content areas.
+3.  **Readability**: Makes code easier to read and maintain for developers.
+
+## Semantic Tags Layout
+
+A standard HTML5 document layout typically looks like this:
+
+```html
+<header>...</header>
+<nav>...</nav>
+<main>
+  <section>...</section>
+  <article>...</article>
+  <aside>...</aside>
+</main>
+<footer>...</footer>
+```
+
+### Element Descriptions
+
+| Tag | Description |
+|-----|-------------|
+| `<header>` | Specifies a header for a document or section. |
+| `<nav>` | Defines a set of navigation links. |
+| `<section>` | Defines a section in a document. |
+| `<article>` | Specifies independent, self-contained content (blog posts, news). |
+| `<aside>` | Defines content aside from the page content (sidebars). |
+| `<footer>` | Specifies a footer for a document or section. |
+| `<main>` | Specifies the main content of a document. |
+| `<figure>` | Specifies self-contained content, like illustrations, diagrams, photos. |
+| `<figcaption>`| Defines a caption for a `<figure>` element. |
+
+## Interactive Playground
+
+This playground demonstrates a semantic layout. Notice how the CSS targets these specific tags to create a standard page structure.
+
+<HTMLPlayground initialCode={`<!DOCTYPE html>
+<html>
+<head>
+<style>
+  /* Basic Reset */
+  body { font-family: sans-serif; margin: 0; }
+  
+  /* Semantic Layout Styling */
+  header, footer {
+    background: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  nav {
+    background: #eee;
+    padding: 10px;
+  }
+  
+  nav a { margin: 0 10px; text-decoration: none; color: #333; font-weight: bold; }
+  
+  main {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  article {
+    flex: 3;
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+  
+  aside {
+    flex: 1;
+    background: #e0f7fa;
+    padding: 20px;
+    border: 1px solid #b2ebf2;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>My Semantic Website</h1>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</nav>
+
+<main>
+  <article>
+    <h2>Understanding Semantics</h2>
+    <p>Using semantic tags helps machines understand your content.</p>
+    <figure style="background:white; border:1px solid #ccc; padding:10px;">
+      <div style="width:50px; height:50px; background:blue; margin:0 auto;"></div>
+      <figcaption>Fig.1 - A blue square.</figcaption>
+    </figure>
+  </article>
+  
+  <aside>
+    <h3>Related Links</h3>
+    <p>Check out our other tutorials.</p>
+  </aside>
+</main>
+
+<footer>
+  <p>&copy; 2025 WebDev Docs</p>
+</footer>
+
+</body>
+</html>`} />
