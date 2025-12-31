@@ -55,22 +55,7 @@ const config = {
         sidebarPath: './htmlSidebars.js',
       },
     ],
-    [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
-      {
-        hashed: false,
-        language: ['en'],
-        docsRouteBasePath: ['/', '/js', '/html'],
-        docsDir: ['docs', 'js-docs', 'html-docs'],
-        indexDocs: true,
-        indexBlog: false,
-        indexPages: false,
-        highlightSearchTermsOnTargetPage: true,
-        searchBarShortcut: false,
-        searchBarShortcutHint: true,
-        searchResultLimits: 10,
-      },
-    ],
+
   ],
 
   presets: [
